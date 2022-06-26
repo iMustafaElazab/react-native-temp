@@ -24,6 +24,8 @@
 
 #import <react/config/ReactNativeConfig.h>
 
+static NSString *const kRNConcurrentRoot = @"concurrentRoot";
+
 @interface AppDelegate () <RCTCxxBridgeDelegate, RCTTurboModuleManagerDelegate> {
   RCTTurboModuleManager *_turboModuleManager;
   RCTSurfacePresenterBridgeAdapter *_bridgeAdapter;
@@ -44,9 +46,6 @@
     [FIRApp configure];
   }
   
-  // Variable added for injecting headless check in application.
-  NSDictionary *appProperties = [RNFBMessagingModule addCustomPropsToUserProps:nil withLaunchOptions:launchOptions];
-  
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   
 #if RCT_NEW_ARCH_ENABLED
@@ -57,7 +56,16 @@
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
   
-  RCTRootView *rootView = (RCTRootView *)RCTAppSetupDefaultRootView(bridge, @"TempApp", appProperties);
+  NSDictionary *initProps = [self prepareInitialProps];
+  
+  // Variable added for injecting headless check in application.
+  NSDictionary *appProperties = [RNFBMessagingModule addCustomPropsToUserProps:nil withLaunchOptions:launchOptions];
+  
+  // Merge both initProps and appProperties.
+  NSMutableDictionary *fullProps = [initProps mutableCopy];
+  [fullProps addEntriesFromDictionary:appProperties];
+  
+  RCTRootView *rootView = (RCTRootView *)RCTAppSetupDefaultRootView(bridge, @"TempApp", fullProps);
   
   if (@available(iOS 13.0, *)) {
     rootView.backgroundColor = [UIColor systemBackgroundColor];
@@ -81,6 +89,28 @@
   center.delegate = self;
   
   return YES;
+}
+
+/// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
+///
+/// @see: https://reactjs.org/blog/2022/03/29/react-v18.html
+/// @note: This requires to be rendering on Fabric (i.e. on the New Architecture).
+/// @return: `true` if the `concurrentRoot` feture is enabled. Otherwise, it returns `false`.
+- (BOOL)concurrentRootEnabled
+{
+  // Switch this bool to turn on and off the concurrent root
+  return true;
+}
+
+- (NSDictionary *)prepareInitialProps
+{
+  NSMutableDictionary *initProps = [NSMutableDictionary new];
+  
+#ifdef RCT_NEW_ARCH_ENABLED
+  initProps[kRNConcurrentRoot] = @([self concurrentRootEnabled]);
+#endif
+  
+  return initProps;
 }
 
 //Called when a notification is delivered to a foreground app.
