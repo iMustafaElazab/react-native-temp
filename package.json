@@ -16,6 +16,8 @@
   "keywords": [
     "react-native",
     "typescript",
+    "redux",
+    "firebase",
     "jest",
     "template",
     "boilerplate"
