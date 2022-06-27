@@ -1,3 +1,5 @@
 {
-  "app_name": "TempApp"
+  "app_name": "TempApp",
+  "session_expired": "Your login session has been expired.\nPlease login again.",
+  "ok": "OK"
 }

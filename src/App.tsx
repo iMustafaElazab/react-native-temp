@@ -22,6 +22,7 @@ import {setNotificationsCount} from './store/notificationsCount';
 import Notification from './types/api/Notification';
 
 import NavigationContainer from './navigation/NavigationContainer';
+import ErrorDialog from './components/ErrorDialog';
 
 const getLogMessage = (message: string) => {
   return `## App: ${message}`;
@@ -195,6 +196,7 @@ export default () => {
     <View style={styles.appContainer}>
       <PaperProvider theme={paperTheme}>
         <NavigationContainer />
+        <ErrorDialog />
       </PaperProvider>
     </View>
   );

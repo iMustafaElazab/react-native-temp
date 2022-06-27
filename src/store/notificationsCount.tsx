@@ -6,7 +6,7 @@ interface NotificationsCountState {
 
 const initialState = {notificationsCount: undefined} as NotificationsCountState;
 
-export const userSlice = createSlice({
+export const notificationsCountSlice = createSlice({
   name: 'notificationsCount',
   initialState,
   reducers: {
@@ -20,6 +20,6 @@ export const userSlice = createSlice({
 });
 
 export const {setNotificationsCount, removeNotificationsCount} =
-  userSlice.actions;
+  notificationsCountSlice.actions;
 
-export default userSlice.reducer;
+export default notificationsCountSlice.reducer;

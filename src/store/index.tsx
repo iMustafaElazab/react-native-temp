@@ -4,12 +4,14 @@ import Config from 'react-native-config';
 
 import userReducer from './user';
 import notificationsCountReducer from './notificationsCount';
+import errorDialogMessageReducer from './errorDialogMessage';
 import {api} from './api/baseApi';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     notificationsCount: notificationsCountReducer,
+    errorDialogMessage: errorDialogMessageReducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: getDefaultMiddleware => {

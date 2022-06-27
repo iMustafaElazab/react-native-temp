@@ -1,6 +1,6 @@
 /**
  * NavigationUtils
- * 
+ *
  * Helper methods for navigating while you have no access to the navigation prop.
  * These methods should be used only if you don't have a navigation prop.
  * If you need to navigate from nested component without passing the navigation prop
@@ -57,5 +57,24 @@ export const push = (
 
   if (navigationRef.isReady()) {
     navigationRef.dispatch(StackActions.push(screenName, params));
+  }
+};
+
+export const replace = (
+  screenName: keyof RootStackParamList,
+  params?: RootStackParamList[keyof RootStackParamList],
+) => {
+  console.info(getLogMessage('push'), screenName, params);
+
+  if (navigationRef.isReady()) {
+    navigationRef.dispatch(StackActions.replace(screenName, params));
+  }
+};
+
+export const popToTop = () => {
+  console.info(getLogMessage('popToTop'));
+
+  if (navigationRef.isReady()) {
+    navigationRef.dispatch(StackActions.popToTop());
   }
 };
