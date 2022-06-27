@@ -253,14 +253,16 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.release
+            // TODO: Create key first and add its data in gradle.properties
+//            signingConfig signingConfigs.release
             matchingFallbacks = ['debug', 'release']
         }
 
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.release
+            // TODO: Create key first and add its data in gradle.properties
+//            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
 
@@ -277,11 +279,17 @@ android {
     flavorDimensions "default"
 
     productFlavors {
-        production {}
+        production {
+            dimension "default"
+        }
 
-        staging {}
+        staging {
+            dimension "default"
+        }
 
-        development {}
+        development {
+            dimension "default"
+        }
     }
 
     // applicationVariants are e.g. debug, release

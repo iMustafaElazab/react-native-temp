@@ -4,6 +4,7 @@
 
 import 'react-native-gesture-handler';
 import {enableScreens} from 'react-native-screens';
+import React from 'react';
 import {AppRegistry} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import PushNotification from 'react-native-push-notification';
