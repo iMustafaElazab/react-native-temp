@@ -1,4 +1,4 @@
-# react-native-temp
+# React Native Template
 
 <p>
   <a href="https://github.com/EslamElMeniawy/react-native-temp#readme">
@@ -13,3 +13,25 @@
 </p>
 
 > React Native template with initial setup.
+
+## Features
+
+- Full project setup is available.
+- TypeScript enabled and used.
+- Redux added and configured.
+- Navigation added and configured.
+- Firebase (Analytics, Cloud Messaging and Crashlytics) added and configured.
+- Most of libraries added in each project is added and configured.
+
+## Usage
+
+```sh
+npx react-native init MyApp --template https://github.com/EslamElMeniawy/react-native-temp.git
+```
+
+After project creation, add "google-services.json" to the following location:
+"/android/app/google-services.json"
+
+## License
+
+This project is [MIT](LICENSE) licensed.
