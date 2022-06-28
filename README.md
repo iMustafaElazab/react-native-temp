@@ -17,10 +17,10 @@
 ## Features
 
 - Full project setup is available.
-- TypeScript enabled and used.
-- Redux added and configured.
-- Navigation added and configured.
-- Firebase (Analytics, Cloud Messaging and Crashlytics) added and configured.
+- `TypeScript` enabled and used.
+- `Redux` added and configured.
+- `Navigation` added and configured.
+- `Firebase` (`Analytics`, `Cloud Messaging` and `Crashlytics`) added and configured.
 - Most of libraries added in each project is added and configured.
 
 ## Usage
@@ -29,8 +29,25 @@
 npx react-native init MyApp --template https://github.com/EslamElMeniawy/react-native-temp.git
 ```
 
-After project creation, add "google-services.json" to the following location:
-"/android/app/google-services.json"
+### Additional Setup
+
+After project creation please follow the following steps before running the project for project to run successfully:
+
+- Add `google-services.json` to location `/android/app/google-services.json`.
+- Add `GoogleService-Info.plist` to location `/ios/GoogleService-Info.plist`.
+- Edit `app_name` key value in each translation file in location `/src/translations/`.
+- Add your app native icons and splashes.
+- Change values in `.env.development`, `.env.staging` and `.env.production` to values related to your project.
+- Check `TODO` comments added in code in the following locations:
+  - `/android/app/build.gradle`.
+  - `/android/app/src/main/AndroidManifest.xml`.
+  - `/android/app/src/main/res/values/colors.xml`.
+  - `/android/app/src/main/res/values/strings.xml`.
+  - `/src/App.tsx`.
+  - `/src/components/Splash.tsx`.
+  - `/src/navigation/NavigationParamsKeys.tsx`.
+  - `/src/screens/Splash/index.tsx`.
+  - `/src/utils/NotificationUtils.tsx`.
 
 ## License
 
