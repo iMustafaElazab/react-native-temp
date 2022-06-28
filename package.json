@@ -1,6 +1,6 @@
 {
-  "name": "react-native-temp",
-  "version": "1.0.0",
+  "name": "react-native-template-eslam-elmeniawy",
+  "version": "0.0.1",
   "description": "React Native template with initial setup.",
   "scripts": {
     "test": "exit 0"
