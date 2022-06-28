@@ -3,3 +3,6 @@ node_modules/
 .idea/
 template/android/app/google-services.json
 template/ios/GoogleService-Info.plist
+template/ios/Podfile.lock
+template/yarn.lock
+template/package-lock.json
