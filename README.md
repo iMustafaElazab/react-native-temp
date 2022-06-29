@@ -29,7 +29,7 @@
 ## Usage
 
 ```sh
-npx react-native init MyApp --template https://github.com/EslamElMeniawy/react-native-temp.git
+npx react-native init MyApp --template npx react-native init MyApp --template react-native-template-eslam-elmeniawy
 ```
 
 ### Additional Setup
