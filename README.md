@@ -1,11 +1,11 @@
 # React Native Template
 
 <p>
-  <a href="https://github.com/EslamElMeniawy/react-native-temp/actions/workflows/npm-publish.yml">
-    <img alt="Build Status" src="https://github.com/EslamElMeniawy/react-native-temp/actions/workflows/npm-publish.yml/badge.svg" />
+  <a href="https://www.npmjs.com/package/react-native-template-eslam-elmeniawy">
+    <img alt="npm Version" src="https://img.shields.io/npm/v/react-native-template-eslam-elmeniawy.svg" />
   </a>
   <a href="https://github.com/EslamElMeniawy/react-native-temp#readme">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+    <img alt="Documentation" src="https://img.shields.io/badge/Documented%3F-yes-brightgreen.svg" />
   </a>
   <a href="https://github.com/EslamElMeniawy/react-native-temp/graphs/commit-activity">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
