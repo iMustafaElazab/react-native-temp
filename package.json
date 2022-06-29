@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "React Native template with initial setup.",
   "scripts": {
-    "test": "exit 0"
+    "test": "exit 0",
+    "release": "release-it"
   },
   "files": [
     "template",
@@ -27,5 +28,26 @@
   "bugs": {
     "url": "https://github.com/EslamElMeniawy/react-native-temp/issues"
   },
-  "homepage": "https://github.com/EslamElMeniawy/react-native-temp#readme"
+  "homepage": "https://github.com/EslamElMeniawy/react-native-temp#readme",
+  "devDependencies": {
+    "@release-it/conventional-changelog": "^5.0.0",
+    "release-it": "^15.1.1"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  }
 }
