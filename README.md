@@ -36,6 +36,9 @@ npx react-native init MyApp --template npx react-native init MyApp --template re
 
 After project creation please follow the following steps before running the project for project to run successfully:
 
+- Change `Android` package name.
+- Change `iOS` bundle.
+- Create `Firebase` app and register your package and bundle.
 - Add `google-services.json` to location `/android/app/google-services.json`.
 - Add `GoogleService-Info.plist` to location `/ios/GoogleService-Info.plist`.
 - Edit `app_name` key value in each translation file in location `/src/translations/`.
