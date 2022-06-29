@@ -52,6 +52,7 @@ After project creation please follow the following steps before running the proj
   - `/android/app/src/main/res/values/strings.xml`.
   - `/src/App.tsx`.
   - `/src/components/Splash.tsx`.
+  - `/src/enums/AppImages.tsx`.
   - `/src/navigation/NavigationParamsKeys.tsx`.
   - `/src/screens/Splash/index.tsx`.
   - `/src/utils/NotificationUtils.tsx`.
