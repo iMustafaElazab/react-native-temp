@@ -42,6 +42,7 @@ After project creation please follow the following steps before running the proj
 - Add your app native icons and splashes.
 - Change values in `.env.development`, `.env.staging` and `.env.production` to values related to your project.
 - Check `TODO` comments added in code in the following locations:
+  - `react-native.config.js`.
   - `/android/app/build.gradle`.
   - `/android/app/src/main/AndroidManifest.xml`.
   - `/android/app/src/main/res/values/colors.xml`.

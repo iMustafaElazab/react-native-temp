@@ -35,7 +35,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "postinstall": "yarn patch-package && yarn pods && yarn link-assets && yarn android-clean && yarn ios-clean",
+    "postinstall": "yarn pods && yarn link-assets && yarn android-clean && yarn ios-clean",
     "svg": "yarn react-native-vector-image generate"
   },
   "dependencies": {
@@ -51,7 +51,6 @@
     "@reduxjs/toolkit": "^1.8.2",
     "i18n-js": "^3.9.2",
     "lodash.memoize": "^4.1.2",
-    "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0",
     "react": "18.0.0",
     "react-native": "0.69.0",
