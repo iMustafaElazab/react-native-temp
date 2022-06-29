@@ -8,9 +8,6 @@ install! 'cocoapods', :deterministic_uuids => false
 $RNFirebaseAnalyticsWithoutAdIdSupport = true
 
 target 'TempApp' do
-  # Added for "Firebase"
-  use_modular_headers!
-
   config = use_native_modules!
 
   # Flags change depending on the env values.
