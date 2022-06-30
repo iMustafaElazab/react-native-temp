@@ -29,7 +29,7 @@
 ## Usage
 
 ```sh
-npx react-native init MyApp --template npx react-native init MyApp --template react-native-template-eslam-elmeniawy
+npx react-native init MyApp --template react-native-template-eslam-elmeniawy
 ```
 
 ### Additional Setup
