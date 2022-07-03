@@ -44,18 +44,10 @@ After project creation please follow the following steps before running the proj
 - Edit `app_name` key value in each translation file in location `/src/translations/`.
 - Add your app native icons and splashes.
 - Change values in `.env.development`, `.env.staging` and `.env.production` to values related to your project.
-- Check `TODO` comments added in code in the following locations:
-  - `react-native.config.js`.
-  - `/android/app/build.gradle`.
-  - `/android/app/src/main/AndroidManifest.xml`.
-  - `/android/app/src/main/res/values/colors.xml`.
-  - `/android/app/src/main/res/values/strings.xml`.
-  - `/src/App.tsx`.
-  - `/src/components/Splash.tsx`.
-  - `/src/enums/AppImages.tsx`.
-  - `/src/navigation/NavigationParamsKeys.tsx`.
-  - `/src/screens/Splash/index.tsx`.
-  - `/src/utils/NotificationUtils.tsx`.
+
+### `TODO` Comments
+
+The project code has some `TODO` comments for guidance, check the instructions added in these comments and follow them.
 
 ## License
 
