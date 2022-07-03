@@ -4,7 +4,8 @@
   "description": "React Native template with initial setup.",
   "scripts": {
     "test": "exit 0",
-    "release": "release-it"
+    "release": "release-it",
+    "prepare": "husky install"
   },
   "files": [
     "template",
@@ -23,7 +24,7 @@
     "template",
     "boilerplate"
   ],
-  "author": "Eslam El-Meniawy <eslam.elmeniawy@gmail.com>",
+  "author": "Eslam El-Meniawy <eslam.elmeniawy@gmail.com> (https://eslamelmeniawy.github.io)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/EslamElMeniawy/react-native-temp/issues"
@@ -33,7 +34,11 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@release-it/conventional-changelog": "^5.0.0",
+    "commitlint": "^17.0.3",
+    "husky": "^8.0.1",
     "release-it": "^15.1.1"
   },
   "release-it": {
@@ -52,5 +57,10 @@
         "preset": "angular"
       }
     }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
