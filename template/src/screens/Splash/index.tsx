@@ -12,8 +12,7 @@ import {
 import User from '../../types/api/User';
 import {RootStackScreenProps, RootStackParamList} from '../../types/navigation';
 
-import Screen from '../../components/Screen';
-import Splash from '../../components/Splash';
+import {Screen, Splash} from '../../components';
 
 const getLogMessage = (message: string) => {
   return `## Splash Screen: ${message}`;
