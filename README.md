@@ -42,7 +42,8 @@ After project creation please follow the following steps before running the proj
 - Add `google-services.json` to location `/android/app/google-services.json`.
 - Add `GoogleService-Info.plist` to location `/ios/GoogleService-Info.plist`.
 - Edit `app_name` key value in each translation file in location `/src/translations/`.
-- Add your app native icons and splashes.
+- Add your app native icons.
+- Follow the [setup](https://github.com/zoontek/react-native-bootsplash#setup) for [`react-native-bootsplash`](https://github.com/zoontek/react-native-bootsplash) to add native splash screen.
 - Change values in `.env.development`, `.env.staging` and `.env.production` to values related to your project.
 
 ### `TODO` Comments
