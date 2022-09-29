@@ -189,6 +189,7 @@
 				B366AFA1A33FF2CCA4170D86 /* [CP-User] [RNFB] Core Configuration */,
 				B4469C51F16F31E19764DCF9 /* [CP-User] [RNFB] Crashlytics Configuration */,
 				BEDD2247D971717E021B9946 /* [CP] Copy Pods Resources */,
+				4E18C3BEC7AECE7BFEB4B5A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -275,6 +276,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n\n# Added for 'react-native-vector-image'\n../node_modules/react-native-vector-image/strip_svgs.sh\n";
+		};
+		4E18C3BEC7AECE7BFEB4B5A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TempApp/Pods-TempApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TempApp/Pods-TempApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TempApp/Pods-TempApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		B366AFA1A33FF2CCA4170D86 /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
