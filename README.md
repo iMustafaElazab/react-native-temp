@@ -21,8 +21,9 @@
 
 - Full project setup is available.
 - `TypeScript` enabled and used.
-- `Redux` added and configured.
-- `Navigation` added and configured.
+- `Redux` added and configured using [`Redux Toolkit`](https://redux-toolkit.js.org).
+- [`RTK Query`](https://redux-toolkit.js.org/rtk-query/overview) is used for `API`.
+- `Navigation` added and configured using [`React Navigation`](https://reactnavigation.org).
 - `Firebase` (`Analytics`, `Cloud Messaging` and `Crashlytics`) added and configured.
 - Most of libraries added in each project is added and configured.
 
