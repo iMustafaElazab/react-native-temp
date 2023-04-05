@@ -1,6 +1,6 @@
 {
   "name": "react-native-template-eslam-elmeniawy",
-  "version": "2.4.3",
+  "version": "2.5.0",
   "description": "React Native template with initial setup.",
   "scripts": {
     "test": "exit 0",
