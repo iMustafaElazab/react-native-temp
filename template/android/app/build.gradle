@@ -99,10 +99,13 @@ android {
 
     defaultConfig {
         applicationId "com.tempapp"
-       minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
+
+        // Added for enabling multidex.
+        multiDexEnabled true
     }
 
     signingConfigs {
