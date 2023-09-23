@@ -1,8 +1,8 @@
 # React Native Template
 
 <p>
-  <a href="https://www.npmjs.com/package/react-native-template-eslam-elmeniawy">
-    <img alt="npm Version" src="https://img.shields.io/npm/v/react-native-template-eslam-elmeniawy.svg" />
+  <a href="https://www.npmjs.com/package/@eslam-elmeniawy/react-native-template">
+    <img alt="npm Version" src="https://img.shields.io/npm/v/@eslam-elmeniawy/react-native-template.svg" />
   </a>
   <a href="https://github.com/EslamElMeniawy/react-native-temp#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/Documented%3F-yes-brightgreen.svg" />
@@ -22,7 +22,7 @@
 - Full project setup is available.
 - `TypeScript` enabled and used.
 - `Redux` added and configured using [`Redux Toolkit`](https://redux-toolkit.js.org).
-- [`RTK Query`](https://redux-toolkit.js.org/rtk-query/overview) is used for `API`.
+- [`TanStack Query (FKA React Query)`](https://tanstack.com/query/latest/) is used for `API` alongside [`axios`](https://axios-http.com).
 - `Navigation` added and configured using [`React Navigation`](https://reactnavigation.org).
 - `Firebase` (`Analytics`, `Cloud Messaging` and `Crashlytics`) added and configured.
 - Most of libraries added in each project is added and configured.
@@ -30,7 +30,7 @@
 ## Usage
 
 ```sh
-npx react-native init MyApp --template react-native-template-eslam-elmeniawy
+npx react-native init MyApp --template @eslam-elmeniawy/react-native-template
 ```
 
 ### Additional Setup
