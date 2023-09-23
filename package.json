@@ -4,8 +4,7 @@
   "description": "React Native template with initial setup.",
   "scripts": {
     "test": "exit 0",
-    "release": "release-it",
-    "prepare": "husky install"
+    "release": "release-it"
   },
   "files": [
     "template",
@@ -36,9 +35,9 @@
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@evilmartians/lefthook": "^1.5.0",
     "@release-it/conventional-changelog": "^5.1.1",
     "commitlint": "^17.1.2",
-    "husky": "^8.0.1",
     "release-it": "^15.5.0"
   },
   "release-it": {
