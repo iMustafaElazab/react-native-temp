@@ -10,6 +10,9 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
 
+// Added for "react-native-orientation-locker".
+import org.wonday.orientation.OrientationActivityLifecycle;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -52,11 +55,17 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+
+    // Added for "react-native-orientation-locker".
+    registerActivityLifecycleCallbacks(OrientationActivityLifecycle.getInstance());
+
     SoLoader.init(this, /* native exopackage */ false);
+
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
       DefaultNewArchitectureEntryPoint.load();
     }
+
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 }
