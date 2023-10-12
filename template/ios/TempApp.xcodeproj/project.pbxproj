@@ -13,7 +13,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-TempApp-TempAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-TempApp-TempAppTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		AABB6EDC2AD7FACB00B0A62C /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABB6EC92AD7FACB00B0A62C /* Fontisto.ttf */; };
 		AABB6EDD2AD7FACB00B0A62C /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABB6ECA2AD7FACB00B0A62C /* Octicons.ttf */; };
 		AABB6EDE2AD7FACB00B0A62C /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABB6ECB2AD7FACB00B0A62C /* Feather.ttf */; };
@@ -33,6 +32,7 @@
 		AABB6EEC2AD7FACB00B0A62C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABB6ED92AD7FACB00B0A62C /* SimpleLineIcons.ttf */; };
 		AABB6EED2AD7FACB00B0A62C /* FontAwesome6_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABB6EDA2AD7FACB00B0A62C /* FontAwesome6_Brands.ttf */; };
 		AABB6EEE2AD7FACB00B0A62C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABB6EDB2AD7FACB00B0A62C /* MaterialIcons.ttf */; };
+		AABB6EF02AD86BB600B0A62C /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AABB6EEF2AD86BB600B0A62C /* BootSplash.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +60,6 @@
 		5709B34CF0A7D63546082F79 /* Pods-TempApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TempApp.release.xcconfig"; path = "Target Support Files/Pods-TempApp/Pods-TempApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-TempApp-TempAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TempApp-TempAppTests.debug.xcconfig"; path = "Target Support Files/Pods-TempApp-TempAppTests/Pods-TempApp-TempAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-TempApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TempApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TempApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-TempApp-TempAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TempApp-TempAppTests.release.xcconfig"; path = "Target Support Files/Pods-TempApp-TempAppTests/Pods-TempApp-TempAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		AABB6EC92AD7FACB00B0A62C /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		AABB6ECA2AD7FACB00B0A62C /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		AABB6ED92AD7FACB00B0A62C /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		AABB6EDA2AD7FACB00B0A62C /* FontAwesome6_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome6_Brands.ttf; sourceTree = "<group>"; };
 		AABB6EDB2AD7FACB00B0A62C /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		AABB6EEF2AD86BB600B0A62C /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = TempApp/BootSplash.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -129,7 +129,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				AABB6EEF2AD86BB600B0A62C /* BootSplash.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = TempApp;
@@ -309,12 +309,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AABB6EE72AD7FACB00B0A62C /* FontAwesome5_Regular.ttf in Resources */,
+				AABB6EF02AD86BB600B0A62C /* BootSplash.storyboard in Resources */,
 				AABB6EDC2AD7FACB00B0A62C /* Fontisto.ttf in Resources */,
 				AABB6EE12AD7FACB00B0A62C /* FontAwesome5_Brands.ttf in Resources */,
 				AABB6EE52AD7FACB00B0A62C /* Ionicons.ttf in Resources */,
 				AABB6EE62AD7FACB00B0A62C /* FontAwesome5_Solid.ttf in Resources */,
 				AABB6EE02AD7FACB00B0A62C /* Entypo.ttf in Resources */,
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				AABB6EE32AD7FACB00B0A62C /* AntDesign.ttf in Resources */,
 				AABB6EE92AD7FACB00B0A62C /* Zocial.ttf in Resources */,
 				AABB6EE42AD7FACB00B0A62C /* Foundation.ttf in Resources */,
@@ -703,7 +703,12 @@
 					"-ld_classic",
 					"-Wl",
 					"-ld_classic",
-					"-Wl -ld_classic ",
+					"-Wl",
+					"-ld_classic",
+					"-Wl",
+					"-ld_classic",
+					"-Wl",
+					"-ld_classic",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
@@ -782,7 +787,12 @@
 					"-ld_classic",
 					"-Wl",
 					"-ld_classic",
-					"-Wl -ld_classic ",
+					"-Wl",
+					"-ld_classic",
+					"-Wl",
+					"-ld_classic",
+					"-Wl",
+					"-ld_classic",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;

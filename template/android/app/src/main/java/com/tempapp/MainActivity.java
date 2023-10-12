@@ -9,11 +9,23 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
 
+// Added for "react-native-bars".
+import com.zoontek.rnbars.RNBars;
+
+// Added for "react-native-bootsplash".
+import com.zoontek.rnbootsplash.RNBootSplash;
+
 public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    // Added for "react-native-bootsplash".
+    RNBootSplash.init(this, R.style.BootTheme);
+
     // Added for "react-native-screens".
     super.onCreate(null);
+
+    // Added for "react-native-bars".
+    RNBars.init(this, "dark-content");
   }
 
   // Added for "react-native-orientation-locker".

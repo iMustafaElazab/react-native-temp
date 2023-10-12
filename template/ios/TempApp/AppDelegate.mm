@@ -5,6 +5,9 @@
 // Added for "react-native-orientation-locker".
 #import "Orientation.h"
 
+// Added for "react-native-bootsplash".
+#import "RNBootSplash.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -29,6 +32,19 @@
 // Added for "react-native-orientation-locker".
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   return [Orientation getOrientation];
+}
+
+// Added for "react-native-bootsplash".
+- (UIView *)createRootViewWithBridge:(RCTBridge *)bridge
+                          moduleName:(NSString *)moduleName
+                           initProps:(NSDictionary *)initProps {
+  UIView *rootView = [super createRootViewWithBridge:bridge
+                                          moduleName:moduleName
+                                           initProps:initProps];
+  
+  [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
+  
+  return rootView;
 }
 
 @end
