@@ -1,7 +1,7 @@
-type ToastType = import('react-native-toast-notifications').ToastType | null;
+import type {ToastType} from 'react-native-toast-notifications';
 
 declare global {
-  const toast: ToastType;
+  const toast: ToastType | undefined | null;
 }
 
-declare var toast: ToastType;
+declare var toast: ToastType | undefined | null;

@@ -1,8 +1,14 @@
 module.exports = {
   root: true,
-  extends: '@react-native',
+  extends: [
+    '@react-native',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'plugin:eslint-comments/recommended',
+  ],
   ignorePatterns: ['.eslintrc.js'],
   parser: '@typescript-eslint/parser',
+  plugins: ['autofix', 'import', 'react-func'],
   rules: {
     '@typescript-eslint/naming-convention': [
       'error',
@@ -57,9 +63,66 @@ module.exports = {
         modifiers: ['requiresQuotes'],
       },
     ],
+    'arrow-body-style': ['error', 'as-needed'],
+    'react/self-closing-comp': ['error', {component: true, html: true}],
+    'autofix/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+        destructuredArrayIgnorePattern: '^_',
+      },
+    ],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      {prefer: 'type-imports'},
+    ],
+    'import/no-unresolved': 'error',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type',
+        ],
+        pathGroups: [
+          {pattern: '@src/**/**', group: 'parent', position: 'before'},
+        ],
+        alphabetize: {order: 'asc'},
+      },
+    ],
+    'no-restricted-imports': ['error', {patterns: ['../']}],
+    'react/no-array-index-key': ['error'],
+    eqeqeq: [1, 'allow-null'],
+    complexity: ['warn', 20],
+    'max-depth': ['warn', 5],
+    'max-nested-callbacks': ['warn', 10],
+    'max-params': ['warn', 4],
+    'max-lines': ['warn', 300],
+    'max-statements': ['warn', 10, {ignoreTopLevelFunctions: true}],
+    'react-func/max-lines-per-function': ['warn', 50],
+    'react-func/max-combined-conditions': ['error', 1],
+    'eslint-comments/no-use': ['error', {allow: []}],
+    'react-hooks/exhaustive-deps': 1,
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',
     project: './tsconfig.json',
+  },
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: true,
+      node: true,
+    },
   },
 };
