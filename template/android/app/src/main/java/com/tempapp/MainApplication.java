@@ -1,6 +1,6 @@
 package com.tempapp;
 
-import android.app.Application;
+import androidx.multidex.MultiDexApplication;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -13,7 +13,7 @@ import java.util.List;
 // Added for "react-native-orientation-locker".
 import org.wonday.orientation.OrientationActivityLifecycle;
 
-public class MainApplication extends Application implements ReactApplication {
+public class MainApplication extends MultiDexApplication implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
       new DefaultReactNativeHost(this) {
