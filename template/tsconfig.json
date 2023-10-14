@@ -4,8 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@src/*": ["./src/*"],
-      "@package": ["./package.json"]
+      "@packageJson": ["./package.json"],
+      "@appJson": ["./app.json"]
     }
   },
-  "include": ["src", "@types"]
+  "include": ["./index.js", "src", "@types"]
 }

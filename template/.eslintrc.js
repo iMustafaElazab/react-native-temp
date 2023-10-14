@@ -6,7 +6,13 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:eslint-comments/recommended',
   ],
-  ignorePatterns: ['.eslintrc.js', '/@types/*'],
+  ignorePatterns: [
+    '.eslintrc.js',
+    'babel.config.js',
+    'metro.config.js',
+    'jest.config.js',
+    '/@types/*',
+  ],
   parser: '@typescript-eslint/parser',
   plugins: ['autofix', 'import', 'react-func'],
   rules: {
