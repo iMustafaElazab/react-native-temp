@@ -14,7 +14,7 @@ pre-commit:
       glob: 'src/**/*.{js,ts,jsx,tsx}'
       run: npx tsc --noEmit
   scripts:
-    './clearenv.sh':
+    'clear-env.sh':
       runner: bash
 commit-msg:
   parallel: true
