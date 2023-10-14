@@ -13,6 +13,9 @@ pre-commit:
       files: git diff --name-only @{push}
       glob: "template/src/**/*.{js,ts,jsx,tsx}"
       run: npx tsc --noEmit
+  scripts:
+    "./clearenv.sh":
+      runner: bash
 commit-msg:
   parallel: true
   commands:
