@@ -68,6 +68,9 @@ yarn-error.log
 # testing
 /coverage
 
+# react-native-config codegen
+ios/tmp.xcconfig
+
 # Template project related files
 #
 template/android/app/google-services.json

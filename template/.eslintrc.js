@@ -6,7 +6,7 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:eslint-comments/recommended',
   ],
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', '/@types/*'],
   parser: '@typescript-eslint/parser',
   plugins: ['autofix', 'import', 'react-func'],
   rules: {

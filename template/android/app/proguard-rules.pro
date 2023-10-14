@@ -24,3 +24,7 @@
   **[] $VALUES;
   public *;
 }
+
+# Proguard rules for "react-native-config".
+-keep class com.tempapp.BuildConfig { *; }
+-keepresources string/build_config_package

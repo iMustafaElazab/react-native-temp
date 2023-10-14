@@ -12,6 +12,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2C40F91041921C2D5081217A /* Pods_TempApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6ACEAB21899E891C23680F /* Pods_TempApp.framework */; };
+		AAA2FA942ADAA40A001721FE /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AAA2FA932ADAA40A001721FE /* Config.xcconfig */; };
+		AAA2FA972ADAA69D001721FE /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA2FA962ADAA69D001721FE /* noop-file.swift */; };
 		AABB6EDC2AD7FACB00B0A62C /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABB6EC92AD7FACB00B0A62C /* Fontisto.ttf */; };
 		AABB6EDD2AD7FACB00B0A62C /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABB6ECA2AD7FACB00B0A62C /* Octicons.ttf */; };
 		AABB6EDE2AD7FACB00B0A62C /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABB6ECB2AD7FACB00B0A62C /* Feather.ttf */; };
@@ -61,6 +63,9 @@
 		5B7EB9410499542E8C5724F5 /* Pods-TempApp-TempAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TempApp-TempAppTests.debug.xcconfig"; path = "Target Support Files/Pods-TempApp-TempAppTests/Pods-TempApp-TempAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E6ACEAB21899E891C23680F /* Pods_TempApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TempApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-TempApp-TempAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TempApp-TempAppTests.release.xcconfig"; path = "Target Support Files/Pods-TempApp-TempAppTests/Pods-TempApp-TempAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		AAA2FA932ADAA40A001721FE /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		AAA2FA952ADAA69D001721FE /* TempApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TempApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		AAA2FA962ADAA69D001721FE /* noop-file.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "noop-file.swift"; sourceTree = "<group>"; };
 		AABB6EC92AD7FACB00B0A62C /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		AABB6ECA2AD7FACB00B0A62C /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		AABB6ECB2AD7FACB00B0A62C /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -135,6 +140,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AABB6EEF2AD86BB600B0A62C /* BootSplash.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				AAA2FA962ADAA69D001721FE /* noop-file.swift */,
+				AAA2FA952ADAA69D001721FE /* TempApp-Bridging-Header.h */,
 			);
 			name = TempApp;
 			sourceTree = "<group>";
@@ -159,6 +166,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				AAA2FA932ADAA40A001721FE /* Config.xcconfig */,
 				AABB6EF12AD8735D00B0A62C /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* TempApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -280,7 +288,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -328,6 +336,7 @@
 				AABB6EED2AD7FACB00B0A62C /* FontAwesome6_Brands.ttf in Resources */,
 				AABB6EDE2AD7FACB00B0A62C /* Feather.ttf in Resources */,
 				AABB6EEC2AD7FACB00B0A62C /* SimpleLineIcons.ttf in Resources */,
+				AAA2FA942ADAA40A001721FE /* Config.xcconfig in Resources */,
 				AABB6EEA2AD7FACB00B0A62C /* EvilIcons.ttf in Resources */,
 				AABB6EDD2AD7FACB00B0A62C /* Octicons.ttf in Resources */,
 				AABB6EE82AD7FACB00B0A62C /* FontAwesome.ttf in Resources */,
@@ -532,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAA2FA972ADAA69D001721FE /* noop-file.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -552,6 +562,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-TempApp-TempAppTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -579,6 +590,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-TempApp-TempAppTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = TempAppTests/Info.plist;
@@ -625,6 +637,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TempApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -657,6 +670,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TempApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -665,6 +679,7 @@
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAA2FA932ADAA40A001721FE /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -756,6 +771,8 @@
 					"-ld_classic",
 					"-Wl",
 					"-ld_classic",
+					"-Wl",
+					"-ld_classic",
 					"-Wl -ld_classic ",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
@@ -765,6 +782,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAA2FA932ADAA40A001721FE /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -837,6 +855,8 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
 					"-Wl",
 					"-ld_classic",
 					"-Wl",
