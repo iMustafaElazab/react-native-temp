@@ -11,6 +11,8 @@ module.exports = {
     'babel.config.js',
     'metro.config.js',
     'jest.config.js',
+    'commitlint.config.js',
+    'react-native.config.js',
     '/@types/*',
   ],
   parser: '@typescript-eslint/parser',

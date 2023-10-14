@@ -8,7 +8,7 @@ import App from '@src/App';
 enableScreens();
 
 function getLogMessage(message: string) {
-  return `## index: ${message}`;
+  return `## index:: ${message}`;
 }
 
 // Register background handler for firebase messages.
