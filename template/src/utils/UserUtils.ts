@@ -4,13 +4,13 @@ import {
   removeUser as removeLocalStorageUser,
 } from '@src/core';
 import type {User} from '@src/core';
+import {reset} from '@src/navigation';
 import {
   store,
   setUser as setStateUser,
   removeUser as removeStateUser,
   setErrorDialogMessage,
 } from '@src/store';
-// import {reset} from 'navigation';
 
 const getLogMessage = (message: string) => `## UserUtils:: ${message}`;
 
@@ -48,7 +48,7 @@ export const saveUserDataOpenHome = (user: User, errorMessage?: string) => {
   console.info(getLogMessage('saveUserDataOpenHome'), user, errorMessage);
 
   saveUserData(user, errorMessage, () => {
-    // reset('Home');
+    reset('home');
   });
 };
 
@@ -58,6 +58,6 @@ export const removeUserDataLogout = async () => {
   console.info(getLogMessage('userRemoved'), userRemoved);
   await messaging().deleteToken();
   store.dispatch(removeStateUser());
-  // reset('Login');
+  reset('login');
   // store.dispatch(api.util.resetApiState());
 };

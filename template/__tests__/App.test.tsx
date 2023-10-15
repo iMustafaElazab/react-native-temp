@@ -4,7 +4,7 @@
 
 import 'react-native';
 import {it} from '@jest/globals';
-import React from 'react';
+import * as React from 'react';
 import {create} from 'react-test-renderer';
 import App from '@src/App';
 

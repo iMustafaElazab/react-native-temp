@@ -70,6 +70,14 @@ module.exports = {
         format: null,
         modifiers: ['requiresQuotes'],
       },
+      {
+        selector: ['objectLiteralProperty'],
+        format: null,
+        filter: {
+          regex: '(screen_name|screen_class)',
+          match: true,
+        },
+      },
     ],
     'arrow-body-style': ['error', 'as-needed'],
     'react/self-closing-comp': ['error', {component: true, html: true}],
