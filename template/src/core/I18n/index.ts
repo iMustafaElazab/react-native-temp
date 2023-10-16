@@ -1,4 +1,4 @@
-import {i18n, use} from 'i18next';
+import {use} from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import {Platform, NativeModules, I18nManager} from 'react-native';
 import {default as Config} from 'react-native-config';

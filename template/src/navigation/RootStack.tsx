@@ -15,6 +15,7 @@ const stack = createNativeStackNavigator<RootStackParamList>();
 
 export default React.memo(() => (
   <stack.Navigator
+    id="RootStack"
     initialRouteName="splash"
     screenOptions={{headerShown: false}}>
     {/* Screens */}
