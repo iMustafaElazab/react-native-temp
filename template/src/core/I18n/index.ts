@@ -45,6 +45,7 @@ export const setI18nConfig = async () => {
 
   await i18n.init({
     debug: Config.ENABLE_LOCAL_LOG === 'true',
+    compatibilityJSON: 'v3',
     resources,
     lng: defaultLocale,
     interpolation: {

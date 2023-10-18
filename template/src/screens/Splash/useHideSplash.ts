@@ -80,5 +80,5 @@ export const useHideSplash = (props: UseHideSplashProps) => {
   }, [isLanguageLoaded, isUserLoaded, hideSplash]);
   // #endregion
 
-  return {isBootSplashVisible};
+  return isBootSplashVisible;
 };

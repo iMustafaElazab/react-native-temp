@@ -18,7 +18,7 @@ export default React.memo((props: RootStackScreenProps<'splash'>) => {
     React.useState<boolean>(false);
   // #endregion
 
-  const {isBootSplashVisible} = useSplash({
+  const isBootSplashVisible = useSplash({
     navigation,
     opacity,
     translateY,

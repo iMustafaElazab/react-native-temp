@@ -103,5 +103,5 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
   }, [isBootSplashLogoLoaded, getSavedUser]);
   // #endregion
 
-  return {isUserLoaded};
+  return isUserLoaded;
 };

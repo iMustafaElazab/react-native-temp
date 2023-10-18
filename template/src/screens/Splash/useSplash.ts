@@ -8,11 +8,10 @@ export const useSplash = (props: UseSplashProps) => {
   const {navigation, opacity, translateY, isBootSplashLogoLoaded} = props;
   // #endregion
 
-  const {isLanguageLoaded} = useSplashLanguageLoader(isBootSplashLogoLoaded);
+  const isLanguageLoaded = useSplashLanguageLoader(isBootSplashLogoLoaded);
+  const isUserLoaded = useSplashUserLoader(isBootSplashLogoLoaded);
 
-  const {isUserLoaded} = useSplashUserLoader(isBootSplashLogoLoaded);
-
-  const {isBootSplashVisible} = useHideSplash({
+  const isBootSplashVisible = useHideSplash({
     navigation,
     opacity,
     translateY,
@@ -20,5 +19,5 @@ export const useSplash = (props: UseSplashProps) => {
     isUserLoaded,
   });
 
-  return {isBootSplashVisible};
+  return isBootSplashVisible;
 };

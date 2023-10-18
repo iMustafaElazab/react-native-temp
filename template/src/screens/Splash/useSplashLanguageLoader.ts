@@ -33,5 +33,5 @@ export const useSplashLanguageLoader = (isBootSplashLogoLoaded: boolean) => {
   }, [isBootSplashLogoLoaded]);
   // #endregion
 
-  return {isLanguageLoaded};
+  return isLanguageLoaded;
 };
