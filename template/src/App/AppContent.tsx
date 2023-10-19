@@ -1,8 +1,11 @@
-import {getStatusBarHeight} from '@eslam-elmeniawy/react-native-common-components';
+import {
+  LoadingDialog,
+  getStatusBarHeight,
+} from '@eslam-elmeniawy/react-native-common-components';
 import * as React from 'react';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {ToastProvider} from 'react-native-toast-notifications';
-import {Toast} from '@src/components';
+import {ErrorDialog, Toast} from '@src/components';
 import {NavigationContainer} from '@src/navigation';
 import {paperTheme} from '@src/utils';
 import {useFirebaseMessagingInitialization} from './useFirebaseMessagingInitialization';
@@ -28,8 +31,8 @@ export default React.memo(() => {
         offset={getStatusBarHeight()}
         renderToast={toastOptions => <Toast {...toastOptions} />}>
         <NavigationContainer />
-        {/* <ErrorDialog />
-      <LoadingDialog /> */}
+        <ErrorDialog />
+        <LoadingDialog />
       </ToastProvider>
     </PaperProvider>
   ) : undefined;
