@@ -5,6 +5,7 @@ import {
 import * as React from 'react';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {ToastProvider} from 'react-native-toast-notifications';
+import {QueryClient, QueryClientProvider} from 'react-query';
 import {ErrorDialog, Toast} from '@src/components';
 import {NavigationContainer} from '@src/navigation';
 import {paperTheme} from '@src/utils';
@@ -14,11 +15,15 @@ import {useLocalizationInitialization} from './useLocalizationInitialization';
 import {useLogInitialization} from './useLogInitialization';
 import {useNetworkListener} from './useNetworkListener';
 import {useNotificationsInteraction} from './useNotificationsInteraction';
+import {useReactQueryOnlineManager} from './useReactQueryOnlineManager';
+
+const queryClient = new QueryClient();
 
 export default React.memo(() => {
   useLogInitialization();
   const languageLoaded = useLocalizationInitialization();
   useNetworkListener();
+  useReactQueryOnlineManager();
   useFirebaseMessagingInitialization();
   useForegroundMessagesListener();
   useNotificationsInteraction();
@@ -30,9 +35,11 @@ export default React.memo(() => {
         placement="top"
         offset={getStatusBarHeight()}
         renderToast={toastOptions => <Toast {...toastOptions} />}>
-        <NavigationContainer />
-        <ErrorDialog />
-        <LoadingDialog />
+        <QueryClientProvider client={queryClient}>
+          <NavigationContainer />
+          <ErrorDialog />
+          <LoadingDialog />
+        </QueryClientProvider>
       </ToastProvider>
     </PaperProvider>
   ) : undefined;
