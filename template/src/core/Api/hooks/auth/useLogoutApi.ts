@@ -1,11 +1,17 @@
-import {useMutation} from 'react-query';
+import {useMutation} from '@tanstack/react-query';
 import {queryAuth} from '@src/core';
 import type {LogoutResponse, ServerError} from '@src/core';
-import type {UseMutationOptions} from 'react-query';
+import type {UseMutationOptions} from '@tanstack/react-query';
 
 const useLogoutApi = (
   options?: UseMutationOptions<LogoutResponse, ServerError>,
-) =>
-  useMutation<LogoutResponse, ServerError>(() => queryAuth.logout(), options);
+) => {
+  const {mutationFn, ...restOptions} = options ?? {};
+
+  return useMutation<LogoutResponse, ServerError>({
+    mutationFn: mutationFn ? mutationFn : () => queryAuth.logout(),
+    ...restOptions,
+  });
+};
 
 export default useLogoutApi;

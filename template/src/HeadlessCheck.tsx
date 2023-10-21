@@ -4,6 +4,7 @@ import messaging from '@react-native-firebase/messaging';
 import {default as PushNotification} from 'react-native-push-notification';
 import {enableScreens} from 'react-native-screens';
 import App from '@src/App';
+import {processNotification} from '@src/utils';
 
 enableScreens();
 
@@ -22,12 +23,15 @@ PushNotification.configure({
   onNotification(notification) {
     console.info(getLogMessage('onNotification'), notification);
 
-    // processNotification({
-    //   id: notification.id,
-    //   key: notification.id,
-    //   title: notification.data.title,
-    //   message: notification.message,
-    // });
+    processNotification({
+      id: notification.id,
+      key: notification.id,
+      title: notification.data.title,
+      message:
+        typeof notification.message === 'string'
+          ? notification.message
+          : notification.data.body,
+    });
 
     // (required) Called when a remote is received or opened, or local notification is opened.
     notification.finish(PushNotificationIOS.FetchResult.NoData);

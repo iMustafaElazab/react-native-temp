@@ -2,9 +2,17 @@ import {default as PushNotificationIOS} from '@react-native-community/push-notif
 import {Platform} from 'react-native';
 import {getBundleId} from 'react-native-device-info';
 import {default as PushNotification} from 'react-native-push-notification';
-import type {Notification, User} from '@src/core';
+import {queryNotifications} from '@src/core';
+import type {
+  MarkNotificationReadResponse,
+  ServerError,
+  ApiRequest,
+  Notification,
+  User,
+} from '@src/core';
 import {AppColors} from '@src/enums';
 import {store, setUser as setStateUser} from '@src/store';
+import {queryClient} from '@src/utils';
 import type {FirebaseMessagingTypes} from '@react-native-firebase/messaging';
 
 const getLogMessage = (message: string) => `## NotificationUtils:: ${message}`;
@@ -23,7 +31,22 @@ const clearNotifications = (notification: Notification) => {
       PushNotificationIOS.removeDeliveredNotifications([notification.id]);
     }
 
-    // TODO: Call mark notification read API.
+    // Call mark notification read API.
+    // TODO: Change params based on API.
+    queryClient
+      .getMutationCache()
+      .build<
+        MarkNotificationReadResponse,
+        ServerError,
+        ApiRequest<any, string | number>,
+        unknown
+      >(queryClient, {
+        mutationFn: request => queryNotifications.markNotificationRead(request),
+        onSuccess: () => {
+          queryClient.invalidateQueries({queryKey: ['notifications']});
+        },
+      })
+      .execute({pathVar: notification.id});
   }
 };
 

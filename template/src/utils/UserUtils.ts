@@ -11,6 +11,7 @@ import {
   removeUser as removeStateUser,
   setErrorDialogMessage,
 } from '@src/store';
+import {queryClient} from '@src/utils';
 
 const getLogMessage = (message: string) => `## UserUtils:: ${message}`;
 
@@ -59,5 +60,5 @@ export const removeUserDataLogout = async () => {
   await messaging().deleteToken();
   store.dispatch(removeStateUser());
   reset('login');
-  // store.dispatch(api.util.resetApiState());
+  queryClient.resetQueries();
 };

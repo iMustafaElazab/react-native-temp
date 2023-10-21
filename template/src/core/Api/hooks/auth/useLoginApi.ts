@@ -1,4 +1,4 @@
-import {useMutation} from 'react-query';
+import {useMutation} from '@tanstack/react-query';
 import {queryAuth} from '@src/core';
 import type {
   LoginResponse,
@@ -6,7 +6,7 @@ import type {
   ApiRequest,
   LoginBody,
 } from '@src/core';
-import type {UseMutationOptions} from 'react-query';
+import type {UseMutationOptions} from '@tanstack/react-query';
 
 const useLoginApi = (
   options?: UseMutationOptions<
@@ -14,10 +14,13 @@ const useLoginApi = (
     ServerError,
     ApiRequest<LoginBody>
   >,
-) =>
-  useMutation<LoginResponse, ServerError, ApiRequest<LoginBody>>(
-    (request: ApiRequest<LoginBody>) => queryAuth.login(request),
-    options,
-  );
+) => {
+  const {mutationFn, ...restOptions} = options ?? {};
+
+  return useMutation<LoginResponse, ServerError, ApiRequest<LoginBody>>({
+    mutationFn: mutationFn ? mutationFn : request => queryAuth.login(request),
+    ...restOptions,
+  });
+};
 
 export default useLoginApi;

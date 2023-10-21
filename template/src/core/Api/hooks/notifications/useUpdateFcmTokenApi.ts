@@ -1,4 +1,4 @@
-import {useMutation} from 'react-query';
+import {useMutation} from '@tanstack/react-query';
 import {queryNotifications} from '@src/core';
 import type {
   UpdateFcmTokenResponse,
@@ -6,7 +6,7 @@ import type {
   ApiRequest,
   UpdateFcmTokenBody,
 } from '@src/core';
-import type {UseMutationOptions} from 'react-query';
+import type {UseMutationOptions} from '@tanstack/react-query';
 
 const useUpdateFcmTokenApi = (
   options?: UseMutationOptions<
@@ -14,15 +14,19 @@ const useUpdateFcmTokenApi = (
     ServerError,
     ApiRequest<UpdateFcmTokenBody>
   >,
-) =>
-  useMutation<
+) => {
+  const {mutationFn, ...restOptions} = options ?? {};
+
+  return useMutation<
     UpdateFcmTokenResponse,
     ServerError,
     ApiRequest<UpdateFcmTokenBody>
-  >(
-    (request: ApiRequest<UpdateFcmTokenBody>) =>
-      queryNotifications.updateFcmToken(request),
-    options,
-  );
+  >({
+    mutationFn: mutationFn
+      ? mutationFn
+      : request => queryNotifications.updateFcmToken(request),
+    ...restOptions,
+  });
+};
 
 export default useUpdateFcmTokenApi;

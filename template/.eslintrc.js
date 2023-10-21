@@ -5,6 +5,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:eslint-comments/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   ignorePatterns: [
     '.eslintrc.js',
@@ -16,7 +17,7 @@ module.exports = {
     '/@types/*',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['autofix', 'import', 'react-func'],
+  plugins: ['autofix', 'import', 'react-func', '@tanstack/query'],
   rules: {
     '@typescript-eslint/naming-convention': [
       'error',
