@@ -81,7 +81,7 @@ const shouldSkip401 = (error: AxiosError<ServerErrorResponse>) => {
 const handle401Error = (error: AxiosError<ServerErrorResponse>) => {
   console.info(getLogMessage('handle401Error'), error);
   const status = error.response?.status;
-  console.log(getLogMessage('status'), status);
+  console.info(getLogMessage('status'), status);
 
   if (status === 401 && !shouldSkip401(error)) {
     store.dispatch(setErrorDialogMessage(translate('session_expired')));

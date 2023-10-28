@@ -2,6 +2,7 @@ import type {
   ApiRequest,
   PagingResponse,
   Notification,
+  NotificationsResponse,
   UpdateFcmTokenBody,
   UpdateFcmTokenResponse,
   MarkNotificationReadResponse,
@@ -10,12 +11,21 @@ import {httpClient} from '@src/core';
 
 const queryNotifications = {
   // TODO: Change params, endpoint, method, and response mapping based on API requirements.
-  getNotifications: (request: ApiRequest) =>
+  getNotifications: (
+    request: ApiRequest,
+  ): Promise<PagingResponse<Notification>> =>
     httpClient
-      .get<PagingResponse<Notification>>('/notifications', {
+      .get<NotificationsResponse>('/notifications', {
         params: request.params,
       })
-      .then(response => response.data),
+      .then(response => ({
+        currentPage: response.data.meta?.currentPage,
+        lastPage: response.data.meta?.totalPages,
+        data: response.data.data?.map(notification => ({
+          ...notification,
+          key: `${notification.id || '0'}`,
+        })),
+      })),
   // TODO: Change params, endpoint, method, and response mapping based on API requirements.
   updateFcmToken: (request: ApiRequest<UpdateFcmTokenBody>) =>
     httpClient

@@ -1,4 +1,5 @@
 export * from './entities';
+export * from './fakers';
 export * from './hooks';
 export * from './responses';
 export * from './services';

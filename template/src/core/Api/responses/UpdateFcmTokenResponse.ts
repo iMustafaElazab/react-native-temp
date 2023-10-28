@@ -1,4 +1,6 @@
 // TODO: Construct update Fcm token response based on API.
-interface UpdateFcmTokenResponse {}
+interface UpdateFcmTokenResponse {
+  message?: string;
+}
 
 export default UpdateFcmTokenResponse;

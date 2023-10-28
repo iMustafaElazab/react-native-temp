@@ -1,4 +1,6 @@
 // TODO: Construct logout response based on API.
-interface LogoutResponse {}
+interface LogoutResponse {
+  message?: string;
+}
 
 export default LogoutResponse;

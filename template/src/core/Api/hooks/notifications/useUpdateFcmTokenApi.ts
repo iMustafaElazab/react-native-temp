@@ -1,5 +1,6 @@
 import {useMutation} from '@tanstack/react-query';
-import {queryNotifications} from '@src/core';
+import {default as Config} from 'react-native-config';
+import {fakerNotifications, queryNotifications} from '@src/core';
 import type {
   UpdateFcmTokenResponse,
   ServerError,
@@ -24,7 +25,10 @@ const useUpdateFcmTokenApi = (
   >({
     mutationFn: mutationFn
       ? mutationFn
-      : request => queryNotifications.updateFcmToken(request),
+      : request =>
+          Config.USE_FAKE_API === 'true'
+            ? fakerNotifications.updateFcmToken(request)
+            : queryNotifications.updateFcmToken(request),
     ...restOptions,
   });
 };

@@ -1,5 +1,6 @@
 import {useQueryClient, useMutation} from '@tanstack/react-query';
-import {queryNotifications} from '@src/core';
+import {default as Config} from 'react-native-config';
+import {fakerNotifications, queryNotifications} from '@src/core';
 import type {
   MarkNotificationReadResponse,
   ServerError,
@@ -24,7 +25,10 @@ const useMarkNotificationReadApi = (
   >({
     mutationFn: mutationFn
       ? mutationFn
-      : request => queryNotifications.markNotificationRead(request),
+      : request =>
+          Config.USE_FAKE_API === 'true'
+            ? fakerNotifications.markNotificationRead(request)
+            : queryNotifications.markNotificationRead(request),
     onSuccess: (data, variables, context) => {
       queryClient.invalidateQueries({queryKey: ['notifications']});
       onSuccess?.(data, variables, context);

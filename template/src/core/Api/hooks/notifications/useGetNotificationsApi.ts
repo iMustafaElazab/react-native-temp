@@ -1,5 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
-import {queryNotifications} from '@src/core';
+import {default as Config} from 'react-native-config';
+import {fakerNotifications, queryNotifications} from '@src/core';
 import type {
   ApiRequest,
   PagingResponse,
@@ -21,7 +22,10 @@ const useGetNotificationsApi = (
   return useQuery<PagingResponse<Notification>, ServerError, ApiRequest>({
     queryFn: queryFn
       ? queryFn
-      : () => queryNotifications.getNotifications(request),
+      : () =>
+          Config.USE_FAKE_API === 'true'
+            ? fakerNotifications.getNotifications(request)
+            : queryNotifications.getNotifications(request),
     queryKey: queryKey ?? ['notifications', request.params],
     ...restOptions,
   });
