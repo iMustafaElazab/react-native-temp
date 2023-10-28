@@ -11,24 +11,18 @@ import type {UseQueryOptions} from '@tanstack/react-query';
 
 const useGetNotificationsApi = (
   request: ApiRequest,
-  options?: UseQueryOptions<
-    PagingResponse<Notification>,
-    ServerError,
-    ApiRequest
+  options?: Omit<
+    UseQueryOptions<PagingResponse<Notification>, ServerError, ApiRequest>,
+    'queryFn' | 'queryKey'
   >,
-) => {
-  const {queryFn, queryKey, ...restOptions} = options ?? {};
-
-  return useQuery<PagingResponse<Notification>, ServerError, ApiRequest>({
-    queryFn: queryFn
-      ? queryFn
-      : () =>
-          Config.USE_FAKE_API === 'true'
-            ? fakerNotifications.getNotifications(request)
-            : queryNotifications.getNotifications(request),
-    queryKey: queryKey ?? ['notifications', request.params],
-    ...restOptions,
+) =>
+  useQuery<PagingResponse<Notification>, ServerError, ApiRequest>({
+    queryFn: () =>
+      Config.USE_FAKE_API === 'true'
+        ? fakerNotifications.getNotifications(request)
+        : queryNotifications.getNotifications(request),
+    queryKey: ['notifications', request, request.params],
+    ...(options ?? {}),
   });
-};
 
 export default useGetNotificationsApi;

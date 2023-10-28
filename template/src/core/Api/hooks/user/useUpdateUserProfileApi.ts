@@ -5,18 +5,19 @@ import type {User, ServerError, ApiRequest} from '@src/core';
 import type {UseMutationOptions} from '@tanstack/react-query';
 
 const useUpdateUserProfileApi = (
-  options?: UseMutationOptions<User, ServerError, ApiRequest<FormData, number>>,
+  options?: Omit<
+    UseMutationOptions<User, ServerError, ApiRequest<FormData, number>>,
+    'mutationFn'
+  >,
 ) => {
   const queryClient = useQueryClient();
-  const {mutationFn, onSuccess, ...restOptions} = options ?? {};
+  const {onSuccess, ...restOptions} = options ?? {};
 
   return useMutation<User, ServerError, ApiRequest<FormData, number>>({
-    mutationFn: mutationFn
-      ? mutationFn
-      : request =>
-          Config.USE_FAKE_API === 'true'
-            ? fakerUser.updateUserProfile(request)
-            : queryUser.updateUserProfile(request),
+    mutationFn: request =>
+      Config.USE_FAKE_API === 'true'
+        ? fakerUser.updateUserProfile(request)
+        : queryUser.updateUserProfile(request),
     onSuccess: (data, variables, context) => {
       queryClient.invalidateQueries({queryKey: ['user']});
       onSuccess?.(data, variables, context);

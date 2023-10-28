@@ -12,7 +12,7 @@ const queryAuth = {
   login: (request: ApiRequest<LoginBody>): Promise<User> =>
     httpClient.post<LoginResponse>('/login', request.body).then(response => ({
       ...response.data.user,
-      apiToken: response.data.token,
+      apiToken: `Bearer ${response.data.token}`,
     })),
   // TODO: Change params, endpoint, method, and response mapping based on API requirements.
   logout: () =>

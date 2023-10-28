@@ -5,19 +5,12 @@ import type {LogoutResponse, ServerError} from '@src/core';
 import type {UseMutationOptions} from '@tanstack/react-query';
 
 const useLogoutApi = (
-  options?: UseMutationOptions<LogoutResponse, ServerError>,
-) => {
-  const {mutationFn, ...restOptions} = options ?? {};
-
-  return useMutation<LogoutResponse, ServerError>({
-    mutationFn: mutationFn
-      ? mutationFn
-      : () =>
-          Config.USE_FAKE_API === 'true'
-            ? fakerAuth.logout()
-            : queryAuth.logout(),
-    ...restOptions,
+  options?: Omit<UseMutationOptions<LogoutResponse, ServerError>, 'mutationFn'>,
+) =>
+  useMutation<LogoutResponse, ServerError>({
+    mutationFn: () =>
+      Config.USE_FAKE_API === 'true' ? fakerAuth.logout() : queryAuth.logout(),
+    ...(options ?? {}),
   });
-};
 
 export default useLogoutApi;

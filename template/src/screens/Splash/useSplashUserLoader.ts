@@ -1,7 +1,11 @@
 import * as React from 'react';
 import {useDispatch} from 'react-redux';
 import type {User} from '@src/core';
-import {getUser as getLocalStorageUser} from '@src/core';
+import {
+  getUser as getLocalStorageUser,
+  useGetUserDetailsApi,
+  setUser as setLocalStorageUser,
+} from '@src/core';
 import {setUser as setStateUser} from '@src/store';
 
 export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
@@ -15,7 +19,21 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
   // #endregion
 
   // #region State
+  const [shouldStartUserLoading, setShouldStartUserLoading] =
+    React.useState<boolean>(false);
+
   const [isUserLoaded, setUserLoaded] = React.useState<boolean>(false);
+  // #endregion
+
+  // #region API
+  const {
+    data: apiUser,
+    error: apiError,
+    isLoading: isLoadingApiUser,
+    isFetching: isFetchingApiUser,
+  } = useGetUserDetailsApi({
+    enabled: shouldStartUserLoading,
+  });
   // #endregion
 
   /**
@@ -32,43 +50,6 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
     },
     [dispatch],
   );
-
-  /**
-   * getUpdatedUserData
-   *
-   * Call API to load updated user data then:
-   * - Set user to local storage.
-   * - Set user to redux store.
-   * - Set "isUserLoaded" state variable.
-   */
-  const getUpdatedUserData = React.useCallback(async () => {
-    console.info(getLogMessage('getUpdatedUserData'));
-
-    // try {
-    //   const user = await callGetUserApi().unwrap();
-    //   const localStorageUser = await getLocalStorageUser();
-
-    //   const userWithTokens = {
-    //     ...user,
-    //     apiToken: user.apiToken ? user.apiToken : localStorageUser?.apiToken,
-    //     fcmToken: localStorageUser?.fcmToken,
-    //   };
-
-    //   console.info(getLogMessage('userWithTokens'), userWithTokens);
-    //   setLocalStorageUser(userWithTokens);
-    //   setUserToReduxStore(userWithTokens);
-    //   setUserLoaded(true);
-    // } catch (error) {
-    //   if (isErrorWithStatus(401, error)) {
-    //     removeLocalStorageUser();
-    //     dispatch(removeStateUser());
-    //   }
-
-    //   setUserLoaded(true);
-    // }
-
-    setUserLoaded(true);
-  }, []);
 
   /**
    * getSavedUser
@@ -89,11 +70,31 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
 
     if (user) {
       setUserToReduxStore(user);
-      getUpdatedUserData();
+      setShouldStartUserLoading(true);
     } else {
       setUserLoaded(true);
     }
-  }, [setUserToReduxStore, getUpdatedUserData]);
+  }, [setUserToReduxStore]);
+
+  /**
+   * checkApiUser
+   *
+   * Check API user data then:
+   * - Set user to local storage.
+   * - Set user to redux store.
+   * - Set "isUserLoaded" state variable.
+   */
+  const checkApiUser = React.useCallback(() => {
+    if (apiUser) {
+      setLocalStorageUser(apiUser);
+      setUserToReduxStore(apiUser);
+      setUserLoaded(true);
+    }
+
+    if (apiError) {
+      setUserLoaded(true);
+    }
+  }, [apiUser, setUserToReduxStore, setUserLoaded, apiError]);
 
   // #region Setup
   React.useEffect(() => {
@@ -101,6 +102,12 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
       getSavedUser();
     }
   }, [isBootSplashLogoLoaded, getSavedUser]);
+
+  React.useEffect(() => {
+    if (!isLoadingApiUser && !isFetchingApiUser) {
+      checkApiUser();
+    }
+  }, [isLoadingApiUser, isFetchingApiUser, checkApiUser]);
   // #endregion
 
   return isUserLoaded;

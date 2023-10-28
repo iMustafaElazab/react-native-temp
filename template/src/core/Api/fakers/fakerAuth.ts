@@ -13,7 +13,7 @@ const fakerAuth = {
       name: 'Eslam ElMeniawy',
       email: 'eslam.elmeniawy@gmail.com',
       phone: '+201229977919',
-      apiToken: 'some-fake-token',
+      apiToken: 'Bearer some-fake-token',
     };
   },
   logout: async (): Promise<LogoutResponse> => {

@@ -13,6 +13,8 @@ const fakerUser = {
       name: 'Eslam ElMeniawy',
       email: 'eslam.elmeniawy@gmail.com',
       phone: '+201229977919',
+      apiToken: 'Bearer some-fake-token',
+      fcmToken: 'some-fake-FCM-token',
     };
   },
   updateUserProfile: async (
@@ -26,6 +28,8 @@ const fakerUser = {
       name: 'Eslam ElMeniawy',
       email: 'eslam.elmeniawy@gmail.com',
       phone: '+201229977919',
+      apiToken: 'Bearer some-fake-token',
+      fcmToken: 'some-fake-FCM-token',
     };
   },
 };
