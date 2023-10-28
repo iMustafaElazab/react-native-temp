@@ -1,36 +1,46 @@
 import type {User, ApiRequest} from '@src/core';
-import {fakersDelay} from '.';
+import {randomIntFromInterval} from '@src/utils';
 
 const getLogMessage = (message: string) => `## fakers::fakerUser:: ${message}`;
 
 const fakerUser = {
-  getUserDetails: async (): Promise<User> => {
+  getUserDetails: (): Promise<User> => {
     console.info(getLogMessage('getUserDetails'));
-    await fakersDelay();
 
-    return {
-      id: 1,
-      name: 'Eslam ElMeniawy',
-      email: 'eslam.elmeniawy@gmail.com',
-      phone: '+201229977919',
-      apiToken: 'Bearer some-fake-token',
-      fcmToken: 'some-fake-FCM-token',
-    };
+    return new Promise(res =>
+      setTimeout(
+        () => {
+          res({
+            id: 1,
+            name: 'Eslam ElMeniawy',
+            email: 'eslam.elmeniawy@gmail.com',
+            phone: '+201229977919',
+            apiToken: 'Bearer some-fake-token',
+            fcmToken: 'some-fake-FCM-token',
+          });
+        },
+        randomIntFromInterval(100, 1000),
+      ),
+    );
   },
-  updateUserProfile: async (
-    request: ApiRequest<FormData, number>,
-  ): Promise<User> => {
+  updateUserProfile: (request: ApiRequest<FormData, number>): Promise<User> => {
     console.info(getLogMessage('updateUserProfile'), request);
-    await fakersDelay();
 
-    return {
-      id: 1,
-      name: 'Eslam ElMeniawy',
-      email: 'eslam.elmeniawy@gmail.com',
-      phone: '+201229977919',
-      apiToken: 'Bearer some-fake-token',
-      fcmToken: 'some-fake-FCM-token',
-    };
+    return new Promise(res =>
+      setTimeout(
+        () => {
+          res({
+            id: 1,
+            name: 'Eslam ElMeniawy',
+            email: 'eslam.elmeniawy@gmail.com',
+            phone: '+201229977919',
+            apiToken: 'Bearer some-fake-token',
+            fcmToken: 'some-fake-FCM-token',
+          });
+        },
+        randomIntFromInterval(100, 1000),
+      ),
+    );
   },
 };
 

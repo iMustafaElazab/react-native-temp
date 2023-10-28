@@ -28,9 +28,8 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
   // #region API
   const {
     data: apiUser,
-    error: apiError,
-    isLoading: isLoadingApiUser,
-    isFetching: isFetchingApiUser,
+    isError: isErrorApi,
+    isSuccess: isSuccessApi,
   } = useGetUserDetailsApi({
     enabled: shouldStartUserLoading,
   });
@@ -77,24 +76,20 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
   }, [setUserToReduxStore]);
 
   /**
-   * checkApiUser
+   * saveUserData
    *
-   * Check API user data then:
    * - Set user to local storage.
    * - Set user to redux store.
    * - Set "isUserLoaded" state variable.
    */
-  const checkApiUser = React.useCallback(() => {
+  const saveUserData = React.useCallback(() => {
     if (apiUser) {
       setLocalStorageUser(apiUser);
       setUserToReduxStore(apiUser);
-      setUserLoaded(true);
     }
 
-    if (apiError) {
-      setUserLoaded(true);
-    }
-  }, [apiUser, setUserToReduxStore, setUserLoaded, apiError]);
+    setUserLoaded(true);
+  }, [apiUser, setUserToReduxStore]);
 
   // #region Setup
   React.useEffect(() => {
@@ -104,10 +99,14 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
   }, [isBootSplashLogoLoaded, getSavedUser]);
 
   React.useEffect(() => {
-    if (!isLoadingApiUser && !isFetchingApiUser) {
-      checkApiUser();
+    if (isSuccessApi) {
+      saveUserData();
     }
-  }, [isLoadingApiUser, isFetchingApiUser, checkApiUser]);
+
+    if (isErrorApi) {
+      setUserLoaded(true);
+    }
+  }, [isSuccessApi, isErrorApi, saveUserData]);
   // #endregion
 
   return isUserLoaded;

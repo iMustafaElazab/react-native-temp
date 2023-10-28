@@ -1,25 +1,38 @@
 import type {ApiRequest, LoginBody, User, LogoutResponse} from '@src/core';
-import {fakersDelay} from '.';
+import {randomIntFromInterval} from '@src/utils';
 
 const getLogMessage = (message: string) => `## fakers::fakerAuth:: ${message}`;
 
 const fakerAuth = {
-  login: async (request: ApiRequest<LoginBody>): Promise<User> => {
+  login: (request: ApiRequest<LoginBody>): Promise<User> => {
     console.info(getLogMessage('login'), request);
-    await fakersDelay();
 
-    return {
-      id: 1,
-      name: 'Eslam ElMeniawy',
-      email: 'eslam.elmeniawy@gmail.com',
-      phone: '+201229977919',
-      apiToken: 'Bearer some-fake-token',
-    };
+    return new Promise(res =>
+      setTimeout(
+        () => {
+          res({
+            id: 1,
+            name: 'Eslam ElMeniawy',
+            email: 'eslam.elmeniawy@gmail.com',
+            phone: '+201229977919',
+            apiToken: 'Bearer some-fake-token',
+          });
+        },
+        randomIntFromInterval(100, 1000),
+      ),
+    );
   },
-  logout: async (): Promise<LogoutResponse> => {
+  logout: (): Promise<LogoutResponse> => {
     console.info(getLogMessage('logout'));
-    await fakersDelay();
-    return {message: 'Logout successfully'};
+
+    return new Promise(res =>
+      setTimeout(
+        () => {
+          res({message: 'Logout successfully'});
+        },
+        randomIntFromInterval(100, 1000),
+      ),
+    );
   },
 };
 
