@@ -6,7 +6,7 @@ export default React.memo(() => {
   const {t: translate} = useTranslation();
 
   return (
-    <Appbar.Header statusBarHeight={0}>
+    <Appbar.Header statusBarHeight={0} mode="center-aligned">
       <Appbar.Content title={translate('login')} />
     </Appbar.Header>
   );

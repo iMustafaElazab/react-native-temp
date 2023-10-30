@@ -15,5 +15,7 @@
   "username": "Username",
   "password": "Password",
   "filed_required": "{{field}} field is required",
-  "error_while_action": "Error while {{action}}"
+  "error_while_action": "Error while {{action}}",
+  "home": "Home",
+  "notifications": "Notifications"
 }

@@ -11,6 +11,7 @@ import type {
   User,
 } from '@src/core';
 import {AppColors} from '@src/enums';
+import {push} from '@src/navigation';
 import {store, setUser as setStateUser} from '@src/store';
 import {queryClient} from '@src/utils';
 import type {FirebaseMessagingTypes} from '@react-native-firebase/messaging';
@@ -94,6 +95,7 @@ export const processNotification = (notification: Notification) => {
 export const openNotificationRelatedScreen = (notification: Notification) => {
   console.info(getLogMessage('openNotificationRelatedScreen'), notification);
   // TODO: Determine screen to open and navigate to it.
+  push('notifications');
 };
 
 export const displayLocalNotification = (

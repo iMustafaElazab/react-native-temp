@@ -3,7 +3,7 @@ import * as React from 'react';
 import type {RootStackParamList} from '@src/navigation';
 
 // Screens.
-import {Splash, Login, Home} from '@src/screens';
+import {Splash, Login, Home, Notifications} from '@src/screens';
 
 // Navigators.
 // TODO: Add navigators imports here.
@@ -22,6 +22,7 @@ export default React.memo(() => (
     <stack.Screen name="splash" component={Splash} />
     <stack.Screen name="login" component={Login} />
     <stack.Screen name="home" component={Home} />
+    <stack.Screen name="notifications" component={Notifications} />
 
     {/* Navigators */}
     {/* TODO: Add nested navigators here. */}

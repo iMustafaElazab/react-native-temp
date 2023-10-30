@@ -15,5 +15,7 @@
   "username": "اسم المستخدم",
   "password": "كلمة المرور",
   "filed_required": "حقل {{field}} مطلوب",
-  "error_while_action": "خطأ اثناء {{action}}"
+  "error_while_action": "خطأ اثناء {{action}}",
+  "home": "الرئيسية",
+  "notifications": "الاشعارات"
 }

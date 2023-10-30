@@ -1,10 +1,35 @@
-import {Text} from '@eslam-elmeniawy/react-native-common-components';
+import {
+  ScrollView,
+  Text,
+} from '@eslam-elmeniawy/react-native-common-components';
 import * as React from 'react';
 import {Screen} from '@src/components';
-import type {RootStackScreenProps} from '@src/navigation';
+import {useGetUserDetailsApi} from '@src/core';
+import {useFocusNotifyOnChangeProps, useRefreshOnFocus} from '@src/utils';
+import Header from './Header';
+import styles from './styles';
 
-export default React.memo((_props: RootStackScreenProps<'home'>) => (
-  <Screen>
-    <Text>Home Screen</Text>
-  </Screen>
-));
+export default React.memo(() => {
+  const notifyOnChangeProps = useFocusNotifyOnChangeProps();
+
+  const {
+    data: userData,
+    dataUpdatedAt,
+    refetch,
+  } = useGetUserDetailsApi({notifyOnChangeProps: notifyOnChangeProps?.()});
+
+  useRefreshOnFocus(refetch);
+
+  return (
+    <Screen>
+      <Header />
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollViewContent}>
+        <Text>{`UserData: ${JSON.stringify(
+          userData,
+        )}\n\nDataUpdatedAt: ${new Date(dataUpdatedAt)}`}</Text>
+      </ScrollView>
+    </Screen>
+  );
+});
