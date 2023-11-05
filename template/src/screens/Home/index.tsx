@@ -1,9 +1,6 @@
-import {
-  ScrollView,
-  Text,
-} from '@eslam-elmeniawy/react-native-common-components';
+import {Text} from '@eslam-elmeniawy/react-native-common-components';
 import * as React from 'react';
-import {Screen} from '@src/components';
+import {Screen, ScrollContainer} from '@src/components';
 import {useGetUserDetailsApi} from '@src/core';
 import {useFocusNotifyOnChangeProps, useRefreshOnFocus} from '@src/utils';
 import Header from './Header';
@@ -23,13 +20,13 @@ export default React.memo(() => {
   return (
     <Screen>
       <Header />
-      <ScrollView
+      <ScrollContainer
         style={styles.scrollView}
         contentContainerStyle={styles.scrollViewContent}>
         <Text>{`UserData: ${JSON.stringify(
           userData,
         )}\n\nDataUpdatedAt: ${new Date(dataUpdatedAt)}`}</Text>
-      </ScrollView>
+      </ScrollContainer>
     </Screen>
   );
 });

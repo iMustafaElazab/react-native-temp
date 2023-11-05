@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     marginVertical: vs(8),
   },
   scrollViewContent: {
-    paddingHorizontal: '5%',
     paddingVertical: vs(32),
     gap: vs(8),
   },
