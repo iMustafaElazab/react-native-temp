@@ -1,5 +1,6 @@
 import type {User, ApiRequest} from '@src/core';
 import {randomIntFromInterval} from '@src/utils';
+import {user} from './data';
 
 const getLogMessage = (message: string) => `## fakers::fakerUser:: ${message}`;
 
@@ -10,14 +11,7 @@ const fakerUser = {
     return new Promise(res =>
       setTimeout(
         () => {
-          res({
-            id: 1,
-            name: 'Eslam ElMeniawy',
-            email: 'eslam.elmeniawy@gmail.com',
-            phone: '+201229977919',
-            apiToken: 'Bearer some-fake-token',
-            fcmToken: 'some-fake-FCM-token',
-          });
+          res(user);
         },
         randomIntFromInterval(100, 1000),
       ),
@@ -29,14 +23,7 @@ const fakerUser = {
     return new Promise(res =>
       setTimeout(
         () => {
-          res({
-            id: 1,
-            name: 'Eslam ElMeniawy',
-            email: 'eslam.elmeniawy@gmail.com',
-            phone: '+201229977919',
-            apiToken: 'Bearer some-fake-token',
-            fcmToken: 'some-fake-FCM-token',
-          });
+          res(user);
         },
         randomIntFromInterval(100, 1000),
       ),

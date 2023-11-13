@@ -20,29 +20,22 @@ const fakerNotifications = {
     return new Promise(res =>
       setTimeout(
         () => {
+          const page = request.params?.page ?? 1;
+          const pageSize = request.params?.size ?? 10;
+
           res({
-            currentPage: 1,
-            lastPage: 1,
-            data: [
-              {
-                id: 1,
-                key: '1',
-                title: 'Notification 1',
-                message: 'Notification 1 body',
-              },
-              {
-                id: 2,
-                key: '2',
-                title: 'Notification 2',
-                message: 'Notification 2 body',
-              },
-              {
-                id: 3,
-                key: '3',
-                title: 'Notification 3',
-                message: 'Notification 3 body',
-              },
-            ],
+            currentPage: page,
+            lastPage: 10,
+            data: Array.from({length: pageSize}, (_, i) => {
+              const id = page * pageSize - pageSize + 1 + i;
+
+              return {
+                id: id,
+                key: `notification_${id}`,
+                title: `Notification ${id}`,
+                message: `Notification ${id} body`,
+              };
+            }),
           });
         },
         randomIntFromInterval(100, 1000),
