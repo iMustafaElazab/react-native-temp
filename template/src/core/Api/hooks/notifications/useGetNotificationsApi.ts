@@ -2,45 +2,57 @@ import {useInfiniteQuery} from '@tanstack/react-query';
 import {default as Config} from 'react-native-config';
 import {fakerNotifications, queryNotifications} from '@src/core';
 import type {
-  ApiRequest,
   PagingResponse,
   Notification,
   ServerError,
+  ApiRequest,
 } from '@src/core';
-import type {UseInfiniteQueryOptions} from '@tanstack/react-query';
+import type {
+  InfiniteData,
+  UseInfiniteQueryOptions,
+  QueryKey,
+} from '@tanstack/react-query';
 
 const useGetNotificationsApi = (
-  request: ApiRequest,
   options?: Omit<
     UseInfiniteQueryOptions<
       PagingResponse<Notification>,
       ServerError,
+      InfiniteData<PagingResponse<Notification>, ApiRequest>,
+      any,
+      QueryKey,
       ApiRequest
     >,
-    'queryFn' | 'queryKey' | 'getNextPageParam'
+    'queryFn' | 'queryKey' | 'initialPageParam' | 'getNextPageParam'
   >,
-) => {
-  const {initialPageParam, ...restOptions} = options ?? {};
-
-  return useInfiniteQuery<
+) =>
+  useInfiniteQuery<
     PagingResponse<Notification>,
     ServerError,
+    InfiniteData<PagingResponse<Notification>, ApiRequest>,
+    QueryKey,
     ApiRequest
   >({
-    queryFn: () =>
+    queryFn: ({pageParam}) =>
       Config.USE_FAKE_API === 'true'
-        ? fakerNotifications.getNotifications(request)
-        : queryNotifications.getNotifications(request),
-    queryKey: ['notifications', request],
-    // TODO: Change object to match API.
-    initialPageParam: initialPageParam ? initialPageParam : {page: 1, size: 10},
-    getNextPageParam: lastPage =>
+        ? fakerNotifications.getNotifications(pageParam)
+        : queryNotifications.getNotifications(pageParam),
+    queryKey: ['notifications'],
+    initialPageParam: {
+      // TODO: Change `params` object to match API.
+      params: {page: 1, size: 10},
+    },
+    getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       lastPage.currentPage === lastPage.lastPage
         ? undefined
-        : // TODO: Change object to match API.
-          {page: (lastPage.currentPage ?? 1) + 1, size: request.params?.size},
-    ...restOptions,
+        : {
+            // TODO: Change `params` object to match API.
+            params: {
+              page: (lastPage.currentPage ?? 1) + 1,
+              size: lastPageParam.params?.size,
+            },
+          },
+    ...(options ?? {}),
   });
-};
 
 export default useGetNotificationsApi;
