@@ -23,7 +23,7 @@ const queryNotifications = {
         lastPage: response.data.meta?.totalPages,
         data: response.data.data?.map(notification => ({
           ...notification,
-          key: `${notification.id || '0'}`,
+          key: `notification_${notification.id || 0}`,
         })),
       })),
   // TODO: Change params, endpoint, method, and response mapping based on API requirements.
