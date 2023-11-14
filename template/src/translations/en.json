@@ -11,11 +11,13 @@
   "error_open_mail": "Error while opening mail\nMake sure you have a mail app installed",
   "error_open_phone": "Error while opening phone\nMake sure you have a phone app installed",
   "error_open_whats_app": "Error while opening WhatsApp\nMake sure you have WhatsApp app installed",
+  "filed_required": "{{field}} field is required",
+  "error_while_action": "Error while {{action}}",
+  "no_data_available": "No {{data}} available",
+  "error_load_data": "Error while loading {{data}}",
   "login": "Login",
   "username": "Username",
   "password": "Password",
-  "filed_required": "{{field}} field is required",
-  "error_while_action": "Error while {{action}}",
   "home": "Home",
   "notifications": "Notifications"
 }
