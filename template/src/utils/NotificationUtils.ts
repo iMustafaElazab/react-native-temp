@@ -56,6 +56,13 @@ const processUserNotification = (
   stateUser: User,
   newNotificationsCount: number,
 ) => {
+  console.info(
+    getLogMessage('processUserNotification'),
+    notification,
+    stateUser,
+    newNotificationsCount,
+  );
+
   // Set new notifications count to redux state.
   const userWithNewNotificationsCount = {...stateUser};
 
@@ -68,8 +75,6 @@ const processUserNotification = (
   );
 
   store.dispatch(setStateUser(userWithNewNotificationsCount));
-
-  console.info(getLogMessage('User Available'));
 
   // Open notification related screen.
   openNotificationRelatedScreen(notification);
