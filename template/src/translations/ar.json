@@ -10,5 +10,14 @@
   "error_open_url": "خطأ أثناء فتح الرابط\nتأكد من تثبيت تطبيق متصفح لديك",
   "error_open_mail": "خطأ أثناء فتح البريد\nتأكد من تثبيت تطبيق بريد لديك",
   "error_open_phone": "خطأ أثناء فتح الهاتف\nتأكد من تثبيت تطبيق الهاتف لديك",
-  "error_open_whats_app": "خطأ أثناء فتح واتساب\nتأكد من تثبيت تطبيق واتساب"
+  "error_open_whats_app": "خطأ أثناء فتح واتساب\nتأكد من تثبيت تطبيق واتساب",
+  "filed_required": "حقل {{field}} مطلوب",
+  "error_while_action": "خطأ اثناء {{action}}",
+  "no_data_available": "لا توجد {{data}} متاحة",
+  "error_load_data": "خطأ اثناء تحميل {{data}}",
+  "login": "تسجيل الدخول",
+  "username": "اسم المستخدم",
+  "password": "كلمة المرور",
+  "home": "الرئيسية",
+  "notifications": "الاشعارات"
 }

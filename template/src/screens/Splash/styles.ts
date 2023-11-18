@@ -1,8 +1,7 @@
-import {ScaledSheet} from 'react-native-size-matters';
+import {StyleSheet} from 'react-native';
+import {AppColors} from '@src/enums';
 
-import {AppColors} from 'enums';
-
-const styles = ScaledSheet.create({
+const styles = StyleSheet.create({
   bootSplash: {
     flex: 1,
     justifyContent: 'center',

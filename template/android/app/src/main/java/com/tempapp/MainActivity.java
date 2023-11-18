@@ -1,35 +1,34 @@
 package com.tempapp;
 
 import android.os.Bundle;
+import android.content.Intent;
+import android.content.res.Configuration;
+
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
 
-// Added for 'splash screen'.
-import com.zoontek.rnbootsplash.RNBootSplash;
-
-// Added for 'react-native-orientation-locker'.
-import android.content.Intent;
-import android.content.res.Configuration;
-
-// Added for 'react-native-bars'.
+// Added for "react-native-bars".
 import com.zoontek.rnbars.RNBars;
+
+// Added for "react-native-bootsplash".
+import com.zoontek.rnbootsplash.RNBootSplash;
 
 public class MainActivity extends ReactActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    // Added for 'splash screen'.
-    RNBootSplash.init(this);
+    // Added for "react-native-bootsplash".
+    RNBootSplash.init(this, R.style.BootTheme);
 
-    // Passed null for 'react-native-screens'.
+    // Added for "react-native-screens".
     super.onCreate(null);
 
-    // Added for 'react-native-bars'.
+    // Added for "react-native-bars".
     RNBars.init(this, "dark-content");
   }
 
-  // Added for 'react-native-orientation-locker'.
+  // Added for "react-native-orientation-locker".
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);

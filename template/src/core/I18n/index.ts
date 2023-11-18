@@ -1,22 +1,20 @@
+import {use} from 'i18next';
+import {initReactI18next} from 'react-i18next';
 import {Platform, NativeModules, I18nManager} from 'react-native';
-import {I18n} from 'i18n-js';
+import {default as Config} from 'react-native-config';
 import * as RNLocalize from 'react-native-localize';
 import RNRestart from 'react-native-restart';
-import memoize from 'lodash.memoize';
+import {getLanguage, setLanguage} from '@src/core';
+import {AppLanguages} from '@src/enums';
+import ar from '@src/translations/ar.json';
+import en from '@src/translations/en.json';
 
-import {AppLanguages} from 'enums';
-import {getLanguage, setLanguage} from '../LocalStorage';
+const getLogMessage = (message: string) => `## I18n:: ${message}`;
 
-const getLogMessage = (message: string) => {
-  return `## I18n: ${message}`;
+const resources = {
+  ar: {translation: ar},
+  en: {translation: en},
 };
-
-const translationGetters = {
-  ar: () => require('../../translations/ar.json'),
-  en: () => require('../../translations/en.json'),
-};
-
-const i18n = new I18n();
 
 // Get device language.
 const deviceLanguage =
@@ -30,33 +28,36 @@ const defaultLocale: string =
     ? AppLanguages.ARABIC
     : AppLanguages.ENGLISH;
 
+const i18n = use(initReactI18next);
+
+const handleRestart = (locale: string) => {
+  if (locale === AppLanguages.ARABIC && !I18nManager.isRTL) {
+    setTimeout(() => RNRestart.Restart(), 500);
+  }
+
+  if (locale === AppLanguages.ENGLISH && I18nManager.isRTL) {
+    setTimeout(() => RNRestart.Restart(), 500);
+  }
+};
+
 export const setI18nConfig = async () => {
   console.info(getLogMessage('setI18nConfig'));
 
-  // Define the supported translations.
-  i18n.translations = {
-    [AppLanguages.ARABIC]: translationGetters.ar(),
-    [AppLanguages.ENGLISH]: translationGetters.en(),
-  };
+  await i18n.init({
+    debug: Config.ENABLE_LOCAL_LOG === 'true',
+    compatibilityJSON: 'v3',
+    resources,
+    lng: defaultLocale,
+    interpolation: {
+      escapeValue: false,
+    },
+  });
 
   const locales = RNLocalize.getLocales();
 
   if (Array.isArray(locales)) {
-    i18n.locale = locales[0].languageTag;
+    await i18n.changeLanguage(locales[0].languageTag);
   }
-
-  // If an English translation is not available in en.js, it will look inside ar.js
-  i18n.enableFallback = true;
-
-  // It will convert HOME_noteTitle to "HOME note title"
-  // if the value of HOME_noteTitle doesn't exist in any of the translation files.
-  i18n.missingBehavior = 'guess';
-
-  // Clear translation cache.
-  translate?.cache?.clear?.();
-
-  // If the current locale in device is not en or ar.
-  i18n.defaultLocale = defaultLocale;
 
   // Get user language.
   const userLanguage = await getLanguage();
@@ -74,26 +75,15 @@ export const updateLanguage = async (language?: AppLanguages | null) => {
     await setLanguage(language);
   }
 
-  // Clear translation cache.
-  translate?.cache?.clear?.();
-
   // Set the locale.
-  i18n.locale = locale;
+  await i18n.changeLanguage(locale);
   I18nManager.allowRTL(locale === AppLanguages.ARABIC);
   I18nManager.forceRTL(locale === AppLanguages.ARABIC);
 
-  if (locale === AppLanguages.ARABIC && !I18nManager.isRTL) {
-    setTimeout(() => RNRestart.Restart(), 500);
-  }
-
-  if (locale === AppLanguages.ENGLISH && I18nManager.isRTL) {
-    setTimeout(() => RNRestart.Restart(), 500);
-  }
+  // Restart if needed.
+  handleRestart(locale);
 };
 
-export const getCurrentLocale = () => i18n.locale;
+export const getCurrentLocale = () => i18n.language;
 
-export const translate = memoize(
-  key => i18n.t(key),
-  key => key,
-);
+export const translate = i18n.t;

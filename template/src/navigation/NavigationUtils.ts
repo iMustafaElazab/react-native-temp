@@ -13,11 +13,9 @@ import {
   CommonActions,
 } from '@react-navigation/native';
 
-import type {RootStackParamList} from 'types';
+import type {RootStackParamList} from '@src/navigation';
 
-const getLogMessage = (message: string) => {
-  return `## NavigationUtils: ${message}`;
-};
+const getLogMessage = (message: string) => `## NavigationUtils:: ${message}`;
 
 type RouteName = keyof RootStackParamList;
 

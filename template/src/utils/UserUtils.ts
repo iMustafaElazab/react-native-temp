@@ -1,45 +1,25 @@
 import messaging from '@react-native-firebase/messaging';
-
 import {
   setUser as setLocalStorageUser,
   removeUser as removeLocalStorageUser,
-} from 'core';
+} from '@src/core';
+import type {User} from '@src/core';
+import {reset} from '@src/navigation';
 import {
   store,
   setUser as setStateUser,
   removeUser as removeStateUser,
-  api,
   setErrorDialogMessage,
-} from 'store';
-import {reset} from 'navigation';
-import type {User} from 'types';
+} from '@src/store';
+import {queryClient} from '@src/utils';
 
-const getLogMessage = (message: string) => {
-  return `## UserUtils: ${message}`;
-};
-export const saveUserDataOpenHome = async (
-  user: User,
-  errorMessage?: string,
-) => {
-  console.info(getLogMessage('saveUserDataOpenHome'), user, errorMessage);
+const getLogMessage = (message: string) => `## UserUtils:: ${message}`;
 
-  try {
-    const userSaved = await setLocalStorageUser(user);
+const handleSaveUserError = (errorMessage?: string) => {
+  console.info(getLogMessage('handleSaveUserError'), errorMessage);
 
-    if (userSaved) {
-      store.dispatch(setStateUser(user));
-      reset('Home');
-    } else {
-      if (errorMessage) {
-        store.dispatch(setErrorDialogMessage(errorMessage));
-      }
-    }
-  } catch (error) {
-    console.error(getLogMessage('error'), error);
-
-    if (errorMessage) {
-      store.dispatch(setErrorDialogMessage(errorMessage));
-    }
+  if (errorMessage) {
+    store.dispatch(setErrorDialogMessage(errorMessage));
   }
 };
 
@@ -57,17 +37,20 @@ export const saveUserData = async (
       store.dispatch(setStateUser(user));
       onFinish?.();
     } else {
-      if (errorMessage) {
-        store.dispatch(setErrorDialogMessage(errorMessage));
-      }
+      handleSaveUserError(errorMessage);
     }
   } catch (error) {
     console.error(getLogMessage('error'), error);
-
-    if (errorMessage) {
-      store.dispatch(setErrorDialogMessage(errorMessage));
-    }
+    handleSaveUserError(errorMessage);
   }
+};
+
+export const saveUserDataOpenHome = (user: User, errorMessage?: string) => {
+  console.info(getLogMessage('saveUserDataOpenHome'), user, errorMessage);
+
+  saveUserData(user, errorMessage, () => {
+    reset('home');
+  });
 };
 
 export const removeUserDataLogout = async () => {
@@ -76,6 +59,6 @@ export const removeUserDataLogout = async () => {
   console.info(getLogMessage('userRemoved'), userRemoved);
   await messaging().deleteToken();
   store.dispatch(removeStateUser());
-  reset('Login');
-  store.dispatch(api.util.resetApiState());
+  reset('login');
+  queryClient.resetQueries();
 };

@@ -1,32 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+  <!-- Base application theme. -->
+  <!-- AppTheme parent changed for "react-native-bars". -->
+  <style name="AppTheme" parent="Theme.EdgeToEdge">
+    <!-- Customize your theme here. -->
+    <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
 
-        <!-- Disable forcing dark mode. -->
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    <!-- Disable forcing dark mode. -->
+    <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
 
-        <!-- Set status bar background transparent -->
-        <item name="android:statusBarColor">@android:color/transparent</item>
+    <!-- set bars initial styles: true = dark-content, false = light-content -->
+    <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+  </style>
 
-        <!-- Navigation bar will stay translucent on Android < 8.1 -->
-        <item name="android:windowTranslucentNavigation">true</item>
-    </style>
-
-    <!-- Added for 'splash screen' -->
-    <!-- BootTheme should inherit from Theme.SplashScreen -->
-    <style name="BootTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/bootsplash_background</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/bootsplash_logo</item>
-        <item name="postSplashScreenTheme">@style/AppTheme</item>
-
-        <!-- Status bar initial style: true = dark-content, false = light-content -->
-        <item name="android:windowLightStatusBar">true</item>
-
-        <!-- Navigation bar will stay translucent on Android < 8.1 -->
-        <item name="android:windowTranslucentNavigation">true</item>
-    </style>
+  <!-- BootTheme should inherit from Theme.BootSplash or Theme.BootSplash.EdgeToEdge -->
+  <style name="BootTheme" parent="Theme.BootSplash.EdgeToEdge">
+    <item name="bootSplashBackground">@color/bootsplash_background</item>
+    <item name="bootSplashLogo">@drawable/bootsplash_logo</item>
+    <item name="postBootSplashTheme">@style/AppTheme</item>
+  </style>
 
 </resources>

@@ -1,10 +1,9 @@
-import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-import type {RootStackParamList} from 'types';
+import * as React from 'react';
+import type {RootStackParamList} from '@src/navigation';
 
 // Screens.
-import Splash from 'screens/Splash';
+import {Splash, Login, Home, Notifications} from '@src/screens';
 
 // Navigators.
 // TODO: Add navigators imports here.
@@ -12,26 +11,28 @@ import Splash from 'screens/Splash';
 // Modals.
 // TODO: Add modals imports here.
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const stack = createNativeStackNavigator<RootStackParamList>();
 
-export default React.memo(() => {
-  return (
-    <Stack.Navigator
-      initialRouteName="Splash"
-      screenOptions={{headerShown: false}}>
-      {/* Screens */}
-      <Stack.Screen name="Splash" component={Splash} />
+export default React.memo(() => (
+  <stack.Navigator
+    id="RootStack"
+    initialRouteName="splash"
+    screenOptions={{headerShown: false}}>
+    {/* Screens */}
+    <stack.Screen name="splash" component={Splash} />
+    <stack.Screen name="login" component={Login} />
+    <stack.Screen name="home" component={Home} />
+    <stack.Screen name="notifications" component={Notifications} />
 
-      {/* Navigators */}
-      {/* TODO: Add nested navigators here. */}
+    {/* Navigators */}
+    {/* TODO: Add nested navigators here. */}
 
-      {/* Modals */}
-      <Stack.Group
-        screenOptions={{
-          presentation: 'transparentModal',
-        }}>
-        {/* TODO: Add modals screens here. */}
-      </Stack.Group>
-    </Stack.Navigator>
-  );
-});
+    {/* Modals */}
+    <stack.Group
+      screenOptions={{
+        presentation: 'transparentModal',
+      }}>
+      {/* TODO: Add modals screens here. */}
+    </stack.Group>
+  </stack.Navigator>
+));

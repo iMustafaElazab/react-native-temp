@@ -1,0 +1,26 @@
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      root: "template/"
+      files: git diff --name-only @{push}
+      glob: "src/**/*.{js,ts,jsx,tsx,json}"
+      run: npx prettier --write {files}
+    lint:
+      root: "template/"
+      files: git diff --name-only @{push}
+      glob: "src/**/*.{js,ts,jsx,tsx}"
+      run: npx eslint --fix {files}
+    types:
+      root: "template/"
+      files: git diff --name-only @{push}
+      glob: "src/**/*.{js,ts,jsx,tsx}"
+      run: npx tsc --noEmit
+  scripts:
+    "clear-env.sh":
+      runner: bash
+commit-msg:
+  parallel: true
+  commands:
+    commitlint:
+      run: npx commitlint --edit

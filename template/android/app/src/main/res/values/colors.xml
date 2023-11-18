@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Added for 'notification' -->
-    <!-- TODO: Replace with color for notification icon -->
-    <color name="notification">#6750a4</color>
+  <!-- Color for "notification" -->
+  <!-- TODO: Replace with color for notification icon -->
+  <color name="notification">#6750a4</color>
 
-    <!-- Added for 'splash screen' -->
-    <color name="bootsplash_background">#FFFBFE</color>
+  <!-- Color for splash screen background -->
+  <color name="bootsplash_background">#FFFFFF</color>
 </resources>

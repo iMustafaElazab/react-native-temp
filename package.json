@@ -1,15 +1,68 @@
 {
-  "name": "react-native-template-eslam-elmeniawy",
-  "version": "2.12.0",
-  "description": "React Native template with initial setup.",
+  "name": "@eslam-elmeniawy/react-native-template",
+  "version": "3.0.0",
+  "description": "\"ReactNative\" template with initial setup.",
   "scripts": {
     "test": "exit 0",
-    "release": "release-it",
-    "prepare": "husky install"
+    "release": "release-it"
   },
   "files": [
     "template",
-    "template.config.js"
+    "template.config.js",
+    "!template/**/build/",
+    "!template/**/**/build/",
+    "!template/ios/build/",
+    "!template/android/app/build/",
+    "!template/**/*.pbxuser",
+    "template/**/default.pbxuser",
+    "!template/**/*.mode1v3",
+    "template/**/default.mode1v3",
+    "!template/**/*.mode2v3",
+    "template/**/default.mode2v3",
+    "!template/**/*.perspectivev3",
+    "template/**/default.perspectivev3",
+    "!template/**/xcuserdata",
+    "!template/**/*.xccheckout",
+    "!template/**/*.moved-aside",
+    "!template/**/DerivedData",
+    "!template/**/*.hmap",
+    "!template/**/*.ipa",
+    "!template/**/*.xcuserstate",
+    "!template/**/.xcode.env.local",
+    "!template/**/_xcode.env.local",
+    "!template/**/.idea",
+    "!template/**/.idea/",
+    "!template/**/.gradle",
+    "!template/**/local.properties",
+    "!template/**/*.iml",
+    "!template/**/*.hprof",
+    "!template/**/.cxx/",
+    "!template/**/*.keystore",
+    "!node_modules/",
+    "!template/node_modules/",
+    "!template/**/node_modules/",
+    "!template/npm-debug.log",
+    "!template/yarn-error.log",
+    "!template/**/*.jsbundle",
+    "!template/*.jsbundle",
+    "!template/**/Pods/",
+    "!template/vendor/bundle/",
+    "!template/**/vendor/bundle/",
+    "!template/.metro-health-check*",
+    "!template/**/.metro-health-check*",
+    "!template/coverage",
+    "!template/**/coverage",
+    "!template/**/tmp.xcconfig",
+    "!template/**/google-services.json",
+    "!template/**/GoogleService-Info.plist",
+    "!template/**/Podfile.lock",
+    "!template/**/yarn.lock",
+    "!template/yarn.lock",
+    "!template/package-lock.json",
+    "!template/**/package-lock.json",
+    "!template/**/Gemfile.lock",
+    "!template/Gemfile.lock",
+    "!template/yarn.lock"
   ],
   "repository": {
     "type": "git",
@@ -24,22 +77,26 @@
     "template",
     "boilerplate"
   ],
-  "author": "Eslam El-Meniawy <eslam.elmeniawy@gmail.com> (https://eslamelmeniawy.github.io)",
+  "author": "Eslam ElMeniawy <eslam.elmeniawy@gmail.com> (https://eslamelmeniawy.github.io)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/EslamElMeniawy/react-native-temp/issues"
   },
   "homepage": "https://github.com/EslamElMeniawy/react-native-temp#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@evilmartians/lefthook": "^1.5.0",
     "@release-it/conventional-changelog": "^5.1.1",
     "commitlint": "^17.1.2",
-    "husky": "^8.0.1",
-    "release-it": "^15.5.0"
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.3",
+    "release-it": "^15.5.0",
+    "typescript": "4.8.4"
   },
   "release-it": {
     "git": {

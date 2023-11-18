@@ -2,12 +2,11 @@ import {
   MD3LightTheme as DefaultTheme,
   configureFonts,
 } from 'react-native-paper';
+import {AppColors} from '@src/enums';
 import type {
   MD3Theme,
   MD3Colors,
-} from 'react-native-paper/lib/typescript/src/types';
-
-import {AppColors} from 'enums';
+} from 'react-native-paper/lib/typescript/types';
 
 const colors: MD3Colors = {
   ...DefaultTheme.colors,

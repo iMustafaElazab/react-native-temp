@@ -9,8 +9,13 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src'],
-        extensions: ['.tsx', '.ts', '.js', '.json'],
+        root: ['./'],
+        extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+        alias: {
+          '@src': './src',
+          '@packageJson': './package.json',
+          '@appJson': './app.json',
+        },
       },
     ],
   ],

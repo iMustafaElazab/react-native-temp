@@ -8,3 +8,23 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
+
+# Proguard rules for "react-native-device-info".
+-keepclassmembers class com.android.installreferrer.api.** {
+  *;
+}
+-keep class com.google.android.gms.common.** {*;}
+
+# Proguard rules for "react-native-fast-image".
+-keep public class com.dylanvann.fastimage.* {*;}
+-keep public class com.dylanvann.fastimage.** {*;}
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+# Proguard rules for "react-native-config".
+-keep class com.tempapp.BuildConfig { *; }
+-keepresources string/build_config_package

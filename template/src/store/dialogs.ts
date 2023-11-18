@@ -1,12 +1,6 @@
-import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
-
-interface DialogsState {
-  errorDialogTitle?: string;
-  errorDialogMessage?: string;
-  showLoadingDialog?: boolean;
-  showLogoutDialog?: boolean;
-  showDeleteAccountDialog?: boolean;
-}
+import {createSlice} from '@reduxjs/toolkit';
+import type {DialogsState} from './dialogs.types';
+import type {PayloadAction} from '@reduxjs/toolkit';
 
 const initialState = {
   errorDialogTitle: undefined,

@@ -3,9 +3,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- Added for 'notifications' -->
+    <!-- Added for "react-native-push-notification". -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
       android:name=".MainApplication"
@@ -18,7 +18,7 @@
       android:theme="@style/BootTheme"
       android:supportsRtl="true"
       tools:ignore="UnusedAttribute">
-      <!-- Meta for 'notifications' -->
+      <!-- Meta for "notifications" -->
       <!-- TODO: Add notifications icon first -->
       <!-- <meta-data
         android:name="com.google.firebase.messaging.default_notification_icon"
@@ -32,6 +32,9 @@
         android:name="com.google.firebase.messaging.default_notification_channel_id"
         android:value="${applicationId}.default_notification_channel"
         tools:replace="android:value" />
+      <!-- Change the value to true to enable pop-up for in foreground on receiving remote notifications (for prevent duplicating while showing local notifications set this to false) -->
+      <meta-data  android:name="com.dieam.reactnativepushnotification.notification_foreground"
+        android:value="false"/>
       <meta-data
         android:name="com.dieam.reactnativepushnotification.notification_color"
         android:resource="@color/notification" />
