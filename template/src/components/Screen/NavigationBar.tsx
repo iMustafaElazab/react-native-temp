@@ -27,10 +27,12 @@ export default React.memo((props: Props) => {
           navigationBarStyle
             ? navigationBarStyle
             : tinyColor(
-                navigationBarColor ? navigationBarColor : AppColors.BACKGROUND,
-              ).isLight()
-            ? 'dark-content'
-            : 'light-content'
+                  navigationBarColor
+                    ? navigationBarColor
+                    : AppColors.BACKGROUND,
+                ).isLight()
+              ? 'dark-content'
+              : 'light-content'
         }
         {...restNavigationBarProps}
       />
