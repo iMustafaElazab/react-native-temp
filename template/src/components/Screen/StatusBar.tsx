@@ -25,10 +25,10 @@ export default React.memo((props: Props) => {
           statusBarStyle
             ? statusBarStyle
             : tinyColor(
-                statusBarColor ? statusBarColor : AppColors.BACKGROUND,
-              ).isLight()
-            ? 'dark-content'
-            : 'light-content'
+                  statusBarColor ? statusBarColor : AppColors.BACKGROUND,
+                ).isLight()
+              ? 'dark-content'
+              : 'light-content'
         }
         {...restStatusBarProps}
       />

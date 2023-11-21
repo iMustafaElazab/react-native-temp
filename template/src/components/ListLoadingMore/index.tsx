@@ -12,5 +12,5 @@ export default React.memo((props: Props) => {
       size="small"
       style={StyleSheet.compose(styles.loadingMore, style)}
     />
-  ) : undefined;
+  ) : null;
 });

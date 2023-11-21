@@ -55,12 +55,14 @@ const processUserNotification = (
   notification: Notification,
   stateUser: User,
   newNotificationsCount: number,
+  shouldSkipOpenNotificationsScreen?: boolean,
 ) => {
   console.info(
     getLogMessage('processUserNotification'),
     notification,
     stateUser,
     newNotificationsCount,
+    shouldSkipOpenNotificationsScreen,
   );
 
   // Set new notifications count to redux state.
@@ -77,11 +79,21 @@ const processUserNotification = (
   store.dispatch(setStateUser(userWithNewNotificationsCount));
 
   // Open notification related screen.
-  openNotificationRelatedScreen(notification);
+  openNotificationRelatedScreen(
+    notification,
+    shouldSkipOpenNotificationsScreen,
+  );
 };
 
-export const processNotification = (notification: Notification) => {
-  console.info(getLogMessage('processNotification'), notification);
+export const processNotification = (
+  notification: Notification,
+  shouldSkipOpenNotificationsScreen?: boolean,
+) => {
+  console.info(
+    getLogMessage('processNotification'),
+    notification,
+    shouldSkipOpenNotificationsScreen,
+  );
 
   // Clear notification.
   clearNotifications(notification);
@@ -93,14 +105,29 @@ export const processNotification = (notification: Notification) => {
   PushNotification.setApplicationIconBadgeNumber(newNotificationsCount);
 
   if (stateUser) {
-    processUserNotification(notification, stateUser, newNotificationsCount);
+    processUserNotification(
+      notification,
+      stateUser,
+      newNotificationsCount,
+      shouldSkipOpenNotificationsScreen,
+    );
   }
 };
 
-export const openNotificationRelatedScreen = (notification: Notification) => {
-  console.info(getLogMessage('openNotificationRelatedScreen'), notification);
+export const openNotificationRelatedScreen = (
+  notification: Notification,
+  shouldSkipOpenNotificationsScreen?: boolean,
+) => {
+  console.info(
+    getLogMessage('openNotificationRelatedScreen'),
+    notification,
+    shouldSkipOpenNotificationsScreen,
+  );
+
   // TODO: Determine screen to open and navigate to it.
-  push('notifications');
+  if (!shouldSkipOpenNotificationsScreen) {
+    push('notifications');
+  }
 };
 
 export const displayLocalNotification = (

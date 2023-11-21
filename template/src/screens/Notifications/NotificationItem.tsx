@@ -16,7 +16,7 @@ export default React.memo((props: NotificationItemProps) => {
 
   const onNotificationPress = () => {
     console.info(getLogMessage('onNotificationPress'), notification);
-    processNotification(notification);
+    processNotification(notification, true);
   };
 
   return (
