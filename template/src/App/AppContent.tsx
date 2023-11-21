@@ -42,6 +42,6 @@ export default React.memo(() => {
         </QueryClientProvider>
       </ToastProvider>
     </PaperProvider>
-  ) : undefined;
+  ) : null;
   // #endregion
 });
