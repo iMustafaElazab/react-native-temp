@@ -4,6 +4,6 @@
 
 import {AppRegistry} from 'react-native';
 import {name as appName} from './app.json';
-import HeadlessCheck from './src/HeadlessCheck';
+import AppEntry from './src/AppEntry';
 
-AppRegistry.registerComponent(appName, () => HeadlessCheck);
+AppRegistry.registerComponent(appName, () => AppEntry);

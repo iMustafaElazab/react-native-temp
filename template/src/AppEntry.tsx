@@ -9,7 +9,7 @@ import {processNotification} from '@src/utils';
 enableScreens();
 
 function getLogMessage(message: string) {
-  return `## index:: ${message}`;
+  return `## AppEntry:: ${message}`;
 }
 
 // Register background handler for firebase messages.
@@ -38,7 +38,7 @@ PushNotification.configure({
   },
 });
 
-function HeadlessCheck({isHeadless}: {isHeadless?: boolean}) {
+function AppEntry({isHeadless}: {isHeadless?: boolean}) {
   if (isHeadless) {
     // App has been launched in the background by iOS, ignore.
     return null;
@@ -47,4 +47,4 @@ function HeadlessCheck({isHeadless}: {isHeadless?: boolean}) {
   return <App />;
 }
 
-export default HeadlessCheck;
+export default AppEntry;
