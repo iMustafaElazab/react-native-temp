@@ -111,7 +111,6 @@
     "@tanstack/eslint-plugin-query": "^5.8.4",
     "@tsconfig/react-native": "^3.0.2",
     "@types/i18n-js": "^3.8.9",
-    "@types/lodash.memoize": "^4.1.9",
     "@types/react": "^18.2.38",
     "@types/react-native-push-notification": "^8.1.4",
     "@types/react-native-vector-icons": "^6.4.18",
