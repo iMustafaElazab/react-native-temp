@@ -32,7 +32,7 @@ export default React.memo(() => (
       screenOptions={{
         presentation: 'transparentModal',
       }}>
-      {/* TODO: Add modals screens here. */}
+      <>{/* TODO: Add modals screens here. */}</>
     </stack.Group>
   </stack.Navigator>
 ));
