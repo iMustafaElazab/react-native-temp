@@ -17,7 +17,7 @@ pre-commit:
       glob: "src/**/*.{js,ts,jsx,tsx}"
       run: npx tsc --noEmit
   scripts:
-    "rename-gitignore.sh":
+    "template-files.sh":
       runner: bash
 commit-msg:
   parallel: true
