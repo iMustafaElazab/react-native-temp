@@ -1,4 +1,4 @@
-import {Tuple, configureStore} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import {default as Config} from 'react-native-config';
 import {default as logger} from 'redux-logger';
 import dialogsReducer from './dialogs';
@@ -17,11 +17,14 @@ export const store = configureStore({
       : getDefaultMiddleware(),
 });
 
+// Types exports.
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 
+// Hooks export.
 export * from './hooks';
 
+// Reducers exports.
 export * from './dialogs';
 export * from './networkState';
 export * from './user';

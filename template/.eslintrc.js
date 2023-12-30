@@ -58,10 +58,6 @@ module.exports = {
         format: ['PascalCase'],
       },
       {
-        selector: 'import',
-        format: ['PascalCase', 'camelCase'],
-      },
-      {
         selector: [
           'classProperty',
           'objectLiteralProperty',
