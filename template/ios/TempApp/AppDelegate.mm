@@ -22,23 +22,28 @@
 {
   // Added for "react-native-firebase".
   [FIRApp configure];
-  
+
   self.moduleName = @"TempApp";
-  
+
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   // Changed for injecting "isHeadless" prop into app for "react-native-firebase".
   self.initialProps = [RNFBMessagingModule addCustomPropsToUserProps:nil withLaunchOptions:launchOptions];
-  
+
   // Added for "@react-native-community/push-notification-ios".
   // Define UNUserNotificationCenter
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
-  
+
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+{
+  return [self getBundleURL];
+}
+
+- (NSURL *)getBundleURL
 {
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
@@ -59,9 +64,9 @@
   UIView *rootView = [super createRootViewWithBridge:bridge
                                           moduleName:moduleName
                                            initProps:initProps];
-  
+
   [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
-  
+
   return rootView;
 }
 

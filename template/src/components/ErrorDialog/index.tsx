@@ -1,19 +1,17 @@
 import {AlertDialog} from '@eslam-elmeniawy/react-native-common-components';
 import * as React from 'react';
 import {useTranslation} from 'react-i18next';
-import {useDispatch, useSelector} from 'react-redux';
-import type {RootState} from '@src/store';
-import {removeErrorDialog} from '@src/store';
+import {useAppDispatch, useAppSelector, removeErrorDialog} from '@src/store';
 import {removeUserDataLogout} from '@src/utils';
 
 export default React.memo(() => {
   const {t: translate} = useTranslation();
 
   // #region Redux
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const {errorDialogTitle, errorDialogMessage} = useSelector(
-    (state: RootState) => state.dialogs,
+  const {errorDialogTitle, errorDialogMessage} = useAppSelector(
+    state => state.dialogs,
   );
   // #endregion
 

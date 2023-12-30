@@ -11,21 +11,22 @@ export const store = configureStore({
     dialogs: dialogsReducer,
     networkState: networkStateReducer,
   },
-  middleware: getDefaultMiddleware => {
-    const middleware = getDefaultMiddleware();
-
-    const middlewareWithLogger =
-      Config.ENABLE_LOCAL_LOG === 'true'
-        ? middleware.concat(logger)
-        : middleware;
-
-    return middlewareWithLogger;
-  },
+  middleware: getDefaultMiddleware =>
+    Config.ENABLE_LOCAL_LOG === 'true'
+      ? getDefaultMiddleware().concat(
+          logger as unknown as ReturnType<typeof getDefaultMiddleware>,
+        )
+      : getDefaultMiddleware(),
 });
 
+// Types exports.
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 
+// Hooks export.
+export * from './hooks';
+
+// Reducers exports.
 export * from './dialogs';
 export * from './networkState';
 export * from './user';

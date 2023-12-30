@@ -1,15 +1,15 @@
 import 'react-native-gesture-handler';
 import {default as PushNotificationIOS} from '@react-native-community/push-notification-ios';
 import messaging from '@react-native-firebase/messaging';
+import * as React from 'react';
 import {default as PushNotification} from 'react-native-push-notification';
 import {enableScreens} from 'react-native-screens';
-import App from '@src/App';
 import {processNotification} from '@src/utils';
 
 enableScreens();
 
 function getLogMessage(message: string) {
-  return `## index:: ${message}`;
+  return `## AppEntry:: ${message}`;
 }
 
 // Register background handler for firebase messages.
@@ -38,13 +38,19 @@ PushNotification.configure({
   },
 });
 
-function HeadlessCheck({isHeadless}: {isHeadless?: boolean}) {
+function AppEntry({isHeadless}: {isHeadless?: boolean}) {
   if (isHeadless) {
     // App has been launched in the background by iOS, ignore.
     return null;
   }
 
-  return <App />;
+  const App = React.lazy(() => import('@src/App'));
+
+  return (
+    <React.Suspense>
+      <App />
+    </React.Suspense>
+  );
 }
 
-export default HeadlessCheck;
+export default AppEntry;
