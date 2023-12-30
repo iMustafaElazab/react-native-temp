@@ -30,7 +30,7 @@
 ## Usage
 
 ```sh
-npx react-native@latest init MyApp --template @eslam-elmeniawy/react-native-template
+npx react-native@latest init MyApp --template @eslam-elmeniawy/react-native-template --pm yarn
 ```
 
 ### Additional Setup
