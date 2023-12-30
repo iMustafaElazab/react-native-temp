@@ -1,2 +1,2 @@
-cp .gitignore _gitignore
-git add _gitignore
+cp template/.gitignore template/_gitignore
+git add template/_gitignore
