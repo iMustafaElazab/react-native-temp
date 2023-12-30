@@ -13,7 +13,9 @@ export const store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     Config.ENABLE_LOCAL_LOG === 'true'
-      ? getDefaultMiddleware().concat(logger)
+      ? getDefaultMiddleware().concat(
+          logger as unknown as ReturnType<typeof getDefaultMiddleware>,
+        )
       : getDefaultMiddleware(),
 });
 
