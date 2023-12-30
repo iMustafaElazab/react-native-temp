@@ -1,12 +1,11 @@
 import * as React from 'react';
-import {useDispatch} from 'react-redux';
 import type {User} from '@src/core';
 import {
   getUser as getLocalStorageUser,
   useGetUserDetailsApi,
   setUser as setLocalStorageUser,
 } from '@src/core';
-import {setUser as setStateUser} from '@src/store';
+import {useAppDispatch, setUser as setStateUser} from '@src/store';
 
 export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
   // #region Logger
@@ -15,7 +14,7 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
   // #endregion
 
   // #region Redux
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   // #endregion
 
   // #region State

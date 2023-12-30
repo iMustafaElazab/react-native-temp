@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Keyboard} from 'react-native';
-import {useDispatch} from 'react-redux';
 import {useLoginApi} from '@src/core';
-import {setErrorDialogMessage} from '@src/store';
+import {useAppDispatch, setErrorDialogMessage} from '@src/store';
 import {saveUserDataOpenHome} from '@src/utils';
 import type {FormValues} from './types';
 
@@ -16,7 +15,7 @@ const useLoginButton = () => {
   const {t: translate} = useTranslation();
 
   // #region Redux
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   // #endregion
 
   // #region API

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {Animated, Dimensions} from 'react-native';
 import {hide as rnBootSplashHide} from 'react-native-bootsplash';
-import {useSelector} from 'react-redux';
-import type {RootState} from '@src/store';
+import {useAppSelector} from '@src/store';
 import type {UseHideSplashProps} from './useHideSplash.types';
 
 export const useHideSplash = (props: UseHideSplashProps) => {
@@ -17,7 +16,7 @@ export const useHideSplash = (props: UseHideSplashProps) => {
   // #endregion
 
   // #region Redux
-  const {user: stateUser} = useSelector((state: RootState) => state.user);
+  const {user: stateUser} = useAppSelector(state => state.user);
   // #endregion
 
   // #region State

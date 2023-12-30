@@ -1,8 +1,7 @@
 import messaging from '@react-native-firebase/messaging';
 import * as React from 'react';
-import {useDispatch} from 'react-redux';
 import {getUser} from '@src/core';
-import {setUser as setStateUser} from '@src/store';
+import {useAppDispatch, setUser as setStateUser} from '@src/store';
 import {displayLocalNotification} from '@src/utils';
 
 export const useForegroundMessagesListener = () => {
@@ -12,7 +11,7 @@ export const useForegroundMessagesListener = () => {
   // #endregion
 
   // #region Redux
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   // #endregion
 
   React.useEffect(() => {

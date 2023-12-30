@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Toast} from 'react-native-toast-notifications';
-import {useDispatch} from 'react-redux';
 import {translate} from '@src/core';
 import {
+  useAppDispatch,
   removeIsConnectionExpensive,
   setIsConnectionExpensive,
   setIsInternetAvailable,
@@ -20,7 +20,7 @@ export const useHandleNetworkState = () => {
   // #endregion
 
   // #region Redux
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   // #endregion
 
   const checkInternetAvailableState = React.useCallback(
