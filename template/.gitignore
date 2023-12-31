@@ -31,6 +31,9 @@ local.properties
 *.iml
 *.hprof
 .cxx/
+*.jks
+*.keystore
+!debug.keystore
 
 # node.js
 #
@@ -65,3 +68,7 @@ yarn-error.log
 
 # react-native-config codegen
 ios/tmp.xcconfig
+
+# firebase config files
+google-services.json
+GoogleService-Info.plist
