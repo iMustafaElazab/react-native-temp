@@ -44,6 +44,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "jest",
+    "prepare": "lefthook install",
     "postinstall": "patch-package && yarn pods && yarn link-assets && yarn android-clean && yarn ios-clean",
     "ver:test": "yarn version --prerelease --preid alpha && react-native-version --amend --never-increment-build",
     "ver": "yarn version && react-native-version --amend --reset-build",

@@ -4,6 +4,7 @@
   "description": "\"ReactNative\" template with initial setup.",
   "scripts": {
     "test": "exit 0",
+    "prepare": "lefthook install",
     "release": "release-it"
   },
   "files": [
