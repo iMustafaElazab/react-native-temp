@@ -3,6 +3,7 @@ import {Animated, StyleSheet} from 'react-native';
 import {Screen} from '@src/components';
 import {AppImages} from '@src/enums';
 import type {RootStackScreenProps} from '@src/navigation';
+import {useAppTheme} from '@src/utils';
 import styles from './styles';
 import {useSplash} from './useSplash';
 
@@ -25,6 +26,8 @@ export default React.memo((props: RootStackScreenProps<'splash'>) => {
     isBootSplashLogoLoaded,
   });
 
+  const theme = useAppTheme();
+
   // #region UI
   return (
     <Screen>
@@ -39,11 +42,15 @@ export default React.memo((props: RootStackScreenProps<'splash'>) => {
             source={AppImages.BOOT_SPLASH_LOGO}
             fadeDuration={0}
             resizeMode="contain"
+            tintColor={theme.colors.primary}
             onLoadEnd={() => setBootSplashLogoLoaded(true)}
-            style={[
+            style={StyleSheet.flatten([
               styles.logo,
-              {transform: [{translateY: translateY.current}]},
-            ]}
+              {
+                tintColor: theme.colors.primary,
+                transform: [{translateY: translateY.current}],
+              },
+            ])}
           />
         </Animated.View>
       )}
