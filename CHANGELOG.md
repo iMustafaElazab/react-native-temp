@@ -1,5 +1,12 @@
 
 
+## [3.2.0](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.1.4...v3.2.0) (2024-01-04)
+
+
+### Features
+
+* add dark theme support ([1239de4](https://github.com/EslamElMeniawy/react-native-temp/commit/1239de44d9b31b835549d396e1ebc3c19e844381))
+
 ## [3.1.4](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.1.3...v3.1.4) (2023-12-31)
 
 
