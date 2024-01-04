@@ -157,7 +157,7 @@ export const displayLocalNotification = (
       title: title,
       message: body,
       bigText: body,
-      color: AppColors.PRIMARY,
+      color: AppColors.SEED,
       channelId: localChannelId,
       soundName: 'default',
       messageId: remoteMessage.messageId,

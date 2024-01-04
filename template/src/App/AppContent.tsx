@@ -8,7 +8,7 @@ import {Provider as PaperProvider} from 'react-native-paper';
 import {ToastProvider} from 'react-native-toast-notifications';
 import {ErrorDialog, Toast} from '@src/components';
 import {NavigationContainer} from '@src/navigation';
-import {paperTheme, queryClient} from '@src/utils';
+import {useAppTheme, queryClient} from '@src/utils';
 import {useFirebaseMessagingInitialization} from './useFirebaseMessagingInitialization';
 import {useForegroundMessagesListener} from './useForegroundMessagesListener';
 import {useLocalizationInitialization} from './useLocalizationInitialization';
@@ -27,10 +27,11 @@ export default React.memo(() => {
   useFirebaseMessagingInitialization();
   useForegroundMessagesListener();
   useNotificationsInteraction();
+  const theme = useAppTheme();
 
   // #region UI
   return languageLoaded ? (
-    <PaperProvider theme={paperTheme}>
+    <PaperProvider theme={theme}>
       <ToastProvider
         placement="top"
         offset={getStatusBarHeight()}
