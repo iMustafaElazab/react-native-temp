@@ -18,11 +18,11 @@ import org.wonday.orientation.OrientationActivityLifecycle
 class MainApplication : MultiDexApplication(), ReactApplication {
     override val reactNativeHost: ReactNativeHost =
         object : DefaultReactNativeHost(this) {
-            override fun getPackages(): List<ReactPackage> {
+            override fun getPackages(): List<ReactPackage> =
+              PackageList(this).packages.apply {
                 // Packages that cannot be autolinked yet can be added manually here, for example:
-                // packages.add(new MyReactNativePackage());
-                return PackageList(this).packages
-            }
+                // add(MyReactNativePackage())
+              }
 
             override fun getJSMainModuleName(): String = "index"
 
