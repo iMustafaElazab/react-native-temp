@@ -1,5 +1,12 @@
 
 
+## [3.3.0](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.2.0...v3.3.0) (2024-02-03)
+
+
+### Features
+
+* upgrade `ReactNative` & deps ([ed428ef](https://github.com/EslamElMeniawy/react-native-temp/commit/ed428ef421d6960f4a1ecb91eb51809b6c41758a))
+
 ## [3.2.0](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.1.4...v3.2.0) (2024-01-04)
 
 
