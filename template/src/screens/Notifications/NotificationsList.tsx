@@ -48,9 +48,7 @@ export default React.memo(() => {
         refreshing={isFetching && !isFetchingNextPage}
         onEndReached={() => fetchNextPage()}
         contentContainerStyle={
-          !notificationsList || !notificationsList.length
-            ? styles.emptyList
-            : undefined
+          !notificationsList?.length ? styles.emptyList : undefined
         }
         ItemSeparatorComponent={NotificationsListSeparator}
       />

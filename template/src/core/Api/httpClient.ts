@@ -102,8 +102,7 @@ const getErrorMessage = (error: AxiosError<ServerErrorResponse>) => {
   } else if (
     error.response?.data?.errors &&
     typeof error.response.data.errors === 'object' &&
-    error.response.data.errors.message &&
-    error.response.data.errors.message.length
+    error.response?.data?.errors?.message?.length
   ) {
     errorMessage = error.response?.data?.errors?.message?.join('\n');
   } else if (error.response?.data?.message) {

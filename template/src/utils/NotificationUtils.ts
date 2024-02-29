@@ -101,7 +101,7 @@ export const processNotification = (
   // Set new badge.
   const {user: stateUser} = store.getState().user;
   console.info(getLogMessage('stateUser'), stateUser);
-  const newNotificationsCount = (stateUser?.unreadNotificationsCount || 1) - 1;
+  const newNotificationsCount = (stateUser?.unreadNotificationsCount ?? 1) - 1;
   PushNotification.setApplicationIconBadgeNumber(newNotificationsCount);
 
   if (stateUser) {

@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Controller, useFormContext, type FieldValues} from 'react-hook-form';
 import type {Props} from './types';
 
-function HookFormTextInput<T extends FieldValues>(props: Props<T>) {
+function HookFormTextInput<T extends FieldValues>(props: Readonly<Props<T>>) {
   // #region Variables
   const {name, rules, textInputProps} = props;
   const {errorProps, ...restTextInputProps} = textInputProps ?? {};
@@ -18,9 +18,7 @@ function HookFormTextInput<T extends FieldValues>(props: Props<T>) {
     formState: {errors},
   } = useFormContext<T>();
 
-  const errorMessage = errorPropsErrorMessage
-    ? errorPropsErrorMessage
-    : errors[name]?.message;
+  const errorMessage = errorPropsErrorMessage ?? errors[name]?.message;
   // #endregion
 
   // #region UI
