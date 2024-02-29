@@ -1,6 +1,6 @@
 {
   "name": "@eslam-elmeniawy/react-native-template",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "\"ReactNative\" template with initial setup.",
   "scripts": {
     "test": "exit 0",
@@ -89,14 +89,14 @@
     "access": "public"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.6.0",
-    "@commitlint/config-conventional": "^18.6.0",
-    "@evilmartians/lefthook": "^1.6.1",
+    "@commitlint/cli": "^19.0.3",
+    "@commitlint/config-conventional": "^19.0.3",
+    "@evilmartians/lefthook": "^1.6.4",
     "@release-it/conventional-changelog": "^8.0.1",
-    "commitlint": "^18.6.0",
-    "eslint": "^8.56.0",
-    "prettier": "^3.2.4",
-    "release-it": "^17.0.3",
+    "commitlint": "^19.0.3",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "release-it": "^17.1.1",
     "typescript": "5.0.4"
   },
   "release-it": {

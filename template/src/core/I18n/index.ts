@@ -68,7 +68,7 @@ export const setI18nConfig = async () => {
 
 export const updateLanguage = async (language?: AppLanguages | null) => {
   console.info(getLogMessage('updateLanguage'), language);
-  const locale = language || defaultLocale;
+  const locale = language ?? defaultLocale;
 
   // Save user language.
   if (language) {

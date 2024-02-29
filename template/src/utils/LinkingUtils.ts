@@ -7,7 +7,7 @@ const getLogMessage = (message: string) => `## LinkingUtils:: ${message}`;
 const appendEmail = (emailLink: string, email?: string) => {
   let appendedLink = `${emailLink}`;
 
-  if (email && email.length) {
+  if (email?.length) {
     appendedLink += email;
   }
 
@@ -21,15 +21,15 @@ const appendEmailSubjectBody = (
 ) => {
   let appendedLink = `${emailLink}`;
 
-  if ((subject && subject.length) || (body && body.length)) {
+  if (subject?.length || body?.length) {
     appendedLink += '?';
 
-    if (subject && subject.length) {
+    if (subject?.length) {
       appendedLink += `subject=${subject}`;
     }
 
-    if (body && body.length) {
-      if (subject && subject.length) {
+    if (body?.length) {
+      if (subject?.length) {
         appendedLink += '&';
       }
 
@@ -48,17 +48,16 @@ const open = async (url: string, errorMessageKey?: string) => {
   } catch (error) {
     console.warn(getLogMessage(`Failed to open: ${url}`), error);
 
-    Toast.show(
-      translate(errorMessageKey ? errorMessageKey : 'error_processing_request'),
-      {type: 'danger'},
-    );
+    Toast.show(translate(errorMessageKey ?? 'error_processing_request'), {
+      type: 'danger',
+    });
   }
 };
 
 export const openUrl = (url?: string, errorMessageKey?: string) => {
   console.info(getLogMessage('openUrl'), url);
 
-  if (url && url.length) {
+  if (url?.length) {
     open(url, errorMessageKey ?? 'error_open_url');
   }
 };
@@ -71,11 +70,7 @@ export const openEmail = (
 ) => {
   console.info(getLogMessage('openEmail'), email, subject, body);
 
-  if (
-    (email && email.length) ||
-    (subject && subject.length) ||
-    (body && body.length)
-  ) {
+  if (email?.length || subject?.length || body?.length) {
     let emailLink = 'mailto:';
     emailLink = appendEmail(emailLink, email);
     emailLink = appendEmailSubjectBody(emailLink, subject, body);
@@ -87,7 +82,7 @@ export const openEmail = (
 export const openPhone = (phone?: string, errorMessageKey?: string) => {
   console.info(getLogMessage('openPhone'), phone);
 
-  if (phone && phone.length) {
+  if (phone?.length) {
     open(`tel:${phone}`, errorMessageKey ?? 'error_open_phone');
   }
 };
@@ -95,7 +90,7 @@ export const openPhone = (phone?: string, errorMessageKey?: string) => {
 export const openWhatsApp = (number?: string, errorMessageKey?: string) => {
   console.info(getLogMessage('openWhatsApp'), number);
 
-  if (number && number.length) {
+  if (number?.length) {
     open(
       `whatsapp://send?phone=${number}`,
       errorMessageKey ?? 'error_open_whats_app',

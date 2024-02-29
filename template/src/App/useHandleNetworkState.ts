@@ -30,14 +30,9 @@ export const useHandleNetworkState = () => {
 
       const isInternetAvailable =
         state.isConnected && state.isInternetReachable;
+
       console.info(getLogMessage('isInternetAvailable'), isInternetAvailable);
-
-      dispatch(
-        setIsInternetAvailable(
-          isInternetAvailable == null ? true : isInternetAvailable,
-        ),
-      );
-
+      dispatch(setIsInternetAvailable(isInternetAvailable ?? true));
       return isInternetAvailable;
     },
     [dispatch],
@@ -87,10 +82,8 @@ export const useHandleNetworkState = () => {
             onClose: () => (internetLostToastId.current = undefined),
           });
         }
-      } else {
-        if (internetLostToastId.current) {
-          Toast.hide(internetLostToastId.current);
-        }
+      } else if (internetLostToastId.current) {
+        Toast.hide(internetLostToastId.current);
       }
     },
     [],

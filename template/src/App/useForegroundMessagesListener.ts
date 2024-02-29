@@ -26,7 +26,7 @@ export const useForegroundMessagesListener = () => {
         const userWithNewNotificationsCount = {...user};
 
         userWithNewNotificationsCount.unreadNotificationsCount =
-          (user.unreadNotificationsCount || 0) + 1;
+          (user.unreadNotificationsCount ?? 0) + 1;
 
         console.info(
           getLogMessage('userWithNewNotificationsCount'),

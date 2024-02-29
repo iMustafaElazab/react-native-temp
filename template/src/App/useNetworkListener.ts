@@ -5,6 +5,7 @@ import {
 import * as React from 'react';
 import {AppState, NativeModules, Platform} from 'react-native';
 import {useHandleNetworkState} from './useHandleNetworkState';
+import type {AppStateStatus} from 'react-native';
 
 export const useNetworkListener = () => {
   // #region Logger
@@ -15,25 +16,26 @@ export const useNetworkListener = () => {
   const handleNetworkState = useHandleNetworkState();
 
   React.useEffect(() => {
-    const subAppState = AppState.addEventListener(
-      'change',
-      async nextAppState => {
-        console.info(getLogMessage('App state changed'));
-        console.info(getLogMessage('nextAppState'), nextAppState);
+    const handleAppState = async (nextAppState: AppStateStatus) => {
+      console.info(getLogMessage('App state changed'));
+      console.info(getLogMessage('nextAppState'), nextAppState);
 
-        if (Platform.OS === 'ios' && nextAppState === 'active') {
-          const newNetInfo =
-            await NativeModules.RNCNetInfo.getCurrentState('wifi');
+      if (Platform.OS === 'ios' && nextAppState === 'active') {
+        const newNetInfo =
+          await NativeModules.RNCNetInfo.getCurrentState('wifi');
 
-          console.info(getLogMessage('newNetInfo'), newNetInfo);
+        console.info(getLogMessage('newNetInfo'), newNetInfo);
 
-          netInfoFetch().then(state => {
-            console.info(getLogMessage('state'), state);
-            handleNetworkState(state);
-          });
-        }
-      },
-    );
+        netInfoFetch().then(state => {
+          console.info(getLogMessage('state'), state);
+          handleNetworkState(state);
+        });
+      }
+    };
+
+    const subAppState = AppState.addEventListener('change', nextAppState => {
+      handleAppState(nextAppState);
+    });
 
     return () => {
       if (subAppState) {

@@ -12,25 +12,23 @@ export default React.memo((props: Props) => {
   const {edges, statusBarProps, statusBarColor} = props;
 
   const {barStyle: statusBarStyle, ...restStatusBarProps} =
-    statusBarProps || {};
+    statusBarProps ?? {};
 
   const statusBarContainerStyle = {
     height: !edges || (edges && edges.includes('top')) ? insets.top : 0,
-    backgroundColor: statusBarColor ? statusBarColor : theme.colors.background,
+    backgroundColor: statusBarColor ?? theme.colors.background,
   };
+
+  const defaultStatusBarStyle = tinyColor(
+    statusBarColor ?? theme.colors.background,
+  ).isLight()
+    ? 'dark-content'
+    : 'light-content';
 
   return (
     <View style={statusBarContainerStyle}>
       <StatusBar
-        barStyle={
-          statusBarStyle
-            ? statusBarStyle
-            : tinyColor(
-                  statusBarColor ? statusBarColor : theme.colors.background,
-                ).isLight()
-              ? 'dark-content'
-              : 'light-content'
-        }
+        barStyle={statusBarStyle ?? defaultStatusBarStyle}
         {...restStatusBarProps}
       />
     </View>

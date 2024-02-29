@@ -12,29 +12,23 @@ export default React.memo((props: Props) => {
   const {edges, navigationBarProps, navigationBarColor} = props;
 
   const {barStyle: navigationBarStyle, ...restNavigationBarProps} =
-    navigationBarProps || {};
+    navigationBarProps ?? {};
 
   const navigationBarContainerStyle = {
     height: !edges || (edges && edges.includes('bottom')) ? insets.bottom : 0,
-    backgroundColor: navigationBarColor
-      ? navigationBarColor
-      : theme.colors.background,
+    backgroundColor: navigationBarColor ?? theme.colors.background,
   };
+
+  const defaultNavigationBarStyle = tinyColor(
+    navigationBarColor ?? theme.colors.background,
+  ).isLight()
+    ? 'dark-content'
+    : 'light-content';
 
   return (
     <View style={navigationBarContainerStyle}>
       <NavigationBar
-        barStyle={
-          navigationBarStyle
-            ? navigationBarStyle
-            : tinyColor(
-                  navigationBarColor
-                    ? navigationBarColor
-                    : theme.colors.background,
-                ).isLight()
-              ? 'dark-content'
-              : 'light-content'
-        }
+        barStyle={navigationBarStyle ?? defaultNavigationBarStyle}
         {...restNavigationBarProps}
       />
     </View>

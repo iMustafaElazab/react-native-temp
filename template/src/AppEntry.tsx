@@ -38,7 +38,7 @@ PushNotification.configure({
   },
 });
 
-function AppEntry({isHeadless}: {isHeadless?: boolean}) {
+function AppEntry({isHeadless}: Readonly<{isHeadless?: boolean}>) {
   if (isHeadless) {
     // App has been launched in the background by iOS, ignore.
     return null;
