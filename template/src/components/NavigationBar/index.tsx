@@ -15,7 +15,7 @@ export default React.memo((props: Props) => {
     navigationBarProps ?? {};
 
   const navigationBarContainerStyle = {
-    height: !edges || (edges && edges.includes('bottom')) ? insets.bottom : 0,
+    height: !edges || edges?.includes('bottom') ? insets.bottom : 0,
     backgroundColor: navigationBarColor ?? theme.colors.background,
   };
 
