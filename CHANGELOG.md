@@ -1,5 +1,12 @@
 
 
+## [3.6.0](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.5.0...v3.6.0) (2024-05-04)
+
+
+### Features
+
+* handle protected routes ([3ccc4a8](https://github.com/EslamElMeniawy/react-native-temp/commit/3ccc4a8342d208dd7b03b1af0289a74e13039842))
+
 ## [3.5.0](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.4.0...v3.5.0) (2024-05-04)
 
 
