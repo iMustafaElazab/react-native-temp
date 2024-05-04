@@ -5,12 +5,11 @@ import {percentWidth} from '@src/utils';
 import type {ScrollViewProps} from '@eslam-elmeniawy/react-native-common-components';
 
 export default React.memo((props: ScrollViewProps) => {
-  const {bounces, contentContainerStyle, children, ...restProps} = props;
+  const {contentContainerStyle, children, ...restProps} = props;
   const {width} = useWindowDimensions();
 
   return (
     <ScrollView
-      bounces={bounces ?? false}
       contentContainerStyle={StyleSheet.compose(
         {
           width: percentWidth(width),
