@@ -2,9 +2,9 @@ import * as React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Keyboard} from 'react-native';
 import {useLoginApi} from '@src/core';
+import type {FormValues} from '@src/screens/Login/components';
 import {useAppDispatch, setErrorDialogMessage} from '@src/store';
 import {saveUserDataOpenHome} from '@src/utils';
-import type {FormValues} from './types';
 
 const useLoginButton = () => {
   // #region Logger
@@ -60,14 +60,17 @@ const useLoginButton = () => {
   // #endregion
 
   // #region Press events
-  const onLoginPress = (formData: FormValues) => {
-    console.info(getLogMessage('onLoginPress'), formData);
-    Keyboard.dismiss();
+  const onLoginPress = React.useCallback(
+    (formData: FormValues) => {
+      console.info(getLogMessage('onLoginPress'), formData);
+      Keyboard.dismiss();
 
-    callLoginApi({
-      body: {username: formData.username, password: formData.password},
-    });
-  };
+      callLoginApi({
+        body: {username: formData.username, password: formData.password},
+      });
+    },
+    [callLoginApi],
+  );
   // #endregion
 
   // #region Setup
