@@ -156,7 +156,7 @@ const requestRejectedInterceptor = (error: any) => {
     error,
   );
 
-  return Promise.reject(error);
+  return Promise.reject(error as Error);
 };
 
 const responseFulfilledInterceptor = (response: AxiosResponse<any, any>) => {
