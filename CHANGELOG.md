@@ -1,5 +1,13 @@
 
 
+## [3.5.0](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.4.0...v3.5.0) (2024-05-04)
+
+
+### Features
+
+* handle version command with new `yarn` ([5d372a5](https://github.com/EslamElMeniawy/react-native-temp/commit/5d372a5ca5eab35fd32b6c4a3d276419d28e168b))
+* upgrade `ReactNative` & deps ([2087b14](https://github.com/EslamElMeniawy/react-native-temp/commit/2087b14c73107d4af8c3c628b7b5f4e1ecc57264))
+
 ## [3.4.0](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.3.0...v3.4.0) (2024-02-29)
 
 
