@@ -62,8 +62,7 @@
     "!template/package-lock.json",
     "!template/**/package-lock.json",
     "!template/**/Gemfile.lock",
-    "!template/Gemfile.lock",
-    "!template/yarn.lock"
+    "!template/Gemfile.lock"
   ],
   "repository": {
     "type": "git",
@@ -89,14 +88,14 @@
     "access": "public"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
-    "@evilmartians/lefthook": "^1.6.4",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@evilmartians/lefthook": "^1.6.10",
     "@release-it/conventional-changelog": "^8.0.1",
-    "commitlint": "^19.0.3",
-    "eslint": "^8.57.0",
+    "commitlint": "^19.3.0",
+    "eslint": "^9.2.0",
     "prettier": "^3.2.5",
-    "release-it": "^17.1.1",
+    "release-it": "^17.2.1",
     "typescript": "5.0.4"
   },
   "release-it": {
@@ -157,5 +156,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  }
+  },
+  "packageManager": "yarn@3.6.4"
 }

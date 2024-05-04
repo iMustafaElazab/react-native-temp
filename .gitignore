@@ -79,3 +79,12 @@ template/ios/Podfile.lock
 template/yarn.lock
 template/package-lock.json
 template/Gemfile.lock
+
+# Yarn
+#
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
