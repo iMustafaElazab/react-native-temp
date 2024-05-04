@@ -1,6 +1,6 @@
 {
   "name": "TempApp",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "scripts": {
     "link-assets": "react-native-asset",
@@ -46,8 +46,8 @@
     "test": "jest",
     "prepare": "lefthook install",
     "postinstall": "patch-package && yarn pods && yarn link-assets && yarn android-clean && yarn ios-clean",
-    "ver:test": "yarn version --prerelease --preid alpha && react-native-version --amend --never-increment-build",
-    "ver": "yarn version && react-native-version --amend --reset-build",
+    "ver:test": "yarn version ${0:-prerelease} && react-native-version --never-increment-build",
+    "ver": "yarn version ${0} && react-native-version --reset-build",
     "svg": "react-native-vector-image generate",
     "reset": "react-native clean-project-auto && yarn",
     "check-dependencies": "rnx-align-deps",
@@ -162,5 +162,6 @@
         "react-test-renderer"
       ]
     }
-  }
+  },
+  "stableVersion": "0.0.1"
 }
