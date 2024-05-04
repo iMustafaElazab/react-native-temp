@@ -4,9 +4,11 @@ import {useTranslation} from 'react-i18next';
 import {ActivityIndicator} from 'react-native-paper';
 import {ListEmptyComponent, ListLoadingMore} from '@src/components';
 import {useGetNotificationsApi} from '@src/core';
+import {
+  NotificationItem,
+  NotificationsListSeparator,
+} from '@src/screens/Notifications/components';
 import {useFocusNotifyOnChangeProps} from '@src/utils';
-import NotificationItem from './NotificationItem';
-import NotificationsListSeparator from './NotificationsListSeparator';
 import styles from './styles';
 
 export default React.memo(() => {
