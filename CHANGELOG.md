@@ -1,5 +1,7 @@
 
 
+## [3.6.1](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.6.0...v3.6.1) (2024-05-05)
+
 ## [3.6.0](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.5.0...v3.6.0) (2024-05-04)
 
 
