@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Screen, ScrollContainer} from '@src/components';
-import Form from './Form';
-import Header from './Header';
+import {Header, Form} from './components';
 import styles from './styles';
 
 export default React.memo(() => (

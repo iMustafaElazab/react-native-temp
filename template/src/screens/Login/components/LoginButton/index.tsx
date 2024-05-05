@@ -3,9 +3,9 @@ import * as React from 'react';
 import {useFormContext} from 'react-hook-form';
 import {useTranslation} from 'react-i18next';
 import {ActivityIndicator} from 'react-native-paper';
+import type {FormValues} from '@src/screens/Login/components';
 import styles from './styles';
 import useLoginButton from './useLoginButton';
-import type {FormValues} from './types';
 
 export default React.memo(() => {
   const {t: translate} = useTranslation();

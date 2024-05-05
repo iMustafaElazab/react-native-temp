@@ -15,7 +15,7 @@ export default React.memo((props: Props) => {
     statusBarProps ?? {};
 
   const statusBarContainerStyle = {
-    height: !edges || (edges && edges.includes('top')) ? insets.top : 0,
+    height: !edges || edges?.includes('top') ? insets.top : 0,
     backgroundColor: statusBarColor ?? theme.colors.background,
   };
 

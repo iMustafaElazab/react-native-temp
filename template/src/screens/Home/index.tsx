@@ -3,7 +3,7 @@ import * as React from 'react';
 import {Screen, ScrollContainer} from '@src/components';
 import {useGetUserDetailsApi} from '@src/core';
 import {useFocusNotifyOnChangeProps, useRefreshOnFocus} from '@src/utils';
-import Header from './Header';
+import {Header} from './components';
 import styles from './styles';
 
 export default React.memo(() => {

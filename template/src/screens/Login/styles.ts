@@ -9,12 +9,6 @@ const styles = StyleSheet.create({
     paddingVertical: vs(32),
     gap: vs(8),
   },
-  btLogin: {
-    marginTop: vs(32),
-  },
-  loadingIndicator: {
-    marginTop: vs(32),
-  },
 });
 
 export default styles;

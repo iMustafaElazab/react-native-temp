@@ -1,15 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import * as React from 'react';
 import type {RootStackParamList} from '@src/navigation';
-
-// Screens.
 import {Splash, Login, Home, Notifications} from '@src/screens';
-
-// Navigators.
-// TODO: Add navigators imports here.
-
-// Modals.
-// TODO: Add modals imports here.
 
 const stack = createNativeStackNavigator<RootStackParamList>();
 

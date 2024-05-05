@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {useForm, FormProvider} from 'react-hook-form';
-import LoginButton from './LoginButton';
-import PasswordInput from './PasswordInput';
-import UserNameInput from './UserNameInput';
+import {
+  UserNameInput,
+  PasswordInput,
+  LoginButton,
+} from '@src/screens/Login/components';
 import type {FormValues} from './types';
 
 export default React.memo(() => {
