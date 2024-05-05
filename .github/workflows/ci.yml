@@ -31,7 +31,7 @@ jobs:
         run: touch yarn.lock
 
       - name: Install dependencies
-        run: yarn install
+        run: YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
 
       - name: Lint files
         run: yarn lint
