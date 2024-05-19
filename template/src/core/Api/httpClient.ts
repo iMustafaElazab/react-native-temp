@@ -30,30 +30,30 @@ const getLogMethodColor = (method?: string) => {
 
   switch (method) {
     case 'GET':
-      methodColor = ConsoleColors.GET;
+      methodColor = ConsoleColors.get;
       break;
     case 'HEAD':
-      methodColor = ConsoleColors.HEAD;
+      methodColor = ConsoleColors.head;
       break;
 
     case 'POST':
-      methodColor = ConsoleColors.POST;
+      methodColor = ConsoleColors.post;
       break;
 
     case 'PUT':
-      methodColor = ConsoleColors.PUT;
+      methodColor = ConsoleColors.put;
       break;
 
     case 'PATCH':
-      methodColor = ConsoleColors.PATCH;
+      methodColor = ConsoleColors.patch;
       break;
 
     case 'DELETE':
-      methodColor = ConsoleColors.DELETE;
+      methodColor = ConsoleColors.delete;
       break;
 
     case 'OPTIONS':
-      methodColor = ConsoleColors.OPTIONS;
+      methodColor = ConsoleColors.options;
       break;
 
     default:
@@ -140,7 +140,7 @@ const requestFulfilledInterceptor = (
     getLogMessage(`🚀 Sending %c${method}%c Request to %c${config.url}`),
     `color: ${methodColor}`,
     'color: undefined',
-    `color: ${ConsoleColors.URL}`,
+    `color: ${ConsoleColors.url}`,
     config,
   );
 
@@ -152,7 +152,7 @@ const requestRejectedInterceptor = (error: any) => {
     getLogMessage(
       `🚫 Error Sending Request to %c${error.response?.config?.url}`,
     ),
-    `color: ${ConsoleColors.URL}`,
+    `color: ${ConsoleColors.url}`,
     error,
   );
 
@@ -162,7 +162,7 @@ const requestRejectedInterceptor = (error: any) => {
 const responseFulfilledInterceptor = (response: AxiosResponse<any, any>) => {
   console.info(
     getLogMessage(`✅ Got Response from %c${response.config.url}`),
-    `color: ${ConsoleColors.URL}`,
+    `color: ${ConsoleColors.url}`,
     response,
   );
 
@@ -172,7 +172,7 @@ const responseFulfilledInterceptor = (response: AxiosResponse<any, any>) => {
 const responseRejectedInterceptor = (error: any) => {
   console.error(
     getLogMessage(`❌ Got Error from %c${error.response?.config?.url}`),
-    `color: ${ConsoleColors.URL}`,
+    `color: ${ConsoleColors.url}`,
     error,
   );
 

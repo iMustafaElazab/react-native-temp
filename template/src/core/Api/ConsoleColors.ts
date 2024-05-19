@@ -1,12 +1,10 @@
-enum ConsoleColors {
-  GET = '#6BDD9A',
-  HEAD = '#79E0A4',
-  POST = '#FFE47E',
-  PUT = '#74AEF6',
-  PATCH = '#C0A8E1',
-  DELETE = '#F79A8E',
-  OPTIONS = '#F15EB0',
-  URL = '#F09B51',
-}
-
-export default ConsoleColors;
+export default {
+  get: '#6BDD9A',
+  head: '#79E0A4',
+  post: '#FFE47E',
+  put: '#74AEF6',
+  patch: '#C0A8E1',
+  delete: '#F79A8E',
+  options: '#F15EB0',
+  url: '#F09B51',
+};

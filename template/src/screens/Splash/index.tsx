@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {Animated, StyleSheet} from 'react-native';
 import {Screen} from '@src/components';
-import {AppImages} from '@src/enums';
 import type {RootStackScreenProps} from '@src/navigation';
-import {useAppTheme} from '@src/utils';
+import {useAppTheme, AppImages} from '@src/utils';
 import styles from './styles';
 import {useSplash} from './useSplash';
 
@@ -39,7 +38,7 @@ export default React.memo((props: RootStackScreenProps<'splash'>) => {
             {opacity: opacity.current},
           ]}>
           <Animated.Image
-            source={AppImages.BOOT_SPLASH_LOGO}
+            source={AppImages.bootSplashImage}
             fadeDuration={0}
             resizeMode="contain"
             tintColor={theme.colors.primary}
