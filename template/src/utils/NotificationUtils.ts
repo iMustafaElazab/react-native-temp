@@ -10,10 +10,9 @@ import type {
   Notification,
   User,
 } from '@src/core';
-import {AppColors} from '@src/enums';
 import {push} from '@src/navigation';
 import {store, setUser as setStateUser} from '@src/store';
-import {queryClient} from '@src/utils';
+import {queryClient, AppColors} from '@src/utils';
 import type {FirebaseMessagingTypes} from '@react-native-firebase/messaging';
 
 const getLogMessage = (message: string) => `## NotificationUtils:: ${message}`;
@@ -157,7 +156,7 @@ export const displayLocalNotification = (
       title: title,
       message: body,
       bigText: body,
-      color: AppColors.SEED,
+      color: AppColors.seed,
       channelId: localChannelId,
       soundName: 'default',
       messageId: remoteMessage.messageId,
