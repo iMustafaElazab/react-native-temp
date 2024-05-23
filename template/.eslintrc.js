@@ -15,6 +15,7 @@ module.exports = {
     'commitlint.config.js',
     'react-native.config.js',
     '/@types/*',
+    '__mocks__',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['autofix', 'import', 'react-func', '@tanstack/query'],

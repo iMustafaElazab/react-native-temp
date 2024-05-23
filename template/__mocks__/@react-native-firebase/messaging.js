@@ -1,18 +1,3 @@
-jest.mock('@react-native-firebase/app', () => () => ({
-  delete: jest.fn(),
-}));
-
-jest.mock('@react-native-firebase/analytics', () => () => ({
-  logEvent: jest.fn(),
-  setUserProperties: jest.fn(),
-  setUserId: jest.fn(),
-  setCurrentScreen: jest.fn(),
-}));
-
-jest.mock('@react-native-firebase/crashlytics', () => () => ({
-  recordError: jest.fn(),
-}));
-
 jest.mock('@react-native-firebase/messaging', () => ({
   messaging: jest.fn(() => ({
     hasPermission: jest.fn(() => Promise.resolve(true)),
