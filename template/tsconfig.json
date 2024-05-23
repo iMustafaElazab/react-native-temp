@@ -9,5 +9,5 @@
       "@appJson": ["./app.json"]
     }
   },
-  "include": ["./index.js", "src", "@types", "__tests__"]
+  "include": ["./index.js", "src", "@types", "__tests__", "__mocks__"]
 }
