@@ -21,9 +21,9 @@ export const useSplashLanguageLoader = (isBootSplashLogoLoaded: boolean) => {
      */
     const getSavedLanguage = async () => {
       console.info(getLogMessage('getSavedLanguage'));
-      const language = await getLanguage();
+      const language = getLanguage();
       console.info(getLogMessage('language'), language);
-      updateLanguage(language);
+      await updateLanguage(language);
       setLanguageLoaded(true);
     };
 

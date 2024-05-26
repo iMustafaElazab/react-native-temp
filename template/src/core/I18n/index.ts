@@ -60,7 +60,7 @@ export const setI18nConfig = async () => {
   }
 
   // Get user language.
-  const userLanguage = await getLanguage();
+  const userLanguage = getLanguage();
 
   // Set the locale.
   await updateLanguage(userLanguage);
@@ -72,7 +72,7 @@ export const updateLanguage = async (language?: AppLanguages | null) => {
 
   // Save user language.
   if (language) {
-    await setLanguage(language);
+    setLanguage(language);
   }
 
   // Set the locale.

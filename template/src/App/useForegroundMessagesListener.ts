@@ -15,9 +15,9 @@ export const useForegroundMessagesListener = () => {
   // #endregion
 
   React.useEffect(() => {
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
+    const unsubscribe = messaging().onMessage(remoteMessage => {
       console.info(getLogMessage('onMessage'), remoteMessage);
-      const user = await getUser();
+      const user = getUser();
 
       if (user) {
         console.info(getLogMessage('User Available'));
