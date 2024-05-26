@@ -1,3 +1,5 @@
+import {jest} from '@jest/globals';
+
 jest.mock('@react-native-firebase/messaging', () => ({
   messaging: jest.fn(() => ({
     hasPermission: jest.fn(() => Promise.resolve(true)),
