@@ -1,0 +1,27 @@
+import {jest} from '@jest/globals';
+
+jest.mock('@react-native-community/push-notification-ios', () => ({
+  FetchResult: 'UIBackgroundFetchResultNewData',
+  AuthorizationStatus: 2,
+  presentLocalNotification: jest.fn(),
+  scheduleLocalNotification: jest.fn(),
+  addNotificationRequest: jest.fn(),
+  cancelAllLocalNotifications: jest.fn(),
+  removeAllPendingNotificationRequests: jest.fn(),
+  removePendingNotificationRequests: jest.fn(),
+  removeAllDeliveredNotifications: jest.fn(),
+  getDeliveredNotifications: jest.fn(),
+  removeDeliveredNotifications: jest.fn(),
+  setApplicationIconBadgeNumber: jest.fn(),
+  getApplicationIconBadgeNumber: jest.fn(),
+  cancelLocalNotifications: jest.fn(),
+  getScheduledLocalNotifications: jest.fn(),
+  getPendingNotificationRequests: jest.fn(),
+  addEventListener: jest.fn(),
+  removeEventListener: jest.fn(),
+  requestPermissions: jest.fn(() => Promise.resolve()),
+  abandonPermissions: jest.fn(),
+  checkPermissions: jest.fn(),
+  getInitialNotification: jest.fn(() => Promise.resolve()),
+  setNotificationCategories: jest.fn(),
+}));
