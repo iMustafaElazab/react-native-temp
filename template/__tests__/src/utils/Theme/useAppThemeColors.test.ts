@@ -6,3 +6,8 @@ test('check `useAppThemeColors` containing value', () => {
   const {result} = renderHook(() => useAppThemeColors());
   expect(result.current).toBeDefined();
 });
+
+test('check theme colors containing primary value', () => {
+  const {result} = renderHook(() => useAppThemeColors());
+  expect(result.current.primary).toBeDefined();
+});
