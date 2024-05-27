@@ -1,13 +1,15 @@
-import {test, expect} from '@jest/globals';
+import {describe, test, expect} from '@jest/globals';
 import {renderHook} from '@testing-library/react-native';
 import useAppThemeColors from '@src/utils/Theme/useAppThemeColors';
 
-test('check `useAppThemeColors` containing value', () => {
-  const {result} = renderHook(() => useAppThemeColors());
-  expect(result.current).toBeDefined();
-});
+describe('useAppThemeColors', () => {
+  test('check `useAppThemeColors` containing value', () => {
+    const {result} = renderHook(() => useAppThemeColors());
+    expect(result.current).toBeDefined();
+  });
 
-test('check theme colors containing primary value', () => {
-  const {result} = renderHook(() => useAppThemeColors());
-  expect(result.current.primary).toBeDefined();
+  test('check theme colors containing primary value', () => {
+    const {result} = renderHook(() => useAppThemeColors());
+    expect(result.current.primary).toBeDefined();
+  });
 });
