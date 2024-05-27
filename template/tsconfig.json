@@ -9,5 +9,6 @@
       "@appJson": ["./app.json"]
     }
   },
-  "include": ["./index.js", "src", "@types", "__tests__", "__mocks__"]
+  "include": ["./index.js", "src", "@types", "__tests__"],
+  "exclude": ["jest.setup.ts", "__mocks__"]
 }

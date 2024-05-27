@@ -14,6 +14,7 @@ module.exports = {
     'jest.config.js',
     'commitlint.config.js',
     'react-native.config.js',
+    'jest.setup.ts',
     '/@types/*',
     '__mocks__',
   ],
