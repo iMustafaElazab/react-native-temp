@@ -7,6 +7,6 @@ describe('AppImages', () => {
   });
 
   test('check `AppImages` `bootSplashImage` containing value', () => {
-    expect(AppImages).toBeDefined();
+    expect(AppImages.bootSplashImage).toBeDefined();
   });
 });
