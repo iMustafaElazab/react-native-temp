@@ -13,7 +13,7 @@ describe('LinkingUtils', () => {
     .mockImplementation(() => Promise.resolve());
 
   afterEach(() => {
-    mockedOpen.mockReset();
+    mockedOpen?.mockReset();
   });
 
   test('openUrl', () => {
@@ -32,5 +32,15 @@ describe('LinkingUtils', () => {
       'https://www.google.com',
       'custom_error',
     );
+  });
+
+  test('openUrl with no URL', () => {
+    openUrl();
+    expect(mockedOpen).not.toBeCalled();
+  });
+
+  test('openUrl with empty URL', () => {
+    openUrl('');
+    expect(mockedOpen).not.toBeCalled();
   });
 });
