@@ -12,7 +12,7 @@ const getLogMessage = (message: string) =>
  * @param email - Optional. The email address to append to the email link.
  * @returns The updated email link with the appended email address.
  */
-export const appendEmail = (emailLink: string, email?: string) => {
+export const appendEmail = (emailLink: string, email?: string | null) => {
   let appendedLink = `${emailLink}`;
 
   if (email?.length) {

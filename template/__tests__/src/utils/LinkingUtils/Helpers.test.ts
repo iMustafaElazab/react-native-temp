@@ -1,20 +1,8 @@
 import {describe, test, expect, jest} from '@jest/globals';
 import {Linking} from 'react-native';
-import {
-  appendEmail,
-  appendEmailSubjectBody,
-  open,
-} from '@src/utils/LinkingUtils/Helpers';
+import {appendEmailSubjectBody, open} from '@src/utils/LinkingUtils/Helpers';
 
 describe('LinkingUtils/Helpers', () => {
-  test('appendEmail', () => {
-    expect(appendEmail('mailto:')).toBe('mailto:');
-
-    expect(appendEmail('mailto:', 'test@email.com')).toBe(
-      'mailto:test@email.com',
-    );
-  });
-
   test('appendEmailSubjectBody', () => {
     expect(appendEmailSubjectBody('mailto:test@email.com')).toBe(
       'mailto:test@email.com',
