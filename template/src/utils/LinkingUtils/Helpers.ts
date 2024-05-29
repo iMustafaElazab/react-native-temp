@@ -32,8 +32,8 @@ export const appendEmail = (emailLink: string, email?: string | null) => {
  */
 export const appendEmailSubjectBody = (
   emailLink: string,
-  subject?: string,
-  body?: string,
+  subject?: string | null,
+  body?: string | null,
 ) => {
   let appendedLink = `${emailLink}`;
 
@@ -41,7 +41,7 @@ export const appendEmailSubjectBody = (
     appendedLink += '?';
 
     if (subject?.length) {
-      appendedLink += `subject=${subject}`;
+      appendedLink += `subject=${encodeURIComponent(subject)}`;
     }
 
     if (body?.length) {
@@ -49,7 +49,7 @@ export const appendEmailSubjectBody = (
         appendedLink += '&';
       }
 
-      appendedLink += `body=${body}`;
+      appendedLink += `body=${encodeURIComponent(body)}`;
     }
   }
 
