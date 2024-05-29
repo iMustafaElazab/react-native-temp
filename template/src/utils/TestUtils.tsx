@@ -11,6 +11,16 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   store?: AppStore;
 }
 
+/**
+ * Renders a React element with the specified Redux store provider.
+ * If no store is provided, it uses the default Redux store from the application.
+ *
+ * @param ui The React element to render.
+ * @param store The Redux store to use as the provider (optional, defaults to the default Redux store).
+ * @param renderOptions Additional options for rendering (excluding queries).
+ *
+ * @returns An object containing the Redux store used and the result of rendering the provided React element.
+ */
 export function renderWithProviders(
   ui: React.ReactElement,
   {

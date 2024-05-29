@@ -21,6 +21,11 @@ const packageName: string = getBundleId();
 export const defaultChannelId: string = `${packageName}.default_notification_channel`;
 export const localChannelId: string = `${packageName}.local_notification_channel`;
 
+/**
+ * Clears the specified notification by canceling the local notification, removing delivered notifications (for iOS), and marking the notification as read through an API call.
+ *
+ * @param notification - The notification to be cleared.
+ */
 const clearNotifications = (notification: Notification) => {
   console.info(getLogMessage('clearNotifications'), notification);
 
@@ -50,6 +55,14 @@ const clearNotifications = (notification: Notification) => {
   }
 };
 
+/**
+ * Process a user notification by updating the unread notifications count in the user state and opening the related screen if necessary.
+ *
+ * @param notification - The notification object to be processed.
+ * @param stateUser - The current user object from the state.
+ * @param newNotificationsCount - The count of new notifications to be set for the user.
+ * @param shouldSkipOpenNotificationsScreen - Optional flag to determine if the notifications screen should be skipped.
+ */
 const processUserNotification = (
   notification: Notification,
   stateUser: User,
@@ -84,6 +97,12 @@ const processUserNotification = (
   );
 };
 
+/**
+ * Process a notification by clearing it, updating the application badge number, and handling user notification.
+ *
+ * @param notification - The notification to be processed.
+ * @param shouldSkipOpenNotificationsScreen - Optional flag to skip opening the notifications screen after processing the notification.
+ */
 export const processNotification = (
   notification: Notification,
   shouldSkipOpenNotificationsScreen?: boolean,
@@ -113,6 +132,14 @@ export const processNotification = (
   }
 };
 
+/**
+ * Opens the notification related screen based on the provided notification and optional flag.
+ *
+ * @param notification - The notification object containing information like id, title, and message.
+ * @param shouldSkipOpenNotificationsScreen - Optional flag to determine whether to skip opening the notifications screen.
+ *
+ * @returns void
+ */
 export const openNotificationRelatedScreen = (
   notification: Notification,
   shouldSkipOpenNotificationsScreen?: boolean,
@@ -129,6 +156,11 @@ export const openNotificationRelatedScreen = (
   }
 };
 
+/**
+ * Display a local notification based on the provided remote message.
+ *
+ * @param remoteMessage - The remote message containing notification data.
+ */
 export const displayLocalNotification = (
   remoteMessage: FirebaseMessagingTypes.RemoteMessage,
 ) => {
