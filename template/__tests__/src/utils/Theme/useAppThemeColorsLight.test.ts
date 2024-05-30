@@ -4,12 +4,12 @@ import {AppColors} from '@src/utils/Theme';
 import useAppThemeColorsLight from '@src/utils/Theme/useAppThemeColorsLight';
 
 describe('useAppThemeColorsLight', () => {
-  test('check `useAppThemeColorsLight` containing value', () => {
+  test('should return defined value when invoked', () => {
     const {result} = renderHook(() => useAppThemeColorsLight());
     expect(result.current).toBeDefined();
   });
 
-  test('check primary color to be primary color for light theme', () => {
+  test('should match light theme primary color', () => {
     const {result} = renderHook(() => useAppThemeColorsLight());
     expect(result.current.primary).toBe(AppColors.themeLight.primary);
   });

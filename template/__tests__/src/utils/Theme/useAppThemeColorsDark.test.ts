@@ -4,12 +4,12 @@ import {AppColors} from '@src/utils/Theme';
 import useAppThemeColorsDark from '@src/utils/Theme/useAppThemeColorsDark';
 
 describe('useAppThemeColorsDark', () => {
-  test('check `useAppThemeColorsDark` containing value', () => {
+  test('should return defined value when invoked', () => {
     const {result} = renderHook(() => useAppThemeColorsDark());
     expect(result.current).toBeDefined();
   });
 
-  test('check primary color to be primary color for dark theme', () => {
+  test('should match dark theme primary color', () => {
     const {result} = renderHook(() => useAppThemeColorsDark());
     expect(result.current.primary).toBe(AppColors.themeDark.primary);
   });
