@@ -63,7 +63,10 @@ export const openPhone = (phone?: string | null, errorMessageKey?: string) => {
  * @param number The phone number to open WhatsApp with.
  * @param errorMessageKey The key for error message in case of failure.
  */
-export const openWhatsApp = (number?: string, errorMessageKey?: string) => {
+export const openWhatsApp = (
+  number?: string | null,
+  errorMessageKey?: string,
+) => {
   console.info(getLogMessage('openWhatsApp'), number);
 
   if (number?.length) {
