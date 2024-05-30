@@ -36,7 +36,7 @@ describe('appendEmailSubjectBody HAPPY PATH', () => {
   });
 });
 
-describe('appendEmail EDGE CASES', () => {
+describe('appendEmailSubjectBody EDGE CASES', () => {
   // Function handles empty strings for subject and body correctly
   test('should handle empty strings for subject and body correctly', () => {
     const emailLink = 'mailto:test@email.com';
