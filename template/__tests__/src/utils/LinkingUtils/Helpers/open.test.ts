@@ -1,4 +1,4 @@
-import {describe, test, jest, expect} from '@jest/globals';
+import {describe, test, jest, expect, afterEach} from '@jest/globals';
 import {Linking} from 'react-native';
 
 import {open} from '@src/utils/LinkingUtils/Helpers';
@@ -28,15 +28,19 @@ describe('open HAPPY PATH', () => {
 });
 
 describe('open EDGE CASES', () => {
+  const consoleWarnSpy = jest
+    .spyOn(console, 'warn')
+    .mockImplementation(() => {});
+
+  afterEach(() => {
+    consoleWarnSpy?.mockReset();
+  });
+
   // fails to open an invalid URL
   test('should fail to open an invalid URL', async () => {
     const openURL = jest
       .spyOn(Linking, 'openURL')
       .mockRejectedValue(new Error('Invalid URL'));
-
-    const consoleWarnSpy = jest
-      .spyOn(console, 'warn')
-      .mockImplementation(() => {});
 
     await expect(async () => {
       await open('invalid-url', 'error_invalid_url');
@@ -52,10 +56,6 @@ describe('open EDGE CASES', () => {
 
   // handles empty URL string
   test('should handle empty URL string', async () => {
-    const consoleWarnSpy = jest
-      .spyOn(console, 'warn')
-      .mockImplementation(() => {});
-
     const url = '';
 
     await expect(async () => {
@@ -63,7 +63,7 @@ describe('open EDGE CASES', () => {
     }).rejects.toThrowError('Failed to open: ');
 
     expect(consoleWarnSpy).toHaveBeenCalledWith(
-      expect.stringContaining('Failed to open'),
+      expect.stringContaining('Failed to open: '),
       expect.any(Error),
     );
   });
