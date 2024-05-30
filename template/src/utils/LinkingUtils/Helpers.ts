@@ -1,4 +1,5 @@
 import {Linking} from 'react-native';
+import {default as Config} from 'react-native-config';
 import {Toast} from 'react-native-toast-notifications';
 import {translate} from '@src/core';
 
@@ -70,6 +71,10 @@ export const open = async (url: string, errorMessageKey?: string) => {
     await Linking.openURL(url);
   } catch (error) {
     console.warn(getLogMessage(`Failed to open: ${url}`), error);
+
+    if (Config.ENV_NAME === 'Unit Testing') {
+      throw new Error(`Failed to open: ${url}`);
+    }
 
     Toast.show(translate(errorMessageKey ?? 'error_processing_request'), {
       type: 'danger',
