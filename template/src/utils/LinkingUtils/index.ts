@@ -49,7 +49,7 @@ export const openEmail = (
  * @param phone The phone number to open in the phone app.
  * @param errorMessageKey Optional key for error message translation.
  */
-export const openPhone = (phone?: string, errorMessageKey?: string) => {
+export const openPhone = (phone?: string | null, errorMessageKey?: string) => {
   console.info(getLogMessage('openPhone'), phone);
 
   if (phone?.length) {
