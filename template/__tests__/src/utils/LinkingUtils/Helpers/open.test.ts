@@ -6,9 +6,10 @@ import {open} from '@src/utils/LinkingUtils/Helpers';
 describe('open HAPPY PATH', () => {
   // successfully opens a valid URL
   test('should successfully open a valid URL', async () => {
+    const url = 'https://www.example.com';
     const openURL = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
-    await open('https://www.example.com');
-    expect(openURL).toHaveBeenCalledWith('https://www.example.com');
+    await open(url);
+    expect(openURL).toHaveBeenCalledWith(url);
   });
 
   // logs informational message with URL when opening
@@ -42,14 +43,16 @@ describe('open EDGE CASES', () => {
       .spyOn(Linking, 'openURL')
       .mockRejectedValue(new Error('Invalid URL'));
 
-    await expect(async () => {
-      await open('invalid-url', 'error_invalid_url');
-    }).rejects.toThrowError('Failed to open: invalid-url');
+    const url = 'invalid-url';
 
-    expect(openURL).toHaveBeenCalledWith('invalid-url');
+    await expect(async () => {
+      await open(url, 'error_invalid_url');
+    }).rejects.toThrowError(`Failed to open: ${url}`);
+
+    expect(openURL).toHaveBeenCalledWith(url);
 
     expect(consoleWarnSpy).toHaveBeenCalledWith(
-      expect.stringContaining('Failed to open: invalid-url'),
+      expect.stringContaining(`Failed to open: ${url}`),
       expect.any(Error),
     );
   });
@@ -60,10 +63,10 @@ describe('open EDGE CASES', () => {
 
     await expect(async () => {
       await open(url);
-    }).rejects.toThrowError('Failed to open: ');
+    }).rejects.toThrowError(`Failed to open: ${url}`);
 
     expect(consoleWarnSpy).toHaveBeenCalledWith(
-      expect.stringContaining('Failed to open: '),
+      expect.stringContaining(`Failed to open: ${url}`),
       expect.any(Error),
     );
   });
