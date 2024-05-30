@@ -4,7 +4,6 @@ import {Linking} from 'react-native';
 import {open} from '@src/utils/LinkingUtils/Helpers';
 
 describe('open HAPPY PATH', () => {
-  // successfully opens a valid URL
   test('should successfully open a valid URL', async () => {
     const url = 'https://www.example.com';
     const openURL = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
@@ -12,7 +11,6 @@ describe('open HAPPY PATH', () => {
     expect(openURL).toHaveBeenCalledWith(url);
   });
 
-  // logs informational message with URL when opening
   test('should log informational message with URL when opening', () => {
     const consoleInfoSpy = jest
       .spyOn(console, 'info')
@@ -37,7 +35,6 @@ describe('open EDGE CASES', () => {
     consoleWarnSpy?.mockReset();
   });
 
-  // fails to open an invalid URL
   test('should fail to open an invalid URL', async () => {
     const openURL = jest
       .spyOn(Linking, 'openURL')
@@ -57,7 +54,6 @@ describe('open EDGE CASES', () => {
     );
   });
 
-  // handles empty URL string
   test('should handle empty URL string', async () => {
     const url = '';
 

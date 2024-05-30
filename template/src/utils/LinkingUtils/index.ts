@@ -27,9 +27,9 @@ export const openUrl = (url?: string, errorMessageKey?: string) => {
  * @param errorMessageKey The key to use for fetching the error message in case of failure.
  */
 export const openEmail = (
-  email?: string,
-  subject?: string,
-  body?: string,
+  email?: string | null,
+  subject?: string | null,
+  body?: string | null,
   errorMessageKey?: string,
 ) => {
   console.info(getLogMessage('openEmail'), email, subject, body);

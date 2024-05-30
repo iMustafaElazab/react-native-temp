@@ -11,7 +11,6 @@ describe('openUrl HAPPY PATH', () => {
     mockedOpen?.mockReset();
   });
 
-  // opens a valid URL with default error message key
   test('should open a valid URL with default error message key', () => {
     openUrl('https://www.google.com');
 
@@ -21,7 +20,6 @@ describe('openUrl HAPPY PATH', () => {
     );
   });
 
-  // opens a valid URL with a custom error message key
   test('should open a valid URL with a custom error message key', () => {
     openUrl('https://www.google.com', 'custom_error');
 
@@ -31,7 +29,6 @@ describe('openUrl HAPPY PATH', () => {
     );
   });
 
-  // logs the URL being opened
   test('should log the URL being opened', () => {
     const consoleSpy = jest.spyOn(console, 'info');
     openUrl('https://www.google.com');
@@ -54,13 +51,11 @@ describe('openUrl EDGE CASES', () => {
     mockedOpen?.mockReset();
   });
 
-  // does not open when URL is undefined
   test('should not open when URL is undefined', () => {
-    openUrl(undefined);
+    openUrl();
     expect(mockedOpen).not.toBeCalled();
   });
 
-  // does not open when URL is an empty string
   test('should not open when URL is an empty string', () => {
     openUrl('');
     expect(mockedOpen).not.toBeCalled();
