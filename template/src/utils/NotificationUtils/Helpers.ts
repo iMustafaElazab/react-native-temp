@@ -87,6 +87,10 @@ export const processUserNotification = (
     userWithNewNotificationsCount,
   );
 
+  if (Config.ENV_NAME === 'Unit Testing') {
+    return;
+  }
+
   store.dispatch(setStateUser(userWithNewNotificationsCount));
 
   // Open notification related screen.
