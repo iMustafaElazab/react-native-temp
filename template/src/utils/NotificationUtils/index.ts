@@ -1,18 +1,10 @@
-import {default as PushNotificationIOS} from '@react-native-community/push-notification-ios';
-import {Platform} from 'react-native';
 import {getBundleId} from 'react-native-device-info';
 import {default as PushNotification} from 'react-native-push-notification';
-import {queryNotifications} from '@src/core';
-import type {
-  MarkNotificationReadResponse,
-  ServerError,
-  ApiRequest,
-  Notification,
-  User,
-} from '@src/core';
+import type {Notification} from '@src/core';
 import {push} from '@src/navigation';
-import {store, setUser as setStateUser} from '@src/store';
-import {queryClient, AppColors} from '@src/utils';
+import {store} from '@src/store';
+import {AppColors} from '@src/utils';
+import {clearNotifications, processUserNotification} from './Helpers';
 import type {FirebaseMessagingTypes} from '@react-native-firebase/messaging';
 
 const getLogMessage = (message: string) => `## NotificationUtils:: ${message}`;
@@ -20,82 +12,6 @@ const getLogMessage = (message: string) => `## NotificationUtils:: ${message}`;
 const packageName: string = getBundleId();
 export const defaultChannelId: string = `${packageName}.default_notification_channel`;
 export const localChannelId: string = `${packageName}.local_notification_channel`;
-
-/**
- * Clears the specified notification by canceling the local notification, removing delivered notifications (for iOS), and marking the notification as read through an API call.
- *
- * @param notification - The notification to be cleared.
- */
-const clearNotifications = (notification: Notification) => {
-  console.info(getLogMessage('clearNotifications'), notification);
-
-  if (notification.id && typeof notification.id === 'string') {
-    PushNotification.cancelLocalNotification(notification.id);
-
-    if (Platform.OS === 'ios') {
-      PushNotificationIOS.removeDeliveredNotifications([notification.id]);
-    }
-
-    // Call mark notification read API.
-    // TODO: Change params based on API.
-    queryClient
-      .getMutationCache()
-      .build<
-        MarkNotificationReadResponse,
-        ServerError,
-        ApiRequest<any, string | number>,
-        unknown
-      >(queryClient, {
-        mutationFn: request => queryNotifications.markNotificationRead(request),
-        onSuccess: () => {
-          queryClient.invalidateQueries({queryKey: ['notifications']});
-        },
-      })
-      .execute({pathVar: notification.id});
-  }
-};
-
-/**
- * Process a user notification by updating the unread notifications count in the user state and opening the related screen if necessary.
- *
- * @param notification - The notification object to be processed.
- * @param stateUser - The current user object from the state.
- * @param newNotificationsCount - The count of new notifications to be set for the user.
- * @param shouldSkipOpenNotificationsScreen - Optional flag to determine if the notifications screen should be skipped.
- */
-const processUserNotification = (
-  notification: Notification,
-  stateUser: User,
-  newNotificationsCount: number,
-  shouldSkipOpenNotificationsScreen?: boolean,
-) => {
-  console.info(
-    getLogMessage('processUserNotification'),
-    notification,
-    stateUser,
-    newNotificationsCount,
-    shouldSkipOpenNotificationsScreen,
-  );
-
-  // Set new notifications count to redux state.
-  const userWithNewNotificationsCount = {...stateUser};
-
-  userWithNewNotificationsCount.unreadNotificationsCount =
-    newNotificationsCount;
-
-  console.info(
-    getLogMessage('userWithNewNotificationsCount'),
-    userWithNewNotificationsCount,
-  );
-
-  store.dispatch(setStateUser(userWithNewNotificationsCount));
-
-  // Open notification related screen.
-  openNotificationRelatedScreen(
-    notification,
-    shouldSkipOpenNotificationsScreen,
-  );
-};
 
 /**
  * Process a notification by clearing it, updating the application badge number, and handling user notification.

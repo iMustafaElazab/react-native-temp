@@ -1,5 +1,4 @@
 import {describe, test, expect, jest} from '@jest/globals';
-
 import {renderHookWithProviders} from '@src/utils';
 import {useRefreshOnFocus} from '@src/utils/useRefreshOnFocus';
 
