@@ -82,17 +82,17 @@ export const displayLocalNotification = (
 ) => {
   console.info(getLogMessage('displayLocalNotification'), remoteMessage);
 
-  const title =
-    remoteMessage.notification?.title ??
-    typeof remoteMessage.data?.title === 'object'
+  const title = remoteMessage.notification?.title
+    ? remoteMessage.notification?.title
+    : typeof remoteMessage.data?.title === 'object'
       ? undefined
       : remoteMessage.data?.title;
 
   console.info(getLogMessage('title'), title);
 
-  const body =
-    remoteMessage.notification?.body ??
-    typeof remoteMessage.data?.body === 'object'
+  const body = remoteMessage.notification?.body
+    ? remoteMessage.notification?.body
+    : typeof remoteMessage.data?.body === 'object'
       ? undefined
       : remoteMessage.data?.body;
 
