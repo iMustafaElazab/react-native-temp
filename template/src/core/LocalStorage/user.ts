@@ -1,33 +1,50 @@
+import * as React from 'react';
 import type {User} from '@src/core';
 import {
-  useLocalStorage,
-  getMap,
-  setMap,
-  removeItem,
+  useLocalStorageString,
+  getLocalStorageString,
+  setLocalStorageString,
+  deleteLocalStorageItem,
   LocalStorageKeys,
 } from '@src/core';
 
 const getLogMessage = (message: string) => `## LocalStorage::user:: ${message}`;
 
-export const useLocalStorageUser = () => useLocalStorage(LocalStorageKeys.USER);
+export const useLocalStorageUser = () => {
+  console.info(getLogMessage('useLocalStorageUser'));
+  const [jsonUser, setJsonUser] = useLocalStorageString(LocalStorageKeys.USER);
+  console.info(getLogMessage('jsonUser'), jsonUser);
 
-export const getUser = async () => {
-  console.info(getLogMessage('getUser'));
-  const user = await getMap(LocalStorageKeys.USER);
-  console.info(getLogMessage('user'), user);
-  return user ? (user as User) : null;
+  const userObject = React.useMemo(
+    () => (jsonUser ? (JSON.parse(jsonUser) as User) : null),
+    [jsonUser],
+  );
+
+  console.info(getLogMessage('userObject'), userObject);
+
+  const setUserObject = React.useCallback(
+    (user: User) => setJsonUser(JSON.stringify(user)),
+    [setJsonUser],
+  );
+
+  return [userObject, setUserObject];
 };
 
-export const setUser = async (user: User) => {
+export const getUser = () => {
+  console.info(getLogMessage('getUser'));
+  const jsonUser = getLocalStorageString(LocalStorageKeys.USER);
+  console.info(getLogMessage('jsonUser'), jsonUser);
+  const userObject = jsonUser ? (JSON.parse(jsonUser) as User) : null;
+  console.info(getLogMessage('userObject'), userObject);
+  return userObject;
+};
+
+export const setUser = (user: User) => {
   console.info(getLogMessage('setUser'), user);
-  const userSaved = await setMap(LocalStorageKeys.USER, user);
-  console.info(getLogMessage('userSaved'), userSaved);
-  return userSaved;
+  setLocalStorageString(LocalStorageKeys.USER, JSON.stringify(user));
 };
 
 export const removeUser = () => {
   console.info(getLogMessage('removeUser'));
-  const userRemoved = removeItem(LocalStorageKeys.USER);
-  console.info(getLogMessage('userRemoved'), userRemoved);
-  return userRemoved;
+  deleteLocalStorageItem(LocalStorageKeys.USER);
 };

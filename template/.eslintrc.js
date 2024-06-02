@@ -14,7 +14,10 @@ module.exports = {
     'jest.config.js',
     'commitlint.config.js',
     'react-native.config.js',
+    'jest.setup.ts',
     '/@types/*',
+    '__mocks__',
+    '/coverage/*',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['autofix', 'import', 'react-func', '@tanstack/query'],
@@ -146,4 +149,11 @@ module.exports = {
       node: true,
     },
   },
+  overrides: [
+    {
+      // Test files only
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
+  ],
 };

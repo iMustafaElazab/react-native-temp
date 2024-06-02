@@ -1,0 +1,62 @@
+import {test, expect, jest, afterEach} from '@jest/globals';
+import {default as PushNotification} from 'react-native-push-notification';
+import {store} from '@src/store';
+import {processNotification} from '@src/utils/NotificationUtils';
+import * as Helpers from '@src/utils/NotificationUtils/Helpers';
+
+const clearNotificationsMock = jest
+  .spyOn(Helpers, 'clearNotifications')
+  .mockImplementation(() => {});
+
+const setApplicationIconBadgeNumberMock = jest
+  .spyOn(PushNotification, 'setApplicationIconBadgeNumber')
+  .mockImplementation(() => {});
+
+const processUserNotificationMock = jest
+  .spyOn(Helpers, 'processUserNotification')
+  .mockImplementation(() => {});
+
+afterEach(() => {
+  clearNotificationsMock?.mockRestore();
+  setApplicationIconBadgeNumberMock?.mockRestore();
+  processUserNotificationMock?.mockRestore();
+});
+
+const notification = {
+  id: '123',
+  key: '123',
+  title: 'Test',
+  message: 'This is a test',
+};
+
+const shouldSkipOpenNotificationsScreen = false;
+
+test('should clear the notification successfully when notification is provided', () => {
+  const storeMock = jest.spyOn(store, 'getState').mockReturnValue({
+    user: {user: {unreadNotificationsCount: 5}},
+    dialogs: {},
+    networkState: {},
+  });
+
+  processNotification(notification, shouldSkipOpenNotificationsScreen);
+  expect(clearNotificationsMock).toHaveBeenCalledWith(notification);
+  expect(setApplicationIconBadgeNumberMock).toHaveBeenCalledWith(4);
+  expect(processUserNotificationMock).toHaveBeenCalled();
+  storeMock?.mockRestore();
+});
+
+test('should log appropriate messages for debugging', () => {
+  jest.spyOn(console, 'info').mockImplementation(() => {});
+  processNotification(notification, shouldSkipOpenNotificationsScreen);
+
+  expect(console.info).toHaveBeenCalledWith(
+    '## NotificationUtils:: processNotification',
+    notification,
+    shouldSkipOpenNotificationsScreen,
+  );
+
+  expect(console.info).toHaveBeenCalledWith(
+    '## NotificationUtils:: stateUser',
+    undefined,
+  );
+});

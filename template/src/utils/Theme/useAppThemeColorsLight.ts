@@ -2,6 +2,11 @@ import {MD3LightTheme} from 'react-native-paper';
 import {AppColors} from '@src/utils';
 import type {MD3Colors} from 'react-native-paper/lib/typescript/types';
 
+/**
+ * Returns the colors for the light theme based on the MD3LightTheme and AppColors.
+ *
+ * @returns MD3Colors - The colors for the light theme.
+ */
 const useAppThemeColorsLight = () =>
   ({
     ...MD3LightTheme.colors,

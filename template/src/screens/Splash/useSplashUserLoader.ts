@@ -61,9 +61,9 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
    * - Else:
    *   - Set "isUserLoaded" state variable.
    */
-  const getSavedUser = React.useCallback(async () => {
+  const getSavedUser = React.useCallback(() => {
     console.info(getLogMessage('getSavedUser'));
-    const user = await getLocalStorageUser();
+    const user = getLocalStorageUser();
     console.info(getLogMessage('user'), user);
 
     if (user) {

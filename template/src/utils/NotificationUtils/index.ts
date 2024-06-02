@@ -1,18 +1,10 @@
-import {default as PushNotificationIOS} from '@react-native-community/push-notification-ios';
-import {Platform} from 'react-native';
 import {getBundleId} from 'react-native-device-info';
 import {default as PushNotification} from 'react-native-push-notification';
-import {queryNotifications} from '@src/core';
-import type {
-  MarkNotificationReadResponse,
-  ServerError,
-  ApiRequest,
-  Notification,
-  User,
-} from '@src/core';
+import type {Notification} from '@src/core';
 import {push} from '@src/navigation';
-import {store, setUser as setStateUser} from '@src/store';
-import {queryClient, AppColors} from '@src/utils';
+import {store} from '@src/store';
+import {AppColors} from '@src/utils';
+import {clearNotifications, processUserNotification} from './Helpers';
 import type {FirebaseMessagingTypes} from '@react-native-firebase/messaging';
 
 const getLogMessage = (message: string) => `## NotificationUtils:: ${message}`;
@@ -21,69 +13,12 @@ const packageName: string = getBundleId();
 export const defaultChannelId: string = `${packageName}.default_notification_channel`;
 export const localChannelId: string = `${packageName}.local_notification_channel`;
 
-const clearNotifications = (notification: Notification) => {
-  console.info(getLogMessage('clearNotifications'), notification);
-
-  if (notification.id && typeof notification.id === 'string') {
-    PushNotification.cancelLocalNotification(notification.id);
-
-    if (Platform.OS === 'ios') {
-      PushNotificationIOS.removeDeliveredNotifications([notification.id]);
-    }
-
-    // Call mark notification read API.
-    // TODO: Change params based on API.
-    queryClient
-      .getMutationCache()
-      .build<
-        MarkNotificationReadResponse,
-        ServerError,
-        ApiRequest<any, string | number>,
-        unknown
-      >(queryClient, {
-        mutationFn: request => queryNotifications.markNotificationRead(request),
-        onSuccess: () => {
-          queryClient.invalidateQueries({queryKey: ['notifications']});
-        },
-      })
-      .execute({pathVar: notification.id});
-  }
-};
-
-const processUserNotification = (
-  notification: Notification,
-  stateUser: User,
-  newNotificationsCount: number,
-  shouldSkipOpenNotificationsScreen?: boolean,
-) => {
-  console.info(
-    getLogMessage('processUserNotification'),
-    notification,
-    stateUser,
-    newNotificationsCount,
-    shouldSkipOpenNotificationsScreen,
-  );
-
-  // Set new notifications count to redux state.
-  const userWithNewNotificationsCount = {...stateUser};
-
-  userWithNewNotificationsCount.unreadNotificationsCount =
-    newNotificationsCount;
-
-  console.info(
-    getLogMessage('userWithNewNotificationsCount'),
-    userWithNewNotificationsCount,
-  );
-
-  store.dispatch(setStateUser(userWithNewNotificationsCount));
-
-  // Open notification related screen.
-  openNotificationRelatedScreen(
-    notification,
-    shouldSkipOpenNotificationsScreen,
-  );
-};
-
+/**
+ * Process a notification by clearing it, updating the application badge number, and handling user notification.
+ *
+ * @param notification - The notification to be processed.
+ * @param shouldSkipOpenNotificationsScreen - Optional flag to skip opening the notifications screen after processing the notification.
+ */
 export const processNotification = (
   notification: Notification,
   shouldSkipOpenNotificationsScreen?: boolean,
@@ -113,6 +48,14 @@ export const processNotification = (
   }
 };
 
+/**
+ * Opens the notification related screen based on the provided notification and optional flag.
+ *
+ * @param notification - The notification object containing information like id, title, and message.
+ * @param shouldSkipOpenNotificationsScreen - Optional flag to determine whether to skip opening the notifications screen.
+ *
+ * @returns void
+ */
 export const openNotificationRelatedScreen = (
   notification: Notification,
   shouldSkipOpenNotificationsScreen?: boolean,
@@ -129,22 +72,27 @@ export const openNotificationRelatedScreen = (
   }
 };
 
+/**
+ * Display a local notification based on the provided remote message.
+ *
+ * @param remoteMessage - The remote message containing notification data.
+ */
 export const displayLocalNotification = (
   remoteMessage: FirebaseMessagingTypes.RemoteMessage,
 ) => {
   console.info(getLogMessage('displayLocalNotification'), remoteMessage);
 
-  const title =
-    remoteMessage.notification?.title ??
-    typeof remoteMessage.data?.title === 'object'
+  const title = remoteMessage.notification?.title
+    ? remoteMessage.notification?.title
+    : typeof remoteMessage.data?.title === 'object'
       ? undefined
       : remoteMessage.data?.title;
 
   console.info(getLogMessage('title'), title);
 
-  const body =
-    remoteMessage.notification?.body ??
-    typeof remoteMessage.data?.body === 'object'
+  const body = remoteMessage.notification?.body
+    ? remoteMessage.notification?.body
+    : typeof remoteMessage.data?.body === 'object'
       ? undefined
       : remoteMessage.data?.body;
 

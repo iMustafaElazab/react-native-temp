@@ -32,10 +32,7 @@ const useLoginButton = () => {
     console.info(getLogMessage('handleSuccess'), user);
 
     if (user) {
-      saveUserDataOpenHome(
-        user,
-        translate('error_while_action', {action: translate('login')}),
-      );
+      saveUserDataOpenHome(user);
     } else {
       dispatch(
         setErrorDialogMessage(

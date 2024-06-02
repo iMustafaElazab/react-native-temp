@@ -1,5 +1,13 @@
 
 
+## [3.6.3](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.6.2...v3.6.3) (2024-06-02)
+
+
+### Bug Fixes
+
+* add missing `#` to first line of `.editorconfig` ([202fa84](https://github.com/EslamElMeniawy/react-native-temp/commit/202fa84c37a63b090b99d8163c23dd61ae64ce68))
+* change `react-native` of `rnx-kit` to match project ([c0c311e](https://github.com/EslamElMeniawy/react-native-temp/commit/c0c311e59992c157d08881acff316c8193bec7e2))
+
 ## [3.6.2](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.6.1...v3.6.2) (2024-05-19)
 
 ## [3.6.1](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.6.0...v3.6.1) (2024-05-05)
