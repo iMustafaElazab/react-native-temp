@@ -17,6 +17,7 @@ module.exports = {
     'jest.setup.ts',
     '/@types/*',
     '__mocks__',
+    '/coverage/*',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['autofix', 'import', 'react-func', '@tanstack/query'],
