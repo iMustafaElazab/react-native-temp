@@ -1,5 +1,6 @@
 import {default as PushNotificationIOS} from '@react-native-community/push-notification-ios';
 import {Platform} from 'react-native';
+import {default as Config} from 'react-native-config';
 import {default as PushNotification} from 'react-native-push-notification';
 import {queryNotifications} from '@src/core';
 import type {
@@ -11,7 +12,6 @@ import type {
 } from '@src/core';
 import {store, setUser as setStateUser} from '@src/store';
 import {openNotificationRelatedScreen, queryClient} from '@src/utils';
-import {default as Config} from 'react-native-config';
 
 const getLogMessage = (message: string) =>
   `## NotificationUtils::Helpers:: ${message}`;
