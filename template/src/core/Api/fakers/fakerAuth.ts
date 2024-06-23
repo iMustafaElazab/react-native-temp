@@ -1,17 +1,22 @@
-import type {ApiRequest, LoginBody, User, LogoutResponse} from '@src/core';
+import type {
+  ApiRequest,
+  LoginBody,
+  LoginResponse,
+  LogoutResponse,
+} from '@src/core';
 import {randomIntFromInterval} from '@src/utils';
 import {user} from './data';
 
 const getLogMessage = (message: string) => `## fakers::fakerAuth:: ${message}`;
 
 const fakerAuth = {
-  login: (request: ApiRequest<LoginBody>): Promise<User> => {
+  login: (request: ApiRequest<LoginBody>): Promise<LoginResponse> => {
     console.info(getLogMessage('login'), request);
 
     return new Promise(res =>
       setTimeout(
         () => {
-          res(user);
+          res({user, token: 'token'});
         },
         randomIntFromInterval(100, 1000),
       ),

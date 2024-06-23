@@ -1,5 +1,10 @@
 import {test, expect, jest} from '@jest/globals';
-
+import * as LocalStorage from '@src/core/LocalStorage/unreadNotificationsCount';
+import {
+  store,
+  setUnreadNotificationsCount as setStateUnreadNotificationsCount,
+} from '@src/store';
+import * as NotificationUtils from '@src/utils/NotificationUtils';
 import {processUserNotification} from '@src/utils/NotificationUtils/Helpers';
 
 const notification = {
@@ -9,58 +14,65 @@ const notification = {
   message: 'Test message',
 };
 
-const stateUser = {id: 1, unreadNotificationsCount: 0};
+const newNotificationsCount = 5;
+const shouldSkipOpenNotificationsScreen = false;
 
-test('should update unread notifications count in user state when called with valid notification', () => {
-  const newNotificationsCount = 5;
-  const shouldSkipOpenNotificationsScreen = false;
-  jest.spyOn(console, 'info').mockImplementation(() => {});
+test('should update unread notifications count in local storage when invoked', () => {
+  jest.spyOn(LocalStorage, 'setUnreadNotificationsCount');
 
   processUserNotification(
     notification,
-    stateUser,
     newNotificationsCount,
     shouldSkipOpenNotificationsScreen,
   );
 
-  expect(console.info).toHaveBeenCalledWith(
-    '## NotificationUtils::Helpers:: userWithNewNotificationsCount',
-    {...stateUser, unreadNotificationsCount: newNotificationsCount},
+  expect(LocalStorage.setUnreadNotificationsCount).toHaveBeenCalledWith(
+    newNotificationsCount,
   );
 });
 
-test('should update unread notifications count to zero in user state when called with zero newNotificationsCount', () => {
-  const newNotificationsCount = 0;
-  const shouldSkipOpenNotificationsScreen = false;
-  jest.spyOn(console, 'info').mockImplementation(() => {});
+test('should update unread notifications count in redux state when invoked', () => {
+  jest.spyOn(store, 'dispatch');
 
   processUserNotification(
     notification,
-    stateUser,
     newNotificationsCount,
     shouldSkipOpenNotificationsScreen,
   );
 
-  expect(console.info).toHaveBeenCalledWith(
-    '## NotificationUtils::Helpers:: userWithNewNotificationsCount',
-    {...stateUser, unreadNotificationsCount: newNotificationsCount},
+  expect(store.dispatch).toHaveBeenCalledWith(
+    setStateUnreadNotificationsCount(newNotificationsCount),
   );
 });
 
-test('should update unread notifications count to zero in user state when called with negative newNotificationsCount', () => {
-  const newNotificationsCount = -1;
-  const shouldSkipOpenNotificationsScreen = false;
-  jest.spyOn(console, 'info').mockImplementation(() => {});
+test('should open the related screen for the notification when invoked', () => {
+  jest.spyOn(NotificationUtils, 'openNotificationRelatedScreen');
 
   processUserNotification(
     notification,
-    stateUser,
+    newNotificationsCount,
+    shouldSkipOpenNotificationsScreen,
+  );
+
+  expect(NotificationUtils.openNotificationRelatedScreen).toHaveBeenCalledWith(
+    notification,
+    shouldSkipOpenNotificationsScreen,
+  );
+});
+
+test('should log the process of handling the notification', () => {
+  jest.spyOn(console, 'info');
+
+  processUserNotification(
+    notification,
     newNotificationsCount,
     shouldSkipOpenNotificationsScreen,
   );
 
   expect(console.info).toHaveBeenCalledWith(
-    '## NotificationUtils::Helpers:: userWithNewNotificationsCount',
-    {...stateUser, unreadNotificationsCount: newNotificationsCount},
+    '## NotificationUtils::Helpers:: processUserNotification',
+    notification,
+    newNotificationsCount,
+    shouldSkipOpenNotificationsScreen,
   );
 });

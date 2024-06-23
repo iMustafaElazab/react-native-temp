@@ -24,15 +24,15 @@ const useLoginButton = () => {
     isPending,
     isSuccess,
     isError,
-    data: user,
+    data: loginResponse,
     error,
   } = useLoginApi();
 
   const handleSuccess = React.useCallback(() => {
-    console.info(getLogMessage('handleSuccess'), user);
+    console.info(getLogMessage('handleSuccess'), loginResponse);
 
-    if (user) {
-      saveUserDataOpenHome(user);
+    if (loginResponse?.user && loginResponse?.token) {
+      saveUserDataOpenHome(loginResponse.user, loginResponse.token);
     } else {
       dispatch(
         setErrorDialogMessage(
@@ -40,7 +40,7 @@ const useLoginButton = () => {
         ),
       );
     }
-  }, [user, translate, dispatch]);
+  }, [loginResponse, translate, dispatch]);
 
   const handleError = React.useCallback(() => {
     console.error(getLogMessage('handleError'), error);
