@@ -54,7 +54,7 @@
     "fix-dependencies": "rnx-align-deps --write"
   },
   "dependencies": {
-    "@eslam-elmeniawy/react-native-common-components": "^1.2.6",
+    "@eslam-elmeniawy/react-native-common-components": "^1.2.8",
     "@klarna/react-native-vector-drawable": "^0.5.1",
     "@react-native-community/netinfo": "^11.3.2",
     "@react-native-community/push-notification-ios": "^1.11.0",
