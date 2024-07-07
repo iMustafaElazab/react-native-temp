@@ -33,15 +33,20 @@ export const processNotification = (
   clearNotifications(notification);
 
   // Set new badge.
-  const {user: stateUser} = store.getState().user;
-  console.info(getLogMessage('stateUser'), stateUser);
-  const newNotificationsCount = (stateUser?.unreadNotificationsCount ?? 1) - 1;
+  const {unreadNotificationsCount: stateUnreadNotificationsCount, apiToken} =
+    store.getState().user;
+
+  console.info(
+    getLogMessage('stateUnreadNotificationsCount'),
+    stateUnreadNotificationsCount,
+  );
+
+  const newNotificationsCount = (stateUnreadNotificationsCount ?? 1) - 1;
   PushNotification.setApplicationIconBadgeNumber(newNotificationsCount);
 
-  if (stateUser) {
+  if (apiToken) {
     processUserNotification(
       notification,
-      stateUser,
       newNotificationsCount,
       shouldSkipOpenNotificationsScreen,
     );
@@ -82,19 +87,25 @@ export const displayLocalNotification = (
 ) => {
   console.info(getLogMessage('displayLocalNotification'), remoteMessage);
 
-  const title = remoteMessage.notification?.title
-    ? remoteMessage.notification?.title
-    : typeof remoteMessage.data?.title === 'object'
+  const dataTitle =
+    typeof remoteMessage.data?.title === 'object'
       ? undefined
       : remoteMessage.data?.title;
 
+  const title = remoteMessage.notification?.title
+    ? remoteMessage.notification?.title
+    : dataTitle;
+
   console.info(getLogMessage('title'), title);
+
+  const dataBody =
+    typeof remoteMessage.data?.body === 'object'
+      ? undefined
+      : remoteMessage.data?.body;
 
   const body = remoteMessage.notification?.body
     ? remoteMessage.notification?.body
-    : typeof remoteMessage.data?.body === 'object'
-      ? undefined
-      : remoteMessage.data?.body;
+    : dataBody;
 
   console.info(getLogMessage('body'), body);
 

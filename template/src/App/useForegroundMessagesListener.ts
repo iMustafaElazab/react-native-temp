@@ -1,7 +1,14 @@
 import messaging from '@react-native-firebase/messaging';
 import * as React from 'react';
-import {getUser} from '@src/core';
-import {useAppDispatch, setUser as setStateUser} from '@src/store';
+import {
+  getApiToken,
+  getUnreadNotificationsCount,
+  setUnreadNotificationsCount as setLocalStorageUnreadNotificationsCount,
+} from '@src/core';
+import {
+  useAppDispatch,
+  setUnreadNotificationsCount as setStateUnreadNotificationsCount,
+} from '@src/store';
 import {displayLocalNotification} from '@src/utils';
 
 export const useForegroundMessagesListener = () => {
@@ -17,23 +24,23 @@ export const useForegroundMessagesListener = () => {
   React.useEffect(() => {
     const unsubscribe = messaging().onMessage(remoteMessage => {
       console.info(getLogMessage('onMessage'), remoteMessage);
-      const user = getUser();
+      const apiToken = getApiToken();
 
-      if (user) {
+      if (apiToken) {
         console.info(getLogMessage('User Available'));
 
         // Increase notifications count.
-        const userWithNewNotificationsCount = {...user};
-
-        userWithNewNotificationsCount.unreadNotificationsCount =
-          (user.unreadNotificationsCount ?? 0) + 1;
+        const unreadNotificationsCount =
+          (getUnreadNotificationsCount() ?? 0) + 1;
 
         console.info(
-          getLogMessage('userWithNewNotificationsCount'),
-          userWithNewNotificationsCount,
+          getLogMessage('unreadNotificationsCount'),
+          unreadNotificationsCount,
         );
 
-        dispatch(setStateUser(userWithNewNotificationsCount));
+        // Set unread notifications count to local storage and redux.
+        setLocalStorageUnreadNotificationsCount(unreadNotificationsCount);
+        dispatch(setStateUnreadNotificationsCount(unreadNotificationsCount));
 
         // Show local notification.
         displayLocalNotification(remoteMessage);

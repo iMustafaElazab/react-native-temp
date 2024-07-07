@@ -20,7 +20,6 @@
 ## Features
 
 - Full project setup is available.
-- `TypeScript` enabled and used.
 - `Redux` added and configured using [`Redux Toolkit`](https://redux-toolkit.js.org).
 - [`TanStack Query (FKA React Query)`](https://tanstack.com/query/latest/) is used for `API` alongside [`axios`](https://axios-http.com).
 - `Navigation` added and configured using [`React Navigation`](https://reactnavigation.org).

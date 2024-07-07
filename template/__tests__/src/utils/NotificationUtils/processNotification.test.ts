@@ -33,7 +33,7 @@ const shouldSkipOpenNotificationsScreen = false;
 
 test('should clear the notification successfully when notification is provided', () => {
   const storeMock = jest.spyOn(store, 'getState').mockReturnValue({
-    user: {user: {unreadNotificationsCount: 5}},
+    user: {unreadNotificationsCount: 5, apiToken: 'token'},
     dialogs: {},
     networkState: {},
   });
@@ -56,7 +56,7 @@ test('should log appropriate messages for debugging', () => {
   );
 
   expect(console.info).toHaveBeenCalledWith(
-    '## NotificationUtils:: stateUser',
+    '## NotificationUtils:: stateUnreadNotificationsCount',
     undefined,
   );
 });

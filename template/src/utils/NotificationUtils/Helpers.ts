@@ -2,15 +2,20 @@ import {default as PushNotificationIOS} from '@react-native-community/push-notif
 import {Platform} from 'react-native';
 import {default as Config} from 'react-native-config';
 import {default as PushNotification} from 'react-native-push-notification';
-import {queryNotifications} from '@src/core';
+import {
+  queryNotifications,
+  setUnreadNotificationsCount as setLocalStorageUnreadNotificationsCount,
+} from '@src/core';
 import type {
   MarkNotificationReadResponse,
   ServerError,
   ApiRequest,
   Notification,
-  User,
 } from '@src/core';
-import {store, setUser as setStateUser} from '@src/store';
+import {
+  store,
+  setUnreadNotificationsCount as setStateUnreadNotificationsCount,
+} from '@src/store';
 import {openNotificationRelatedScreen, queryClient} from '@src/utils';
 
 const getLogMessage = (message: string) =>
@@ -55,43 +60,32 @@ export const clearNotifications = (notification: Notification) => {
 };
 
 /**
- * Process a user notification by updating the unread notifications count in the user state and opening the related screen if necessary.
+ * Process a user notification by updating the unread notifications count in the
+ * local storage and Redux state and opening the related screen.
  *
- * @param notification - The notification object to be processed.
- * @param stateUser - The current user object from the state.
- * @param newNotificationsCount - The count of new notifications to be set for the user.
- * @param shouldSkipOpenNotificationsScreen - Optional flag to determine if the notifications screen should be skipped.
+ * @param notification The notification object containing information like id, title, and message.
+ * @param newNotificationsCount The new count of unread notifications to be set in the Redux state.
+ * @param shouldSkipOpenNotificationsScreen Optional. A boolean flag indicating whether to skip opening the notifications screen.
+ *
+ * @returns void
  */
 export const processUserNotification = (
   notification: Notification,
-  stateUser: User,
   newNotificationsCount: number,
   shouldSkipOpenNotificationsScreen?: boolean,
 ) => {
   console.info(
     getLogMessage('processUserNotification'),
     notification,
-    stateUser,
     newNotificationsCount,
     shouldSkipOpenNotificationsScreen,
   );
 
+  // Set new notifications count to local storage.
+  setLocalStorageUnreadNotificationsCount(newNotificationsCount);
+
   // Set new notifications count to redux state.
-  const userWithNewNotificationsCount = {...stateUser};
-
-  userWithNewNotificationsCount.unreadNotificationsCount =
-    newNotificationsCount;
-
-  console.info(
-    getLogMessage('userWithNewNotificationsCount'),
-    userWithNewNotificationsCount,
-  );
-
-  if (Config.ENV_NAME === 'Unit Testing') {
-    return;
-  }
-
-  store.dispatch(setStateUser(userWithNewNotificationsCount));
+  store.dispatch(setStateUnreadNotificationsCount(newNotificationsCount));
 
   // Open notification related screen.
   openNotificationRelatedScreen(

@@ -18,7 +18,7 @@ const addHeaders = (config: InternalAxiosRequestConfig<any>) => {
   config.headers['Content-Type'] = 'application/json';
   config.headers['Accept-Language'] = getCurrentLocale();
   config.headers['cache-control'] = 'no-cache';
-  const token = store.getState().user?.user?.apiToken;
+  const token = store.getState().user?.apiToken;
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;

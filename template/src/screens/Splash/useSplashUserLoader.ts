@@ -1,11 +1,10 @@
 import * as React from 'react';
-import type {User} from '@src/core';
 import {
-  getUser as getLocalStorageUser,
+  getApiToken as getLocalStorageApiToken,
   useGetUserDetailsApi,
-  setUser as setLocalStorageUser,
 } from '@src/core';
-import {useAppDispatch, setUser as setStateUser} from '@src/store';
+import {useAppDispatch, setApiToken as setStateApiToken} from '@src/store';
+import {saveUserData} from '@src/utils';
 
 export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
   // #region Logger
@@ -34,78 +33,43 @@ export const useSplashUserLoader = (isBootSplashLogoLoaded: boolean) => {
   });
   // #endregion
 
-  /**
-   * setUserToReduxStore
-   *
-   * Set given user to redux store.
-   *
-   * @param user The user to set to redux store.
-   */
-  const setUserToReduxStore = React.useCallback(
-    (user: User) => {
-      console.info(getLogMessage('setUserToReduxStore'), user);
-      dispatch(setStateUser(user));
-    },
-    [dispatch],
-  );
+  const getSavedUserToken = React.useCallback(() => {
+    console.info(getLogMessage('getSavedUserToken'));
+    const apiToken = getLocalStorageApiToken();
+    console.info(getLogMessage('apiToken'), apiToken);
 
-  /**
-   * getSavedUser
-   *
-   * Load user data from local storage then:
-   * - If user available:
-   *   - Set user to redux store.
-   *   - Check if Internet connection available then:
-   *     - If available call "getUpdatedUserData" to load updated user data from API.
-   *     - Else set "isUserLoaded" state variable.
-   * - Else:
-   *   - Set "isUserLoaded" state variable.
-   */
-  const getSavedUser = React.useCallback(() => {
-    console.info(getLogMessage('getSavedUser'));
-    const user = getLocalStorageUser();
-    console.info(getLogMessage('user'), user);
-
-    if (user) {
-      setUserToReduxStore(user);
+    if (apiToken) {
+      dispatch(setStateApiToken(apiToken));
       setShouldStartUserLoading(true);
     } else {
       setUserLoaded(true);
     }
-  }, [setUserToReduxStore]);
+  }, [dispatch]);
 
-  /**
-   * saveUserData
-   *
-   * - Set user to local storage.
-   * - Set user to redux store.
-   * - Set "isUserLoaded" state variable.
-   */
-  const saveUserData = React.useCallback(() => {
+  const saveApiUserData = React.useCallback(() => {
     if (apiUser) {
-      setLocalStorageUser(apiUser);
-      setUserToReduxStore(apiUser);
+      saveUserData(apiUser);
     }
 
     setUserLoaded(true);
-  }, [apiUser, setUserToReduxStore]);
+  }, [apiUser]);
 
   // #region Setup
   React.useEffect(() => {
     if (isBootSplashLogoLoaded) {
-      getSavedUser();
+      getSavedUserToken();
     }
-  }, [isBootSplashLogoLoaded, getSavedUser]);
+  }, [isBootSplashLogoLoaded, getSavedUserToken]);
 
   React.useEffect(() => {
     if (isSuccessApi) {
-      saveUserData();
+      saveApiUserData();
     }
 
     if (isErrorApi) {
       setUserLoaded(true);
     }
-  }, [isSuccessApi, isErrorApi, saveUserData]);
+  }, [isSuccessApi, isErrorApi, saveApiUserData]);
   // #endregion
 
   return isUserLoaded;
