@@ -10,7 +10,10 @@ import {
 
 const getLogMessage = (message: string) => `## LocalStorage::user:: ${message}`;
 
-export const useLocalStorageUser = () => {
+export const useLocalStorageUser: () => [
+  User | undefined | null,
+  (user: User) => void,
+] = () => {
   console.info(getLogMessage('useLocalStorageUser'));
   const [jsonUser, setJsonUser] = useLocalStorageString(LocalStorageKeys.USER);
   console.info(getLogMessage('jsonUser'), jsonUser);
