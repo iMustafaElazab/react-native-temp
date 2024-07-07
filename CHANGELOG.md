@@ -1,5 +1,18 @@
 
 
+## [3.7.0](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.6.3...v3.7.0) (2024-07-07)
+
+
+### Features
+
+* upgrade `ReactNative` to version `0.74.2` ([9642c60](https://github.com/EslamElMeniawy/react-native-temp/commit/9642c60d64152c15df801a478c45d0d18e91446a))
+* upgrade `ReactNative` to version `0.74.3` ([2f9fed4](https://github.com/EslamElMeniawy/react-native-temp/commit/2f9fed4dd879f14a6c824ae90ae92fe6089d7c11))
+
+
+### Bug Fixes
+
+* add type definition for `useLocalStorageUser` ([67dd152](https://github.com/EslamElMeniawy/react-native-temp/commit/67dd152ce2719bca4e0ded0d8150d20a1ccf2d81))
+
 ## [3.6.3](https://github.com/EslamElMeniawy/react-native-temp/compare/v3.6.2...v3.6.3) (2024-06-02)
 
 
